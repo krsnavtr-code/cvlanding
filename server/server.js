@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const db = require("./config/db");
 const pageRoutes = require("./routes/pageRoutes");
+const leadRoutes = require("./routes/leadRoutes");
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api", pageRoutes);
+app.use("/api", leadRoutes);
 
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
