@@ -1,7 +1,8 @@
-require('dotenv').config();
-const express = require('express');
-const mysql = require('mysql2');
-const cors = require('cors');
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const db = require("./config/db");
+const pageRoutes = require("./routes/pageRoutes");
 
 const app = express();
 
@@ -9,34 +10,25 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// MySQL Database Connection
-const db = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+// Routes
+app.use("/api", pageRoutes);
+
+app.get("/health", (req, res) => {
+  res.json({ status: "ok" });
 });
 
-// Connection Test Check
-db.getConnection((err, connection) => {
-    if (err) {
-        console.error('❌ Database connection failed:', err.message);
-    } else {
-        console.log('✅ Successfully connected to Hostinger MySQL Database!');
-        connection.release();
-    }
-});
+// Database connection check
+db.getConnection()
+  .then((connection) => {
+    console.log("Connected to Hostinger MySQL database");
+    connection.release();
+  })
+  .catch((err) => {
+    console.error("Database connection failed:", err.message);
+  });
 
-// Basic API Route check karne ke liye
-app.get('/api/test', (req, res) => {
-    res.json({ message: "Server aur Database ekdum theek chal rahe hain!" });
-});
-
-// Server Start
+// Server start
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`🚀 Server is running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
