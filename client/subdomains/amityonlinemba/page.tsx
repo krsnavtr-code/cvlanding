@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AmityOnlineMbaPage({
   subdomain = "amityonlinemba",
 }: {
   subdomain?: string;
 }) {
+  const router = useRouter();
   const [activeYear, setActiveYear] = useState<1 | 2>(1);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,7 +19,8 @@ export default function AmityOnlineMbaPage({
 
   const handleLeadSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = new FormData(e.currentTarget);
+    const formElement = e.currentTarget;
+    const form = new FormData(formElement);
     const payload = {
       name: String(form.get("name") || "").trim(),
       email: String(form.get("email") || "").trim(),
@@ -35,7 +38,7 @@ export default function AmityOnlineMbaPage({
     setStatusMessage("");
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5005";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
       const res = await fetch(`${apiUrl}/api/leads`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -47,23 +50,15 @@ export default function AmityOnlineMbaPage({
       }
 
       setFormStatus("success");
-      setStatusMessage(
-        "Thank you! Your enquiry has been received. Redirecting to confirmation page...",
-      );
-      e.currentTarget.reset();
-      setTimeout(() => {
-        window.location.href = "/thank-you";
-      }, 800);
+      setStatusMessage("Thank you! Your enquiry has been received.");
+      formElement?.reset();
+      router.push("/thank-you");
     } catch {
       // Fallback for static demo
       setFormStatus("success");
-      setStatusMessage(
-        "Thank you! Your enquiry has been recorded. Redirecting...",
-      );
-      e.currentTarget.reset();
-      setTimeout(() => {
-        window.location.href = "/thank-you";
-      }, 800);
+      setStatusMessage("Thank you! Your enquiry has been recorded.");
+      formElement?.reset();
+      router.push("/thank-you");
     }
   };
 

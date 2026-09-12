@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 
 interface LeadFormProps {
   subdomain: string;
@@ -53,6 +54,7 @@ export default function LeadForm({
   formSubtitle = "Check your eligibility, fees, scholarships & available batches",
   buttonText = "Request Free Call Back",
 }: LeadFormProps) {
+  const router = useRouter();
   const [status, setStatus] = useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
@@ -60,7 +62,8 @@ export default function LeadForm({
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = new FormData(e.currentTarget);
+    const formElement = e.currentTarget;
+    const form = new FormData(formElement);
 
     const payload = {
       name: String(form.get("name") || "").trim(),
@@ -97,18 +100,14 @@ export default function LeadForm({
       }
 
       setStatus("success");
-      e.currentTarget.reset();
-      setTimeout(() => {
-        window.location.href = "/thank-you";
-      }, 800);
+      formElement?.reset();
+      router.push("/thank-you");
     } catch (err: any) {
       // In static or offline dev environment fallback
       console.warn("Lead submission fallback:", err);
       setStatus("success");
-      e.currentTarget.reset();
-      setTimeout(() => {
-        window.location.href = "/thank-you";
-      }, 800);
+      formElement?.reset();
+      router.push("/thank-you");
     }
   };
 

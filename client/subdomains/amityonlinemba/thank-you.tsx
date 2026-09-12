@@ -132,7 +132,7 @@ export default function AmityOnlineMbaThankYou({
               href="/"
               className="inline-flex items-center gap-2 bg-[#f1f4f9] hover:bg-[#e4e8f0] text-[#17243a] font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition-all"
             >
-              <span>Return to Homepage</span>
+              <span>Return Back</span>
             </Link>
           </div>
         </div>
