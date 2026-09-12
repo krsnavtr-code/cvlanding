@@ -12,15 +12,12 @@ export default function AmityOnlineBbaThankYou({
       {/* Top Header */}
       <header className="bg-[#1b325e] shadow-md">
         <div className="w-[min(1160px,92%)] mx-auto h-[68px] flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="bg-white/10 px-3 py-1.5 rounded-lg border border-white/20">
-              <span className="text-xl font-black text-[#ffc21c] tracking-tight">
-                AMITY
-              </span>
-              <span className="text-xs font-bold text-white ml-1.5 uppercase tracking-wider">
-                ONLINE BBA
-              </span>
-            </div>
+          <Link href="/" className="flex items-center">
+            <img
+              src="/images/amity-logo.jpg"
+              alt="Amity University Online"
+              className="h-10 w-auto object-contain rounded-md"
+            />
           </Link>
           <Link
             href="/"
@@ -53,7 +50,9 @@ export default function AmityOnlineBbaThankYou({
             <strong className="text-[#17243a]">
               Amity University Online BBA
             </strong>{" "}
-            has been received. Our undergraduate counsellor will call you shortly to assist with 10+2 verification, semester fees, and scholarships.
+            has been received. Our undergraduate counsellor will call you
+            shortly to assist with 10+2 verification, semester fees, and
+            scholarships.
           </p>
 
           {/* Next Steps Roadmap */}
@@ -71,7 +70,8 @@ export default function AmityOnlineBbaThankYou({
                     Counsellor Guidance Call
                   </h3>
                   <p className="text-xs text-[#667085] mt-0.5">
-                    Understand the full 3-year curriculum, digital marketing/finance electives, and career scope.
+                    Understand the full 3-year curriculum, digital
+                    marketing/finance electives, and career scope.
                   </p>
                 </div>
               </div>
@@ -85,7 +85,8 @@ export default function AmityOnlineBbaThankYou({
                     10+2 Document Verification
                   </h3>
                   <p className="text-xs text-[#667085] mt-0.5">
-                    Submit digital marksheets to confirm merit discounts and easy monthly installment schemes.
+                    Submit digital marksheets to confirm merit discounts and
+                    easy monthly installment schemes.
                   </p>
                 </div>
               </div>
@@ -99,7 +100,8 @@ export default function AmityOnlineBbaThankYou({
                     Student Portal Onboarding
                   </h3>
                   <p className="text-xs text-[#667085] mt-0.5">
-                    Get student credentials to access Amity LMS, e-books, and live weekend sessions.
+                    Get student credentials to access Amity LMS, e-books, and
+                    live weekend sessions.
                   </p>
                 </div>
               </div>
@@ -139,7 +141,8 @@ export default function AmityOnlineBbaThankYou({
       {/* Footer */}
       <footer className="bg-[#071c46] text-[#dce7f7] py-6 border-t border-white/10 text-center text-xs text-[#aebed4]">
         <div className="w-[min(1160px,92%)] mx-auto">
-          © {new Date().getFullYear()} College Vihar & Amity University Online Guidance Portal.
+          © {new Date().getFullYear()} College Vihar & Amity University Online
+          Guidance Portal.
         </div>
       </footer>
     </div>

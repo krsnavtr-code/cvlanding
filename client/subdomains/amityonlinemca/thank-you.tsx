@@ -12,15 +12,12 @@ export default function AmityOnlineMcaThankYou({
       {/* Top Header */}
       <header className="bg-[#1b325e] shadow-md">
         <div className="w-[min(1160px,92%)] mx-auto h-[68px] flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="bg-white/10 px-3 py-1.5 rounded-lg border border-white/20">
-              <span className="text-xl font-black text-[#ffc21c] tracking-tight">
-                AMITY
-              </span>
-              <span className="text-xs font-bold text-white ml-1.5 uppercase tracking-wider">
-                ONLINE MCA
-              </span>
-            </div>
+          <Link href="/" className="flex items-center">
+            <img
+              src="/images/amity-logo.jpg"
+              alt="Amity University Online"
+              className="h-10 w-auto object-contain rounded-md"
+            />
           </Link>
           <Link
             href="/"
@@ -53,7 +50,8 @@ export default function AmityOnlineMcaThankYou({
             <strong className="text-[#17243a]">
               Amity University Online MCA
             </strong>{" "}
-            has been successfully recorded. Our technical education counsellor will contact you shortly with full syllabus and admission steps.
+            has been successfully recorded. Our technical education counsellor
+            will contact you shortly with full syllabus and admission steps.
           </p>
 
           {/* Next Steps Roadmap */}
@@ -71,7 +69,8 @@ export default function AmityOnlineMcaThankYou({
                     Eligibility & Non-CS Bridge Verification
                   </h3>
                   <p className="text-xs text-[#667085] mt-0.5">
-                    We evaluate your graduation degree and mathematics background to confirm AICTE direct admission eligibility.
+                    We evaluate your graduation degree and mathematics
+                    background to confirm AICTE direct admission eligibility.
                   </p>
                 </div>
               </div>
@@ -85,7 +84,8 @@ export default function AmityOnlineMcaThankYou({
                     Specialisation Selection (Cloud / AI / Full Stack)
                   </h3>
                   <p className="text-xs text-[#667085] mt-0.5">
-                    Choose the track that fits your tech career goals and software engineering focus.
+                    Choose the track that fits your tech career goals and
+                    software engineering focus.
                   </p>
                 </div>
               </div>
@@ -99,7 +99,8 @@ export default function AmityOnlineMcaThankYou({
                     Virtual Coding Lab & LMS Onboarding
                   </h3>
                   <p className="text-xs text-[#667085] mt-0.5">
-                    Receive your digital lab access and student portal login after document confirmation.
+                    Receive your digital lab access and student portal login
+                    after document confirmation.
                   </p>
                 </div>
               </div>
@@ -139,7 +140,8 @@ export default function AmityOnlineMcaThankYou({
       {/* Footer */}
       <footer className="bg-[#071c46] text-[#dce7f7] py-6 border-t border-white/10 text-center text-xs text-[#aebed4]">
         <div className="w-[min(1160px,92%)] mx-auto">
-          © {new Date().getFullYear()} College Vihar & Amity University Online Guidance Portal.
+          © {new Date().getFullYear()} College Vihar & Amity University Online
+          Guidance Portal.
         </div>
       </footer>
     </div>

@@ -12,15 +12,12 @@ export default function AmityOnlineMbaThankYou({
       {/* Top Header */}
       <header className="bg-[#1b325e] shadow-md">
         <div className="w-[min(1160px,92%)] mx-auto h-[68px] flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="bg-white/10 px-3 py-1.5 rounded-lg border border-white/20">
-              <span className="text-xl font-black text-[#ffc21c] tracking-tight">
-                AMITY
-              </span>
-              <span className="text-xs font-bold text-white ml-1.5 uppercase tracking-wider">
-                ONLINE
-              </span>
-            </div>
+          <Link href="/" className="flex items-center">
+            <img
+              src="/images/amity-logo.jpg"
+              alt="Amity University Online"
+              className="h-10 w-auto object-contain rounded-md"
+            />
           </Link>
           <Link
             href="/"
@@ -55,7 +52,8 @@ export default function AmityOnlineMbaThankYou({
             <strong className="text-[#17243a]">
               Amity University Online MBA
             </strong>{" "}
-            has been successfully submitted. Our senior academic counsellor is reviewing your profile and will contact you shortly.
+            has been successfully submitted. Our senior academic counsellor is
+            reviewing your profile and will contact you shortly.
           </p>
 
           {/* What happens next roadmap */}
@@ -73,7 +71,9 @@ export default function AmityOnlineMbaThankYou({
                     Counselor Review & Call
                   </h3>
                   <p className="text-xs text-[#667085] mt-0.5">
-                    An expert counselor will connect with you via phone/WhatsApp to explain the syllabus, eligibility criteria, and fee discounts.
+                    An expert counselor will connect with you via phone/WhatsApp
+                    to explain the syllabus, eligibility criteria, and fee
+                    discounts.
                   </p>
                 </div>
               </div>
@@ -87,7 +87,8 @@ export default function AmityOnlineMbaThankYou({
                     Scholarship & 0% EMI Assessment
                   </h3>
                   <p className="text-xs text-[#667085] mt-0.5">
-                    Get instant eligibility checking for merit scholarships and 24-month zero-interest installment options.
+                    Get instant eligibility checking for merit scholarships and
+                    24-month zero-interest installment options.
                   </p>
                 </div>
               </div>
@@ -101,7 +102,8 @@ export default function AmityOnlineMbaThankYou({
                     Document Verification & LMS Access
                   </h3>
                   <p className="text-xs text-[#667085] mt-0.5">
-                    Submit digital copies of your graduation marksheets to receive official enrollment credentials and start classes.
+                    Submit digital copies of your graduation marksheets to
+                    receive official enrollment credentials and start classes.
                   </p>
                 </div>
               </div>
@@ -142,7 +144,8 @@ export default function AmityOnlineMbaThankYou({
       <footer className="bg-[#071c46] text-[#dce7f7] py-6 border-t border-white/10 text-center text-xs text-[#aebed4]">
         <div className="w-[min(1160px,92%)] mx-auto space-y-2">
           <p>
-            © {new Date().getFullYear()} College Vihar & Amity University Online Guidance Portal. All rights reserved.
+            © {new Date().getFullYear()} College Vihar & Amity University Online
+            Guidance Portal. All rights reserved.
           </p>
         </div>
       </footer>

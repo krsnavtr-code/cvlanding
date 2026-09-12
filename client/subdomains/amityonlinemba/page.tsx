@@ -73,15 +73,12 @@ export default function AmityOnlineMbaPage({
         <div className="w-[min(1160px,92%)] mx-auto h-[70px] sm:h-[78px] flex items-center justify-between gap-4">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <a href="#top" className="flex items-center gap-2">
-              <div className="bg-white/10 px-3 py-1.5 rounded-lg border border-white/20">
-                <span className="text-xl sm:text-2xl font-black text-[#ffc21c] tracking-tight">
-                  AMITY
-                </span>
-                <span className="text-xs sm:text-sm font-bold text-white ml-1.5 uppercase tracking-wider">
-                  ONLINE
-                </span>
-              </div>
+            <a href="#top" className="flex items-center">
+              <img
+                src="/images/amity-logo.jpg"
+                alt="Amity University Online"
+                className="h-10 sm:h-12 w-auto object-contain rounded-md"
+              />
             </a>
           </div>
 
