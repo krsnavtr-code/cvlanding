@@ -48,22 +48,22 @@ export default function AmityOnlineMbaPage({
 
       setFormStatus("success");
       setStatusMessage(
-        "Thank you! Your enquiry has been received. Our counsellor will contact you shortly.",
+        "Thank you! Your enquiry has been received. Redirecting to confirmation page...",
       );
       e.currentTarget.reset();
-      if (isModalOpen) {
-        setTimeout(() => setIsModalOpen(false), 2000);
-      }
+      setTimeout(() => {
+        window.location.href = "/thank-you";
+      }, 800);
     } catch {
       // Fallback for static demo
       setFormStatus("success");
       setStatusMessage(
-        "Thank you! Your enquiry has been recorded. Our admissions advisor will contact you soon.",
+        "Thank you! Your enquiry has been recorded. Redirecting...",
       );
       e.currentTarget.reset();
-      if (isModalOpen) {
-        setTimeout(() => setIsModalOpen(false), 2000);
-      }
+      setTimeout(() => {
+        window.location.href = "/thank-you";
+      }, 800);
     }
   };
 

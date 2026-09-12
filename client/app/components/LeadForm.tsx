@@ -53,7 +53,9 @@ export default function LeadForm({
   formSubtitle = "Check your eligibility, fees, scholarships & available batches",
   buttonText = "Request Free Call Back",
 }: LeadFormProps) {
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -89,15 +91,24 @@ export default function LeadForm({
       });
 
       if (!res.ok) {
-        throw new Error("Unable to submit form. Please try again or reach out directly.");
+        throw new Error(
+          "Unable to submit form. Please try again or reach out directly.",
+        );
       }
 
       setStatus("success");
       e.currentTarget.reset();
+      setTimeout(() => {
+        window.location.href = "/thank-you";
+      }, 800);
     } catch (err: any) {
       // In static or offline dev environment fallback
       console.warn("Lead submission fallback:", err);
       setStatus("success");
+      e.currentTarget.reset();
+      setTimeout(() => {
+        window.location.href = "/thank-you";
+      }, 800);
     }
   };
 
@@ -126,7 +137,9 @@ export default function LeadForm({
             Thank You for Inquiring!
           </h4>
           <p className="text-sm text-slate-600 max-w-sm mx-auto">
-            Our Senior Education Counsellor for <strong>{universityName}</strong> will call you shortly to assist with fees, eligibility, and scholarship options.
+            Our Senior Education Counsellor for{" "}
+            <strong>{universityName}</strong> will call you shortly to assist
+            with fees, eligibility, and scholarship options.
           </p>
           <button
             onClick={() => setStatus("idle")}
@@ -278,7 +291,9 @@ export default function LeadForm({
                 clipRule="evenodd"
               />
             </svg>
-            <span>100% Privacy Guaranteed. No Spam Calls. Free Counselling.</span>
+            <span>
+              100% Privacy Guaranteed. No Spam Calls. Free Counselling.
+            </span>
           </div>
         </form>
       )}

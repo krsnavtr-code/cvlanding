@@ -6,5 +6,6 @@ export interface SubdomainPageProps {
 
 export interface SubdomainModule {
   Component: React.ComponentType<SubdomainPageProps>;
+  ThankYouComponent: React.ComponentType<SubdomainPageProps>;
   metadata: Metadata;
 }
