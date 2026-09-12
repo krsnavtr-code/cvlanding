@@ -33,7 +33,7 @@ export default function ProgramLandingTemplate({
     setErrorMsg("");
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5005";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
       const res = await fetch(`${apiUrl}/api/leads`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
