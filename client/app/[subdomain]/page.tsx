@@ -1,56 +1,52 @@
 import { notFound } from "next/navigation";
-import { TemplateRenderer } from "../components/TemplateRenderer";
+import { Metadata } from "next";
+import { getSubdomainModule, getAllSubdomainSlugs } from "@/subdomains";
 
 interface PageProps {
-  params: Promise<{ subdomain: string }> | { subdomain: string };
+  params: Promise<{ subdomain: string }>;
 }
 
-async function fetchPage(subdomain: string) {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5005";
-  const res = await fetch(
-    `${apiUrl}/api/pages/${encodeURIComponent(subdomain)}`,
-    {
-      cache: "no-store",
-    },
-  );
+/**
+ * Pre-render all dedicated static subdomain pages at build time
+ */
+export async function generateStaticParams() {
+  const slugs = getAllSubdomainSlugs();
+  return slugs.map((subdomain) => ({
+    subdomain,
+  }));
+}
 
-  if (!res.ok) {
-    return null;
+/**
+ * Dynamic SEO metadata from the dedicated subdomain page module
+ */
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { subdomain } = await params;
+  const subdomainModule = getSubdomainModule(subdomain);
+
+  if (!subdomainModule) {
+    return {
+      title: "Page Not Found | College Vihar",
+      description: "The requested subdomain page does not exist.",
+    };
   }
 
-  return res.json();
+  return subdomainModule.getMetadata();
 }
 
-export async function generateMetadata({ params }: PageProps) {
-  const { subdomain } = await Promise.resolve(params);
-  const data = await fetchPage(subdomain);
+/**
+ * Renders the dedicated full-page component for each subdomain
+ */
+export default async function SubdomainLandingPage({ params }: PageProps) {
+  const { subdomain } = await params;
+  const subdomainModule = getSubdomainModule(subdomain);
 
-  if (!data || !data.success) {
-    return {};
-  }
-
-  return {
-    title: data.seo?.title || "CollegeVihar",
-    description: data.seo?.description || "",
-    keywords: data.seo?.keywords,
-  };
-}
-
-export default async function LandingPage({ params }: PageProps) {
-  const { subdomain } = await Promise.resolve(params);
-  const data = await fetchPage(subdomain);
-
-  if (!data || !data.success) {
+  if (!subdomainModule) {
     notFound();
   }
 
-  return (
-    <main>
-      <TemplateRenderer
-        template={data.template_type}
-        content={data.content}
-        subdomain={subdomain}
-      />
-    </main>
-  );
+  const { Component } = subdomainModule;
+
+  return <Component subdomain={subdomain} />;
 }
