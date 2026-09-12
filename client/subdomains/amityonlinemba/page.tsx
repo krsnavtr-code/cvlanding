@@ -28,7 +28,7 @@ export default function AmityOnlineMbaPage({
       subdomain: "amityonlinemba",
       university: "Amity University Online",
       program: "Online MBA",
-      source: "amity-landing-v2",
+      source: String(form.get("source") || "Apply For Online MBA").trim(),
     };
 
     setFormStatus("submitting");
@@ -347,6 +347,11 @@ export default function AmityOnlineMbaPage({
 
               {/* Right Form Fields */}
               <form onSubmit={handleLeadSubmit} className="space-y-3.5 py-1">
+                <input
+                  type="hidden"
+                  name="source"
+                  value="Apply For Online MBA"
+                />
                 <div>
                   <h3 className="text-xl sm:text-2xl font-black text-[#1b325e]">
                     Apply For Online MBA
@@ -1343,6 +1348,11 @@ export default function AmityOnlineMbaPage({
             </p>
 
             <form onSubmit={handleLeadSubmit} className="space-y-3">
+              <input
+                type="hidden"
+                name="source"
+                value="Get Amity Online MBA Details"
+              />
               <div>
                 <label className="block text-xs font-bold text-[#3e4a5d] mb-1">
                   Full Name
