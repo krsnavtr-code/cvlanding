@@ -4,6 +4,7 @@ const cors = require("cors");
 const db = require("./config/db");
 const pageRoutes = require("./routes/pageRoutes");
 const leadRoutes = require("./routes/leadRoutes");
+const { verifySmtpConnection } = require("./services/mailService");
 
 const app = express();
 
@@ -28,6 +29,9 @@ db.getConnection()
   .catch((err) => {
     console.error("Database connection failed:", err.message);
   });
+
+// SMTP Mail Connection Check
+verifySmtpConnection();
 
 // Server start
 const PORT = process.env.PORT || 5005;

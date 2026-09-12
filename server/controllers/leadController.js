@@ -1,4 +1,5 @@
 const db = require("../config/db");
+const { sendLeadNotificationToAdmin } = require("../services/mailService");
 
 exports.captureLead = async (req, res) => {
   const {
@@ -24,11 +25,11 @@ exports.captureLead = async (req, res) => {
   const cleanSubdomain = (subdomain || "amityonlinemba").toLowerCase().trim();
 
   try {
-    // Try inserting with all enhanced columns
+    // 1. Insert lead record into database
     try {
       await db.execute(
         `INSERT INTO leads (name, email, phone, state, qualification, specialisation, university, program, subdomain, source) 
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           name.trim(),
           email.trim(),
@@ -46,7 +47,7 @@ exports.captureLead = async (req, res) => {
       console.warn("Fallback to standard lead insert:", colErr.message);
       await db.execute(
         `INSERT INTO leads (name, email, phone, state, qualification, subdomain, source) 
-                 VALUES (?, ?, ?, ?, ?, ?, ?)`,
+         VALUES (?, ?, ?, ?, ?, ?, ?)`,
         [
           name.trim(),
           email.trim(),
@@ -62,6 +63,22 @@ exports.captureLead = async (req, res) => {
     console.log(
       `[LEAD CAPTURED] ${name} | ${email} | ${phone} | Subdomain: ${cleanSubdomain} | Source: ${source}`,
     );
+
+    // 2. Dispatch email notification to admin asynchronously
+    sendLeadNotificationToAdmin({
+      name: name.trim(),
+      email: email.trim(),
+      phone: phone.trim(),
+      state: state ? state.trim() : null,
+      qualification: qualification ? qualification.trim() : null,
+      specialisation: specialisation ? specialisation.trim() : null,
+      university: university ? university.trim() : null,
+      program: program ? program.trim() : null,
+      subdomain: cleanSubdomain,
+      source: source ? source.trim() : "landing-page",
+    }).catch((mailErr) => {
+      console.error("[MAIL ASYNC ERROR]:", mailErr.message);
+    });
 
     return res.status(201).json({
       success: true,
