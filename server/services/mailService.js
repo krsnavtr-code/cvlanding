@@ -8,8 +8,8 @@ const transporter = nodemailer.createTransport({
     !process.env.MAIL_PORT ||
     process.env.MAIL_ENCRYPTION === "ssl",
   auth: {
-    user: process.env.MAIL_USERNAME || "noreply@collegevihar.com",
-    pass: process.env.MAIL_PASSWORD || "Kieron@123",
+    user: process.env.MAIL_USERNAME,
+    pass: process.env.MAIL_PASSWORD,
   },
   tls: {
     rejectUnauthorized: false,
