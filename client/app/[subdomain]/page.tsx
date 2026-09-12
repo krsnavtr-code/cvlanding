@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 }
 
 /**
- * Dynamic SEO metadata from the dedicated subdomain page module
+ * Static SEO metadata from the dedicated subdomain metadata file
  */
 export async function generateMetadata({
   params,
@@ -32,7 +32,7 @@ export async function generateMetadata({
     };
   }
 
-  return subdomainModule.getMetadata();
+  return subdomainModule.metadata;
 }
 
 /**

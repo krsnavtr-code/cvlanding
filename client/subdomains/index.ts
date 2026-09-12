@@ -1,47 +1,41 @@
 import { SubdomainModule } from "./types";
-import AmityOnlineMbaPage, {
-  getMetadata as getAmityOnlineMbaMetadata,
-} from "./amityonlinemba/page";
-import AmityOnlineMcaPage, {
-  getMetadata as getAmityOnlineMcaMetadata,
-} from "./amityonlinemca/page";
-import AmityOnlineBbaPage, {
-  getMetadata as getAmityOnlineBbaMetadata,
-} from "./amityonlinebba/page";
-import OnlineManipalMbaPage, {
-  getMetadata as getOnlineManipalMbaMetadata,
-} from "./onlinemanipalmba/page";
-import OnlineManipalMcaPage, {
-  getMetadata as getOnlineManipalMcaMetadata,
-} from "./onlinemanipalmca/page";
-import OnlineManipalBbaPage, {
-  getMetadata as getOnlineManipalBbaMetadata,
-} from "./onlinemanipalbba/page";
+import AmityOnlineMbaPage from "./amityonlinemba/page";
+import { metadata as amityOnlineMbaMetadata } from "./amityonlinemba/metadata";
+import AmityOnlineMcaPage from "./amityonlinemca/page";
+import { metadata as amityOnlineMcaMetadata } from "./amityonlinemca/metadata";
+import AmityOnlineBbaPage from "./amityonlinebba/page";
+import { metadata as amityOnlineBbaMetadata } from "./amityonlinebba/metadata";
+import OnlineManipalMbaPage from "./onlinemanipalmba/page";
+import { metadata as onlineManipalMbaMetadata } from "./onlinemanipalmba/metadata";
+import OnlineManipalMcaPage from "./onlinemanipalmca/page";
+import { metadata as onlineManipalMcaMetadata } from "./onlinemanipalmca/metadata";
+import OnlineManipalBbaPage from "./onlinemanipalbba/page";
+import { metadata as onlineManipalBbaMetadata } from "./onlinemanipalbba/metadata";
 
 export const SUBDOMAIN_REGISTRY: Record<string, SubdomainModule> = {
   amityonlinemba: {
     Component: AmityOnlineMbaPage,
-    getMetadata: getAmityOnlineMbaMetadata,
+    metadata: amityOnlineMbaMetadata,
   },
   amityonlinemca: {
     Component: AmityOnlineMcaPage,
-    getMetadata: getAmityOnlineMcaMetadata,
+    metadata: amityOnlineMcaMetadata,
   },
   amityonlinebba: {
     Component: AmityOnlineBbaPage,
-    getMetadata: getAmityOnlineBbaMetadata,
+    metadata: amityOnlineBbaMetadata,
   },
   onlinemanipalmba: {
     Component: OnlineManipalMbaPage,
-    getMetadata: getOnlineManipalMbaMetadata,
+    metadata: onlineManipalMbaMetadata,
   },
   onlinemanipalmca: {
     Component: OnlineManipalMcaPage,
-    getMetadata: getOnlineManipalMcaMetadata,
+    metadata: onlineManipalMcaMetadata,
   },
   onlinemanipalbba: {
     Component: OnlineManipalBbaPage,
-    getMetadata: getOnlineManipalBbaMetadata,
+    metadata: onlineManipalBbaMetadata,
   },
 };
 

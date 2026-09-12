@@ -6,5 +6,5 @@ export interface SubdomainPageProps {
 
 export interface SubdomainModule {
   Component: React.ComponentType<SubdomainPageProps>;
-  getMetadata: () => Metadata;
+  metadata: Metadata;
 }
