@@ -102,10 +102,10 @@ export default function AmityOnlineMbaPage({
         {/* 3. HERO SECTION */}
         <section
           id="top"
-          className="relative bg-linear-to-br from-[#325488] via-[#325488] to-[#24426f] text-white pt-8 sm:pt-10 pb-0 overflow-hidden"
+          className="relative bg-[#325488] text-white pt-8 sm:pt-10 pb-0 overflow-hidden"
         >
           {/* Ambient Glow */}
-          <div className="absolute top-1/4 right-[10%] w-96 h-96 bg-[#ffd050]/15 rounded-full blur-3xl pointer-events-none"></div>
+          {/* <div className="absolute top-1/4 right-[10%] w-96 h-96 bg-[#ffd050]/15 rounded-full blur-3xl pointer-events-none"></div> */}
 
           <div className="w-[min(1160px,92%)] mx-auto grid lg:grid-cols-[1.02fr_0.98fr] gap-7 items-stretch relative z-10">
             {/* Left Hero Copy */}
