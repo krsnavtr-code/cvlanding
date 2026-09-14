@@ -948,6 +948,108 @@ export default function AmityOnlineMbaPage({
           </div>
         </section>
 
+        {/* 9.5 OFFICIAL DEGREE / CERTIFICATE SAMPLE SECTION */}
+        <section className="py-14 sm:py-18 bg-white border-t border-slate-100">
+          <div className="w-[min(1160px,92%)] mx-auto">
+            <div className="text-center max-w-[760px] mx-auto mb-10">
+              <div className="text-xs font-black tracking-[2px] text-[#d98b00] uppercase">
+                OFFICIAL DEGREE CERTIFICATE
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-black text-[#1b325e] mt-2 mb-2.5 tracking-tight">
+                Earn A Globally Recognized MBA Degree
+              </h2>
+              <p className="text-[#667085] text-sm sm:text-base">
+                Your online MBA degree from Amity University is fully equivalent
+                to an on-campus degree, entitled by UGC and recognized
+                worldwide.
+              </p>
+            </div>
+
+            <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-center bg-[#f8fafc] border border-[#e2e7ee] rounded-[28px] p-6 sm:p-9 shadow-xs">
+              {/* Certificate Image Preview */}
+              <div className="relative group flex items-center justify-center">
+                <div className="relative rounded-2xl overflow-hidden shadow-xl border-4 border-white bg-white transition-transform duration-300 group-hover:scale-[1.02]">
+                  <img
+                    src="/images/MBA_79e476779b.webp"
+                    alt="Amity University Online MBA Degree Certificate Sample"
+                    className="w-full h-auto max-h-[420px] object-contain rounded-xl"
+                  />
+                </div>
+              </div>
+
+              {/* Certificate Highlights & Features */}
+              <div className="space-y-4 sm:space-y-5">
+                <div className="inline-flex items-center gap-2 bg-[#ffc21c]/20 text-[#071f58] px-3.5 py-1.5 rounded-full text-xs font-black tracking-wide border border-[#ffc21c]/40">
+                  ★ 100% Valid for Govt &amp; Corporate Jobs
+                </div>
+
+                <h3 className="text-xl sm:text-2xl font-black text-[#1b325e] leading-tight">
+                  Key Features of Your Online MBA Degree
+                </h3>
+
+                <div className="space-y-3.5">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-[#1b325e] text-[#ffc21c] flex items-center justify-center text-xs font-black shrink-0 mt-0.5">
+                      ✓
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-[#17243a]">
+                        UGC-Entitled &amp; AICTE Approved
+                      </h4>
+                      <p className="text-xs text-[#667085] leading-relaxed">
+                        Awarded under the UGC Regulations for Online Education,
+                        legally treated on par with traditional on-campus
+                        degrees.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-[#1b325e] text-[#ffc21c] flex items-center justify-center text-xs font-black shrink-0 mt-0.5">
+                      ✓
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-[#17243a]">
+                        WES &amp; Global Recognition
+                      </h4>
+                      <p className="text-xs text-[#667085] leading-relaxed">
+                        Evaluated and recognized by WES (World Education
+                        Services) for higher education and PR/employment in USA,
+                        Canada, and UK.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-[#1b325e] text-[#ffc21c] flex items-center justify-center text-xs font-black shrink-0 mt-0.5">
+                      ✓
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-[#17243a]">
+                        Digital &amp; Physical Degree Dispatch
+                      </h4>
+                      <p className="text-xs text-[#667085] leading-relaxed">
+                        Receive verifiable digital credentials with QR code
+                        authenticity plus physical original degree shipped to
+                        your address upon graduation.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-2">
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="bg-[#1b325e] hover:bg-[#0b2255] text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-xl shadow-md transition-all cursor-pointer"
+                  >
+                    Verify Degree Validity &amp; Apply →
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* 10. ELIGIBILITY */}
         <section
           id="eligibility"
