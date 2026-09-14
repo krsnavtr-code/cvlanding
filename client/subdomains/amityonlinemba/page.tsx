@@ -1434,30 +1434,38 @@ export default function AmityOnlineMbaPage({
       </footer>
 
       {/* 17. FLOATING WHATSAPP & CALL BUTTONS */}
-      <a
-        className="fixed right-4 bottom-20 z-40 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#20c76a] text-white flex items-center justify-center shadow-[0_12px_28px_rgba(0,0,0,0.22)] hover:scale-105 transition-transform"
-        href="https://wa.me/919266585858?text=Hi%2C%20I%20want%20details%20about%20Amity%20Online%20MBA"
-        aria-label="WhatsApp"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span className="absolute right-0 top-0 w-3.5 h-3.5 border-2 border-white bg-[#ff3939] rounded-full"></span>
-        <svg
-          viewBox="0 0 32 32"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-8 h-8"
+      <div className="fixed right-4 bottom-20 z-40 flex items-center justify-center">
+        {/* Animated Ripple Wave 1 */}
+        <span className="absolute inline-flex h-full w-full rounded-full bg-[#20c76a] opacity-75 animate-ping pointer-events-none"></span>
+        {/* Animated Ripple Wave 2 (Pulse Glow) */}
+        <span className="absolute -inset-1.5 rounded-full bg-[#20c76a]/35 animate-pulse pointer-events-none"></span>
+
+        {/* WhatsApp Icon Button */}
+        <a
+          className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#20c76a] text-white flex items-center justify-center shadow-[0_12px_28px_rgba(32,199,106,0.4)] hover:scale-110 transition-transform active:scale-95"
+          href="https://wa.me/919266585858?text=Hi%2C%20I%20want%20details%20about%20Amity%20Online%20MBA"
+          aria-label="WhatsApp"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <path
-            d="M16 3.5a12.2 12.2 0 0 0-10.5 18.5L4 28l6.3-1.5A12.2 12.2 0 1 0 16 3.5Z"
-            fill="white"
-          />
-          <path
-            d="M12.4 10.2c-.4-.9-.8-.9-1.2-.9h-1c-.4 0-.9.2-1.2.6-.4.4-1.6 1.6-1.6 3.8s1.7 4.4 1.9 4.7c.2.3 3.3 5.2 8.1 7.1 4 1.6 4.8 1.3 5.7 1.2.9-.1 2.9-1.2 3.3-2.3.4-1.1.4-2 .3-2.2-.1-.2-.4-.3-.9-.6-.5-.2-2.9-1.4-3.4-1.6-.5-.2-.8-.2-1.2.2-.3.5-1.3 1.6-1.6 1.9-.3.3-.6.3-1.1.1-.5-.2-2-.7-3.8-2.4-1.4-1.2-2.4-2.8-2.7-3.3-.3-.5 0-.8.2-1.1.2-.2.5-.6.7-.9.2-.3.3-.5.5-.8.2-.3.1-.6 0-.9-.1-.2-1.1-2.7-1.5-3.6Z"
-            fill="#20c76a"
-          />
-        </svg>
-      </a>
+          <span className="absolute right-0 top-0 w-3.5 h-3.5 border-2 border-white bg-[#ff3939] rounded-full z-10"></span>
+          <svg
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-8 h-8 relative z-10"
+          >
+            <path
+              d="M16 3.5a12.2 12.2 0 0 0-10.5 18.5L4 28l6.3-1.5A12.2 12.2 0 1 0 16 3.5Z"
+              fill="white"
+            />
+            <path
+              d="M12.4 10.2c-.4-.9-.8-.9-1.2-.9h-1c-.4 0-.9.2-1.2.6-.4.4-1.6 1.6-1.6 3.8s1.7 4.4 1.9 4.7c.2.3 3.3 5.2 8.1 7.1 4 1.6 4.8 1.3 5.7 1.2.9-.1 2.9-1.2 3.3-2.3.4-1.1.4-2 .3-2.2-.1-.2-.4-.3-.9-.6-.5-.2-2.9-1.4-3.4-1.6-.5-.2-.8-.2-1.2.2-.3.5-1.3 1.6-1.6 1.9-.3.3-.6.3-1.1.1-.5-.2-2-.7-3.8-2.4-1.4-1.2-2.4-2.8-2.7-3.3-.3-.5 0-.8.2-1.1.2-.2.5-.6.7-.9.2-.3.3-.5.5-.8.2-.3.1-.6 0-.9-.1-.2-1.1-2.7-1.5-3.6Z"
+              fill="#20c76a"
+            />
+          </svg>
+        </a>
+      </div>
 
       <a
         className="fixed right-4 bottom-4 z-40 w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#0b3d80] text-white flex items-center justify-center shadow-[0_12px_28px_rgba(0,0,0,0.22)] hover:scale-105 transition-transform"
