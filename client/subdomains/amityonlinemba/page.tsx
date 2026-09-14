@@ -112,7 +112,7 @@ export default function AmityOnlineMbaPage({
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f7fb] text-[#17243a] font-sans antialiased overflow-x-hidden selection:bg-[#ffc21c] selection:text-[#071f58]">
+    <div className="min-h-screen bg-[#f5f7fb] text-[#17243a] font-['Inter',system-ui,-apple-system,sans-serif] antialiased overflow-x-hidden selection:bg-[#ffc21c] selection:text-[#071f58]">
       {/* 1. STICKY TOP HEADER WRAPPER */}
       <header className="sticky top-0 z-50 shadow-lg bg-[#1b325e]">
         {/* TOP SCHOLARSHIP COUNTDOWN NOTIFICATION BAR */}
@@ -452,10 +452,10 @@ export default function AmityOnlineMbaPage({
                 </div>
               </div>
 
-              {/* Right Column Form Card */}
-              <div>
-                <div className="bg-white rounded-[24px] p-6 sm:p-7 shadow-2xl text-slate-900 border border-slate-100">
-                  <h2 className="text-lg sm:text-xl font-black text-[#0c2e64] leading-tight mb-4">
+              {/* Right Column Form Card (Fixed Max Width & Centered on Mobile) */}
+              <div className="w-full flex justify-center lg:justify-end">
+                <div className="w-full max-w-[420px] bg-white rounded-[24px] p-6 sm:p-7 shadow-2xl text-slate-900 border border-slate-100 mx-auto lg:mx-0">
+                  <h2 className="text-lg sm:text-xl font-black text-[#0c2e64] leading-tight mb-4 text-center lg:text-left">
                     Next-Gen MBA with India's No. 1<br />
                     Online University
                   </h2>
