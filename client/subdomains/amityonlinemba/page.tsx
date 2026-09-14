@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 
 export default function AmityOnlineMbaPage({
@@ -12,10 +12,56 @@ export default function AmityOnlineMbaPage({
   const [activeYear, setActiveYear] = useState<1 | 2>(1);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formStatus, setFormStatus] = useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
   const [statusMessage, setStatusMessage] = useState("");
+
+  const [timeLeft, setTimeLeft] = useState({
+    days: "04",
+    hours: "12",
+    minutes: "14",
+    seconds: "21",
+  });
+
+  useEffect(() => {
+    // 4 Days, 12 Hours, 14 Minutes, 25 Seconds countdown
+    const targetMs =
+      Date.now() +
+      4 * 24 * 60 * 60 * 1000 +
+      12 * 60 * 60 * 1000 +
+      14 * 60 * 1000 +
+      25 * 1000;
+
+    const updateTimer = () => {
+      const current = Date.now();
+      const distance = targetMs - current;
+
+      if (distance <= 0) {
+        setTimeLeft({ days: "00", hours: "00", minutes: "00", seconds: "00" });
+        return;
+      }
+
+      const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const h = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+      );
+      const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+      setTimeLeft({
+        days: String(d).padStart(2, "0"),
+        hours: String(h).padStart(2, "0"),
+        minutes: String(m).padStart(2, "0"),
+        seconds: String(s).padStart(2, "0"),
+      });
+    };
+
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleLeadSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -67,420 +113,434 @@ export default function AmityOnlineMbaPage({
 
   return (
     <div className="min-h-screen bg-[#f5f7fb] text-[#17243a] font-sans antialiased overflow-x-hidden selection:bg-[#ffc21c] selection:text-[#071f58]">
-      {/* 1. TOP HEADER */}
-      <header className="sticky top-0 z-50 bg-[#1b325e] shadow-lg">
-        <div className="w-[min(1160px,92%)] mx-auto h-[70px] sm:h-[78px] flex items-center justify-between gap-4">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
-            <a href="#top" className="flex items-center">
-              <img
-                src="/images/amity-logo.jpg"
-                alt="Amity University Online"
-                className="h-10 sm:h-12 w-auto object-contain rounded-md"
-              />
-            </a>
+      {/* 1. STICKY TOP HEADER WRAPPER */}
+      <header className="sticky top-0 z-50 shadow-lg bg-[#1b325e]">
+        {/* TOP SCHOLARSHIP COUNTDOWN NOTIFICATION BAR */}
+        <div className="bg-[#0b1f44] text-white py-1.5 px-3 text-xs sm:text-sm font-semibold border-b border-white/10">
+          <div className="w-[min(1160px,94%)] mx-auto flex flex-wrap items-center justify-center lg:justify-end gap-2 sm:gap-3 text-center">
+            <span className="text-white font-medium">
+              Get up to 45% merit-based scholarship on semester fee. Offer ends
+              18th September.{" "}
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="text-[#ffd044] hover:underline font-bold ml-1 cursor-pointer inline-block"
+              >
+                Apply Now.
+              </button>
+            </span>
+            <span className="hidden sm:inline text-white/50">|</span>
+            <div className="inline-flex items-center gap-1.5 font-mono font-bold text-xs whitespace-nowrap shrink-0 flex-nowrap">
+              <span className="border border-white/60 bg-white/5 rounded-full px-2.5 py-0.5 tracking-tight">
+                {timeLeft.days} d
+              </span>
+              <span className="text-white/80 font-sans">:</span>
+              <span className="border border-white/60 bg-white/5 rounded-full px-2.5 py-0.5 tracking-tight">
+                {timeLeft.hours} h
+              </span>
+              <span className="text-white/80 font-sans">:</span>
+              <span className="border border-white/60 bg-white/5 rounded-full px-2.5 py-0.5 tracking-tight">
+                {timeLeft.minutes} m
+              </span>
+              <span className="text-white/80 font-sans">:</span>
+              <span className="border border-white/60 bg-white/5 rounded-full px-2.5 py-0.5 tracking-tight text-[#ffd044]">
+                {timeLeft.seconds} s
+              </span>
+            </div>
           </div>
-
-          {/* Header CTA */}
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="border-0 bg-[#ffc21c] hover:bg-[#ffd24a] text-[#071f58] font-black text-xs sm:text-sm px-4 py-3 sm:px-5 sm:py-3.5 rounded-xl tracking-wide shadow-[0_0_0_4px_rgba(255,178,28,0.13)] hover:shadow-lg transition-all cursor-pointer flex items-center gap-1.5"
-          >
-            <span>APPLY FOR ADMISSION</span>
-            <span>→</span>
-          </button>
         </div>
+
+        {/* MAIN NAVIGATION BAR */}
+        <div className="bg-[#1b325e]">
+          <div className="w-[min(1160px,92%)] mx-auto h-[52px] sm:h-[58px] flex items-center justify-between gap-4">
+            {/* Logo */}
+            <div className="flex items-center gap-3">
+              <a href="#top" className="flex items-center">
+                <img
+                  src="/images/amity-logo.jpg"
+                  alt="Amity University Online"
+                  className="h-10 sm:h-12 w-auto object-contain rounded-md"
+                />
+              </a>
+            </div>
+
+            {/* Desktop Nav Links */}
+            <nav className="hidden lg:flex items-center gap-5 text-sm font-semibold text-[#dce7fa]">
+              <a
+                href="#why-amity"
+                className="hover:text-[#ffd24a] transition-colors py-1"
+              >
+                Why Amity
+              </a>
+              <a
+                href="#curriculum"
+                className="hover:text-[#ffd24a] transition-colors py-1"
+              >
+                Curriculum
+              </a>
+              <a
+                href="#specialisations"
+                className="hover:text-[#ffd24a] transition-colors py-1"
+              >
+                Specialisations
+              </a>
+              <a
+                href="#eligibility"
+                className="hover:text-[#ffd24a] transition-colors py-1"
+              >
+                Eligibility
+              </a>
+              <a
+                href="#fees"
+                className="hover:text-[#ffd24a] transition-colors py-1"
+              >
+                Fee & EMI
+              </a>
+              <a
+                href="#admission"
+                className="hover:text-[#ffd24a] transition-colors py-1"
+              >
+                Admission
+              </a>
+              <a
+                href="#faq"
+                className="hover:text-[#ffd24a] transition-colors py-1"
+              >
+                FAQ
+              </a>
+            </nav>
+
+            {/* Right Action & Mobile Toggle */}
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="bg-[#ffba00] hover:bg-[#ffc820] text-[#15243b] font-bold text-sm sm:text-base px-5 sm:px-6 py-2 sm:py-2.5 rounded-[13px] border-2 border-[#15243b] shadow-sm hover:shadow-md transition-all cursor-pointer active:scale-95"
+              >
+                Apply Now
+              </button>
+
+              {/* Mobile Hamburger Button */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="lg:hidden p-2 text-white/80 hover:text-white rounded-lg focus:outline-hidden"
+                aria-label="Toggle Menu"
+              >
+                {mobileMenuOpen ? (
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Dropdown Nav Menu */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden bg-[#152b52] border-t border-white/10 px-6 py-4 space-y-3 animate-in slide-in-from-top-2 duration-150">
+            <div className="flex flex-col space-y-2 text-sm font-semibold text-[#dce7fa]">
+              <a
+                href="#why-amity"
+                onClick={() => setMobileMenuOpen(false)}
+                className="hover:text-[#ffd24a] py-1.5 border-b border-white/5"
+              >
+                Why Amity
+              </a>
+              <a
+                href="#curriculum"
+                onClick={() => setMobileMenuOpen(false)}
+                className="hover:text-[#ffd24a] py-1.5 border-b border-white/5"
+              >
+                Curriculum
+              </a>
+              <a
+                href="#specialisations"
+                onClick={() => setMobileMenuOpen(false)}
+                className="hover:text-[#ffd24a] py-1.5 border-b border-white/5"
+              >
+                Specialisations
+              </a>
+              <a
+                href="#eligibility"
+                onClick={() => setMobileMenuOpen(false)}
+                className="hover:text-[#ffd24a] py-1.5 border-b border-white/5"
+              >
+                Eligibility
+              </a>
+              <a
+                href="#fees"
+                onClick={() => setMobileMenuOpen(false)}
+                className="hover:text-[#ffd24a] py-1.5 border-b border-white/5"
+              >
+                Fee & EMI
+              </a>
+              <a
+                href="#admission"
+                onClick={() => setMobileMenuOpen(false)}
+                className="hover:text-[#ffd24a] py-1.5 border-b border-white/5"
+              >
+                Admission
+              </a>
+              <a
+                href="#faq"
+                onClick={() => setMobileMenuOpen(false)}
+                className="hover:text-[#ffd24a] py-1.5"
+              >
+                FAQ
+              </a>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* 2. URGENCY NOTICE BAR */}
-      <div className="bg-linear-to-r from-[#ffae13] via-[#ffd04a] to-[#ffae13] text-[#09215b] text-center font-black text-sm sm:text-base py-2.5 px-3 tracking-wide shadow-xs">
+      {/* <div className="bg-linear-to-r from-[#ffae13] via-[#ffd04a] to-[#ffae13] text-[#09215b] text-center font-black text-sm sm:text-base py-2.5 px-3 tracking-wide shadow-xs">
         <span className="text-lg mr-1.5">●</span> Admission Open · Limited Seats
         · Scholarship options available
-      </div>
+      </div> */}
 
       <main>
-        {/* 3. HERO SECTION */}
+        {/* 3. HERO BANNER SECTION (MATCHED TO DESIGN) */}
         <section
           id="top"
-          className="relative bg-[#325488] text-white pt-8 sm:pt-10 pb-0 overflow-hidden"
+          className="relative bg-linear-to-r from-[#0a2754] via-[#0c2e64] to-[#0a234a] text-white pt-6 pb-12 sm:pt-8 sm:pb-16 overflow-hidden"
         >
-          {/* Ambient Glow */}
-          {/* <div className="absolute top-1/4 right-[10%] w-96 h-96 bg-[#ffd050]/15 rounded-full blur-3xl pointer-events-none"></div> */}
+          {/* Subtle Ambient Background Gradient */}
+          <div className="absolute inset-0 bg-radial-at-c from-blue-600/10 via-transparent to-transparent pointer-events-none"></div>
 
-          <div className="w-[min(1160px,92%)] mx-auto grid lg:grid-cols-[1.02fr_0.98fr] gap-7 items-stretch relative z-10">
-            {/* Left Hero Copy */}
-            <div className="py-5 sm:py-8 lg:pb-12 space-y-4">
-              <div className="text-[#ffd24a] font-black tracking-[2px] text-xs sm:text-sm uppercase">
-                PG PROGRAM
-              </div>
-
-              <h1 className="text-3xl sm:text-5xl lg:text-[58px] font-black leading-[1.04] tracking-tight text-white">
-                Build Your Future With A{" "}
-                <em className="not-italic text-[#ffd247]">
-                  Next-Gen Online MBA
-                </em>
-              </h1>
-
-              <div className="inline-flex items-center border border-white/28 bg-white/10 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm text-white">
-                AI-powered learning · Industry-focused curriculum
-              </div>
-
-              <p className="text-base sm:text-lg text-[#dce7fa] leading-relaxed max-w-[610px]">
-                A 2-year online MBA designed for graduates and working
-                professionals who want flexible learning, career-focused skills
-                and a globally recognised qualification.
-              </p>
-
-              {/* Quick Highlights Grid */}
-              <div className="grid sm:grid-cols-2 gap-2.5 py-2">
-                <div className="flex items-center gap-2.5 font-bold text-sm text-[#f4f7ff]">
-                  <span className="w-8 h-8 rounded-lg bg-[#ffc21c] text-[#08215b] flex items-center justify-center font-black text-sm shrink-0">
-                    ⌛
-                  </span>
-                  <span>Duration: 2 Years</span>
-                </div>
-                <div className="flex items-center gap-2.5 font-bold text-sm text-[#f4f7ff]">
-                  <span className="w-8 h-8 rounded-lg bg-[#ffc21c] text-[#08215b] flex items-center justify-center font-black text-sm shrink-0">
-                    ✓
-                  </span>
-                  <span>4 Semesters</span>
-                </div>
-                <div className="flex items-center gap-2.5 font-bold text-sm text-[#f4f7ff]">
-                  <span className="w-8 h-8 rounded-lg bg-[#ffc21c] text-[#08215b] flex items-center justify-center font-black text-sm shrink-0">
-                    ◎
-                  </span>
-                  <span>250,000+ Learner Community</span>
-                </div>
-                <div className="flex items-center gap-2.5 font-bold text-sm text-[#f4f7ff]">
-                  <span className="w-8 h-8 rounded-lg bg-[#ffc21c] text-[#08215b] flex items-center justify-center font-black text-sm shrink-0">
-                    ↗
-                  </span>
-                  <span>100% Placement Assistance</span>
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-wrap gap-3 pt-2">
-                <button
-                  onClick={() => setIsModalOpen(true)}
-                  className="bg-[#ffc21c] hover:bg-[#ffd24a] text-[#071f58] font-black text-xs sm:text-sm px-5 py-3.5 rounded-xl shadow-[0_10px_25px_rgba(255,178,28,0.2)] transition-all cursor-pointer"
-                >
-                  DOWNLOAD BROCHURE ↓
-                </button>
-                <a
-                  href="#lead"
-                  className="bg-white/10 hover:bg-white/20 border border-white/35 text-white font-black text-xs sm:text-sm px-5 py-3.5 rounded-xl transition-all inline-block"
-                >
-                  GET ADMISSION GUIDANCE
-                </a>
-              </div>
+          <div className="w-[min(1160px,94%)] mx-auto relative z-10">
+            {/* Breadcrumb */}
+            <div className="text-xs sm:text-[13px] text-white/70 font-medium mb-5 flex items-center gap-1.5 flex-wrap">
+              <span className="hover:text-white cursor-pointer">Home</span>
+              <span className="text-white/40">&gt;</span>
+              <span className="hover:text-white cursor-pointer">Programs</span>
+              <span className="text-white/40">&gt;</span>
+              <span className="hover:text-white cursor-pointer">
+                PG Programs
+              </span>
+              <span className="text-white/40">&gt;</span>
+              <span className="text-[#ffc20e] font-semibold">
+                Master of Business Administration
+              </span>
             </div>
 
-            {/* Right Hero Visual Illustration */}
-            <div className="relative min-h-[360px] sm:min-h-[440px] flex items-end justify-center">
-              {/* Top Right Floating Card */}
-              <div className="absolute right-0 top-4 bg-white/12 border border-white/22 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl z-20 shadow-lg text-right sm:text-left">
-                <strong className="block text-white text-xl sm:text-2xl font-black">
-                  450+
-                </strong>
-                <small className="text-[#dbe7fb] text-xs font-semibold">
-                  Hiring Partners
-                </small>
-              </div>
-
-              {/* Vector Person Illustration & Halo */}
-              <div className="relative w-[min(420px,100%)] h-[380px] sm:h-[430px]">
-                {/* Yellow Halo */}
-                <div className="absolute w-[270px] sm:w-[330px] h-[270px] sm:h-[330px] rounded-full bg-linear-to-br from-[#ffd21f] to-[#ffad0e] left-1/2 bottom-0 -translate-x-1/2"></div>
-
-                {/* SVG Character */}
-                <div className="absolute left-1/2 bottom-0 -translate-x-1/2 w-[280px] sm:w-[330px] h-[350px] sm:h-[400px]">
-                  <svg
-                    viewBox="0 0 320 410"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-full h-full overflow-visible"
-                    aria-label="Professional learner illustration"
-                  >
-                    <defs>
-                      <linearGradient id="skin" x1="0" x2="1">
-                        <stop stopColor="#f4b08b" />
-                        <stop offset="1" stopColor="#d98261" />
-                      </linearGradient>
-                      <linearGradient id="suit" x1="0" x2="1">
-                        <stop stopColor="#101722" />
-                        <stop offset="1" stopColor="#293341" />
-                      </linearGradient>
-                    </defs>
-                    <path
-                      d="M102 108c-6-42 14-72 54-80 45-9 78 18 81 61 3 39-15 78-50 91-39 15-79-24-85-72z"
-                      fill="url(#skin)"
-                    />
-                    <path
-                      d="M101 91c-6-42 19-75 59-78 48-4 77 27 77 64-11-10-22-18-34-23-19 21-48 31-82 28-8 13-14 27-16 42-5-9-4-21-4-33z"
-                      fill="#241d1c"
-                    />
-                    <path
-                      d="M116 105c11-4 19-12 23-24 20 4 42 1 62-11 11 11 19 27 20 45-4 31-21 57-43 64-27 8-55-15-62-46z"
-                      fill="url(#skin)"
-                      opacity=".98"
-                    />
-                    <ellipse cx="145" cy="119" rx="5" ry="3" fill="#382820" />
-                    <ellipse cx="185" cy="119" rx="5" ry="3" fill="#382820" />
-                    <path
-                      d="M154 145c10 6 21 6 31-1"
-                      stroke="#8e4d46"
-                      strokeWidth="4"
-                      fill="none"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M68 409c5-92 25-157 74-177 21-9 40-10 61 0 49 21 68 86 73 177z"
-                      fill="url(#suit)"
-                    />
-                    <path d="M139 226l21 51 23-51 15 183h-72z" fill="#fff" />
-                    <path
-                      d="M160 277l-35 57 20 21 15-22 15 22 21-21z"
-                      fill="#d7a51c"
-                    />
-                    <path
-                      d="M103 258c-17 32-32 69-37 106"
-                      stroke="#f0a17d"
-                      strokeWidth="24"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M216 260c20 27 31 63 37 103"
-                      stroke="#efa17e"
-                      strokeWidth="24"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M67 361c24 5 47 15 61 31"
-                      stroke="#f0a17d"
-                      strokeWidth="20"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M252 360c-26 6-48 17-62 31"
-                      stroke="#efa17e"
-                      strokeWidth="20"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </div>
-
-                {/* Bottom Left Proof Card */}
-                <div className="absolute left-0 bottom-6 sm:bottom-9 bg-white text-[#17243a] rounded-2xl p-3.5 sm:p-4 shadow-[0_18px_50px_rgba(32,61,115,0.11)] max-w-[190px] sm:max-w-[210px] z-20">
-                  <b className="block text-xl sm:text-2xl text-[#1b325e] font-black leading-tight">
-                    UGC Entitled
-                  </b>
-                  <span className="text-xs text-[#5f6877] font-medium">
-                    Online degree recognition
-                  </span>
-                </div>
-
-                {/* Bottom Right Rating Card */}
-                <div className="absolute right-0 bottom-16 sm:bottom-20 bg-white text-[#17243a] rounded-2xl p-3 sm:p-4 shadow-[0_18px_50px_rgba(32,61,115,0.11)] z-20">
-                  <div className="text-[#f6ad16] text-sm sm:text-base tracking-widest font-black">
-                    ★★★★★
+            <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 xl:gap-12 items-center">
+              {/* Left Column */}
+              <div className="space-y-4 sm:space-y-5">
+                {/* Top Badges */}
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <div className="bg-white text-[#111] px-3 py-1.5 rounded-lg border border-white/20 flex items-center gap-1.5 shadow-sm text-xs font-bold">
+                    <span className="text-red-700 text-sm">🏛</span>
+                    <span>UGC Entitled</span>
                   </div>
-                  <b className="block text-xs sm:text-sm font-bold text-[#1b325e]">
-                    QS Ranked Online MBA
-                  </b>
-                  <small className="text-[#5f6877] text-[11px] font-medium">
-                    Asia Pacific Top 10
-                  </small>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* 4. OVERLAPPING LEAD FORM SECTION */}
-          <div
-            id="lead"
-            className="w-[min(1160px,92%)] mx-auto bg-white rounded-t-[28px] md:rounded-[28px] mt-6 relative z-30 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] border border-slate-100"
-          >
-            <div className="grid lg:grid-cols-[0.72fr_1.28fr] gap-7 p-6 sm:p-8">
-              {/* Left Form Intro Banner */}
-              <div className="bg-linear-to-br from-[#081f5c] to-[#153d7b] text-white rounded-[22px] p-6 sm:p-7 flex flex-col justify-center">
-                <div className="text-[#ffd24a] font-black tracking-[1.5px] text-xs uppercase">
-                  START YOUR MBA JOURNEY
-                </div>
-                <h2 className="text-2xl sm:text-3xl font-black leading-tight my-2.5">
-                  Get Programme Details & Admission Guidance
-                </h2>
-                <p className="text-xs sm:text-sm text-[#d7e3f6] leading-relaxed">
-                  Share your details and our counsellor can help you understand
-                  eligibility, fees, specialisations and the admission process.
-                </p>
-
-                <div className="mt-5 space-y-2.5">
-                  <div className="flex items-center gap-2.5 font-bold text-xs sm:text-sm">
-                    <span className="w-5 h-5 rounded-full bg-[#ffc21c] text-[#08215b] flex items-center justify-center font-black text-xs shrink-0">
-                      ✓
+                  <div className="bg-white text-[#111] px-3 py-1.5 rounded-lg border border-white/20 flex items-center gap-1.5 shadow-sm text-xs font-bold">
+                    <span className="bg-[#f58220] text-white text-[10px] px-1.5 py-0.5 rounded font-black">
+                      QS
                     </span>
-                    <span>Course & fee information</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 font-bold text-xs sm:text-sm">
-                    <span className="w-5 h-5 rounded-full bg-[#ffc21c] text-[#08215b] flex items-center justify-center font-black text-xs shrink-0">
-                      ✓
-                    </span>
-                    <span>Specialisation guidance</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 font-bold text-xs sm:text-sm">
-                    <span className="w-5 h-5 rounded-full bg-[#ffc21c] text-[#08215b] flex items-center justify-center font-black text-xs shrink-0">
-                      ✓
-                    </span>
-                    <span>Scholarship / EMI information</span>
+                    <span>Top 10 In Asia Pacific</span>
                   </div>
                 </div>
-              </div>
 
-              {/* Right Form Fields */}
-              <form onSubmit={handleLeadSubmit} className="space-y-3.5 py-1">
-                <input
-                  type="hidden"
-                  name="source"
-                  value="Apply For Online MBA"
-                />
+                {/* Main Heading */}
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[50px] font-black leading-[1.1] tracking-tight text-white">
+                  Master of <span className="text-[#ffc20e]">Business</span>
+                  <br />
+                  <span className="text-[#ffc20e]">Administration (MBA)</span>
+                </h1>
+
+                {/* Duration Badge */}
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-black text-[#1b325e]">
-                    Apply For Online MBA
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#667085] mt-0.5">
-                    Get information about programmes and admissions.
-                  </p>
-                </div>
-
-                <div className="grid sm:grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-xs font-bold text-[#3e4a5d] mb-1">
-                      Full Name
-                    </label>
-                    <input
-                      required
-                      name="name"
-                      placeholder="Enter your full name"
-                      className="w-full px-3.5 py-3 border border-[#d8dee8] rounded-xl bg-[#fbfcfe] text-sm text-[#17243a] focus:outline-hidden focus:border-[#315da2] focus:ring-3 focus:ring-[#315da2]/10 transition-all font-medium"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-[#3e4a5d] mb-1">
-                      Email Address
-                    </label>
-                    <input
-                      required
-                      type="email"
-                      name="email"
-                      placeholder="Enter your email"
-                      className="w-full px-3.5 py-3 border border-[#d8dee8] rounded-xl bg-[#fbfcfe] text-sm text-[#17243a] focus:outline-hidden focus:border-[#315da2] focus:ring-3 focus:ring-[#315da2]/10 transition-all font-medium"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-[#3e4a5d] mb-1">
-                      Mobile Number
-                    </label>
-                    <input
-                      required
-                      type="tel"
-                      name="phone"
-                      pattern="[0-9]{10}"
-                      placeholder="10-digit mobile number"
-                      className="w-full px-3.5 py-3 border border-[#d8dee8] rounded-xl bg-[#fbfcfe] text-sm text-[#17243a] focus:outline-hidden focus:border-[#315da2] focus:ring-3 focus:ring-[#315da2]/10 transition-all font-medium"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-[#3e4a5d] mb-1">
-                      Highest Qualification
-                    </label>
-                    <select
-                      name="qualification"
-                      className="w-full px-3.5 py-3 border border-[#d8dee8] rounded-xl bg-[#fbfcfe] text-sm text-[#17243a] focus:outline-hidden focus:border-[#315da2] focus:ring-3 focus:ring-[#315da2]/10 transition-all font-medium"
-                    >
-                      <option>Graduation</option>
-                      <option>Post Graduation</option>
-                      <option>Other</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-[#3e4a5d] mb-1">
-                      Preferred Specialisation
-                    </label>
-                    <select
-                      name="specialisation"
-                      className="w-full px-3.5 py-3 border border-[#d8dee8] rounded-xl bg-[#fbfcfe] text-sm text-[#17243a] focus:outline-hidden focus:border-[#315da2] focus:ring-3 focus:ring-[#315da2]/10 transition-all font-medium"
-                    >
-                      <option>General Management</option>
-                      <option>Business Analytics</option>
-                      <option>Digital Marketing Management</option>
-                      <option>Data Science</option>
-                      <option>Finance & Accounting Management</option>
-                      <option>Human Resource Management</option>
-                      <option>Marketing & Sales Management</option>
-                      <option>Production & Operations Management</option>
-                      <option>International Business Management</option>
-                      <option>International Finance</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-[#3e4a5d] mb-1">
-                      State
-                    </label>
-                    <select
-                      name="state"
-                      className="w-full px-3.5 py-3 border border-[#d8dee8] rounded-xl bg-[#fbfcfe] text-sm text-[#17243a] focus:outline-hidden focus:border-[#315da2] focus:ring-3 focus:ring-[#315da2]/10 transition-all font-medium"
-                    >
-                      <option>Select State</option>
-                      <option>Uttar Pradesh</option>
-                      <option>Delhi</option>
-                      <option>Maharashtra</option>
-                      <option>Madhya Pradesh</option>
-                      <option>Rajasthan</option>
-                      <option>Bihar</option>
-                      <option>Other</option>
-                    </select>
+                  <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold text-white">
+                    <span>⏱</span>
+                    <span>Duration : 2 Years</span>
                   </div>
                 </div>
 
-                <label className="flex items-start gap-2 text-[11px] text-[#747f8f] cursor-pointer pt-1">
-                  <input
-                    type="checkbox"
-                    required
-                    className="mt-0.5 rounded-sm"
-                    defaultChecked
-                  />
-                  <span>
-                    I agree to receive admission-related updates and counselling
-                    communication by phone, SMS, WhatsApp or email.
-                  </span>
-                </label>
+                {/* Action Buttons */}
+                <div className="flex items-center gap-1.5 pt-1">
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="bg-white hover:bg-slate-100 text-[#0c2e64] font-black text-xs sm:text-sm px-6 py-3.5 rounded-xl flex items-center gap-2 shadow-md transition-all cursor-pointer active:scale-95"
+                  >
+                    <span>Download Brochure</span>
+                    <svg
+                      className="w-4 h-4 text-[#0c2e64]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2.5"
+                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                      />
+                    </svg>
+                  </button>
 
-                <button
-                  type="submit"
-                  disabled={formStatus === "submitting"}
-                  className="w-full border-0 bg-[#1b325e] hover:bg-[#0b2255] text-white py-3.5 rounded-xl text-base font-black cursor-pointer transition-all shadow-md active:scale-[0.99] disabled:opacity-60 flex items-center justify-center gap-2"
-                >
-                  {formStatus === "submitting"
-                    ? "Submitting..."
-                    : "→ Submit Enquiry"}
-                </button>
-
-                {statusMessage && (
-                  <div className="text-center text-xs font-bold text-emerald-700 bg-emerald-50 p-2.5 rounded-lg border border-emerald-200">
-                    {statusMessage}
-                  </div>
-                )}
-
-                <div className="text-[10px] text-[#98a0ad] text-center">
-                  Your details are used only for admission guidance and
-                  programme enquiries.
+                  <button
+                    onClick={() => {
+                      if (typeof navigator !== "undefined" && navigator.share) {
+                        navigator.share({
+                          title: "Amity Online MBA",
+                          url: window.location.href,
+                        });
+                      } else if (typeof navigator !== "undefined") {
+                        navigator.clipboard.writeText(window.location.href);
+                        alert("Link copied to clipboard!");
+                      }
+                    }}
+                    className="w-12 h-12 rounded-xl border border-white/40 bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-95"
+                    title="Share Page"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z" />
+                    </svg>
+                  </button>
                 </div>
-              </form>
+
+                {/* Global Accreditations Pill Strip */}
+                <div className="pt-2">
+                  <div className="bg-white rounded-full px-4 py-2 text-slate-900 flex flex-wrap items-center gap-2.5 sm:gap-3.5 text-xs font-bold shadow-md max-w-fit">
+                    <span className="text-slate-900 font-black">
+                      Global Accreditations
+                    </span>
+                    <span className="text-slate-900 font-black">|</span>
+                    <span className="bg-[#1b325e] text-white px-2 py-0.5 rounded text-[11px] font-black tracking-wider">
+                      WASC
+                    </span>
+                    <span className="text-slate-900 font-black">|</span>
+                    <span className="bg-red-700 text-white px-2 py-0.5 rounded text-[11px] font-black tracking-wider">
+                      THE
+                    </span>
+                    <span className="text-slate-900 font-black">|</span>
+                    <span className="bg-emerald-600 text-white px-2 py-0.5 rounded text-[11px] font-black tracking-wider">
+                      QAA
+                    </span>
+                    <span className="text-slate-900 font-black">|</span>
+                    <span className="bg-blue-600 text-white px-2 py-0.5 rounded text-[11px] font-black tracking-wider">
+                      WES
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column Form Card */}
+              <div>
+                <div className="bg-white rounded-[24px] p-6 sm:p-7 shadow-2xl text-slate-900 border border-slate-100">
+                  <h2 className="text-lg sm:text-xl font-black text-[#0c2e64] leading-tight mb-4">
+                    Next-Gen MBA with India's No. 1<br />
+                    Online University
+                  </h2>
+
+                  <form onSubmit={handleLeadSubmit} className="space-y-3">
+                    <input
+                      type="hidden"
+                      name="source"
+                      value="Hero Banner Lead Form"
+                    />
+
+                    <div>
+                      <input
+                        required
+                        name="name"
+                        placeholder="Full Name"
+                        className="w-full px-4 py-3 bg-[#f8fafc] border border-slate-200 rounded-xl text-sm focus:outline-hidden focus:border-[#0c2e64] font-medium placeholder:text-slate-400"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-[90px_1fr] sm:grid-cols-[100px_1fr] gap-2">
+                      <select
+                        name="country_code"
+                        className="px-2 py-3 bg-[#f8fafc] border border-slate-200 rounded-xl text-xs font-bold text-slate-700 focus:outline-hidden"
+                        defaultValue="IN +91"
+                      >
+                        <option value="IN +91">IN +91</option>
+                        <option value="US +1">US +1</option>
+                        <option value="UK +44">UK +44</option>
+                        <option value="AE +971">AE +971</option>
+                      </select>
+                      <input
+                        required
+                        type="tel"
+                        name="phone"
+                        pattern="[0-9]{10}"
+                        placeholder="Mobile No."
+                        className="w-full px-4 py-3 bg-[#f8fafc] border border-slate-200 rounded-xl text-sm focus:outline-hidden focus:border-[#0c2e64] font-medium placeholder:text-slate-400"
+                      />
+                    </div>
+
+                    <div>
+                      <input
+                        required
+                        type="email"
+                        name="email"
+                        placeholder="Email Address"
+                        className="w-full px-4 py-3 bg-[#f8fafc] border border-slate-200 rounded-xl text-sm focus:outline-hidden focus:border-[#0c2e64] font-medium placeholder:text-slate-400"
+                      />
+                    </div>
+
+                    <label className="flex items-start gap-2 text-[10px] sm:text-[11px] text-slate-500 cursor-pointer pt-0.5 leading-tight">
+                      <input
+                        type="checkbox"
+                        required
+                        defaultChecked
+                        className="mt-0.5 rounded-sm shrink-0"
+                      />
+                      <span>
+                        By entering these details I agree that Amity University
+                        Online and its associates can contact me with updates
+                        &amp; notifications via Email, SMS, WhatsApp, and Voice
+                        call as per its Privacy Policy. This consent will
+                        override any registration for DNC / NDNC.
+                      </span>
+                    </label>
+
+                    <button
+                      type="submit"
+                      disabled={formStatus === "submitting"}
+                      className="w-full bg-[#ffba00] hover:bg-[#ffc820] text-[#132238] font-black text-sm sm:text-base py-3.5 rounded-xl border-2 border-[#15243b] shadow-md transition-all cursor-pointer active:scale-[0.99] disabled:opacity-60"
+                    >
+                      {formStatus === "submitting"
+                        ? "Submitting..."
+                        : "Get Free Counselling"}
+                    </button>
+
+                    {statusMessage && (
+                      <div className="text-center text-xs font-bold text-emerald-700 bg-emerald-50 p-2 rounded-lg border border-emerald-200">
+                        {statusMessage}
+                      </div>
+                    )}
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -524,7 +584,10 @@ export default function AmityOnlineMbaPage({
         </section>
 
         {/* 6. WHY AMITY ONLINE */}
-        <section className="py-14 sm:py-18 bg-[#eef3fa]">
+        <section
+          id="why-amity"
+          className="py-14 sm:py-18 bg-[#eef3fa] scroll-mt-20"
+        >
           <div className="w-[min(1160px,92%)] mx-auto">
             <div className="text-center max-w-[760px] mx-auto mb-9">
               <div className="text-xs font-black tracking-[2px] text-[#d98b00] uppercase">
@@ -622,7 +685,10 @@ export default function AmityOnlineMbaPage({
         </section>
 
         {/* 7. CURRICULUM SECTION */}
-        <section className="py-14 sm:py-18 bg-linear-to-br from-[#09285e] to-[#103f78] text-white">
+        <section
+          id="curriculum"
+          className="py-14 sm:py-18 bg-linear-to-br from-[#09285e] to-[#103f78] text-white scroll-mt-20"
+        >
           <div className="w-[min(1160px,92%)] mx-auto">
             <div className="text-center max-w-[760px] mx-auto mb-7">
               <div className="text-xs font-black tracking-[2px] text-[#ffd044] uppercase">
@@ -743,7 +809,10 @@ export default function AmityOnlineMbaPage({
         </section>
 
         {/* 8. SPECIALISATIONS */}
-        <section className="py-14 sm:py-18 bg-white">
+        <section
+          id="specialisations"
+          className="py-14 sm:py-18 bg-white scroll-mt-20"
+        >
           <div className="w-[min(1160px,92%)] mx-auto">
             <div className="text-center max-w-[760px] mx-auto mb-9">
               <div className="text-xs font-black tracking-[2px] text-[#d98b00] uppercase">
@@ -880,7 +949,10 @@ export default function AmityOnlineMbaPage({
         </section>
 
         {/* 10. ELIGIBILITY */}
-        <section className="py-14 sm:py-18 bg-white">
+        <section
+          id="eligibility"
+          className="py-14 sm:py-18 bg-white scroll-mt-20"
+        >
           <div className="w-[min(1160px,92%)] mx-auto">
             <div className="text-center max-w-[760px] mx-auto mb-9">
               <div className="text-xs font-black tracking-[2px] text-[#d98b00] uppercase">
@@ -962,7 +1034,10 @@ export default function AmityOnlineMbaPage({
         </section>
 
         {/* 11. FEE & EMI SECTION */}
-        <section className="py-14 sm:py-18 bg-white border-t border-slate-100">
+        <section
+          id="fees"
+          className="py-14 sm:py-18 bg-white border-t border-slate-100 scroll-mt-20"
+        >
           <div className="w-[min(1160px,92%)] mx-auto">
             <div className="text-center max-w-[760px] mx-auto mb-9">
               <div className="text-xs font-black tracking-[2px] text-[#d98b00] uppercase">
@@ -1025,7 +1100,10 @@ export default function AmityOnlineMbaPage({
         </section>
 
         {/* 12. ADMISSION PROCESS */}
-        <section className="py-14 sm:py-18 bg-[#f4f6fa]">
+        <section
+          id="admission"
+          className="py-14 sm:py-18 bg-[#f4f6fa] scroll-mt-20"
+        >
           <div className="w-[min(1160px,92%)] mx-auto">
             <div className="text-center max-w-[760px] mx-auto mb-9">
               <div className="text-xs font-black tracking-[2px] text-[#d98b00] uppercase">
@@ -1141,7 +1219,7 @@ export default function AmityOnlineMbaPage({
         </section>
 
         {/* 14. FAQ SECTION */}
-        <section className="py-14 sm:py-18 bg-[#eef2f8]">
+        <section id="faq" className="py-14 sm:py-18 bg-[#eef2f8] scroll-mt-20">
           <div className="w-[min(1160px,92%)] mx-auto">
             <div className="text-center max-w-[760px] mx-auto mb-9">
               <div className="text-xs font-black tracking-[2px] text-[#d98b00] uppercase">
