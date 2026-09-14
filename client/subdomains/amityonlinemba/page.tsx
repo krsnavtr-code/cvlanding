@@ -472,14 +472,14 @@ export default function AmityOnlineMbaPage({
                         required
                         name="name"
                         placeholder="Full Name"
-                        className="w-full px-4 py-3 bg-[#f8fafc] border border-slate-200 rounded-xl text-sm focus:outline-hidden focus:border-[#0c2e64] font-medium placeholder:text-slate-400"
+                        className="w-full px-4 py-3 bg-[#f8fafc] border border-gray-200 rounded-xl text-sm focus:outline-hidden focus:border-[#0c2e64] font-medium placeholder:text-slate-600"
                       />
                     </div>
 
                     <div className="grid grid-cols-[90px_1fr] sm:grid-cols-[100px_1fr] gap-2">
                       <select
                         name="country_code"
-                        className="px-2 py-3 bg-[#f8fafc] border border-slate-200 rounded-xl text-xs font-bold text-slate-700 focus:outline-hidden"
+                        className="px-2 py-3 bg-[#f8fafc] border border-gray-200 rounded-xl text-xs font-bold text-slate-700 focus:outline-hidden"
                         defaultValue="IN +91"
                       >
                         <option value="IN +91">IN +91</option>
@@ -493,7 +493,7 @@ export default function AmityOnlineMbaPage({
                         name="phone"
                         pattern="[0-9]{10}"
                         placeholder="Mobile No."
-                        className="w-full px-4 py-3 bg-[#f8fafc] border border-slate-200 rounded-xl text-sm focus:outline-hidden focus:border-[#0c2e64] font-medium placeholder:text-slate-400"
+                        className="w-full px-4 py-3 bg-[#f8fafc] border border-gray-200 rounded-xl text-sm focus:outline-hidden focus:border-[#0c2e64] font-medium placeholder:text-slate-600"
                       />
                     </div>
 
@@ -503,7 +503,7 @@ export default function AmityOnlineMbaPage({
                         type="email"
                         name="email"
                         placeholder="Email Address"
-                        className="w-full px-4 py-3 bg-[#f8fafc] border border-slate-200 rounded-xl text-sm focus:outline-hidden focus:border-[#0c2e64] font-medium placeholder:text-slate-400"
+                        className="w-full px-4 py-3 bg-[#f8fafc] border border-slate-200 rounded-xl text-sm focus:outline-hidden focus:border-[#0c2e64] font-medium placeholder:text-slate-600"
                       />
                     </div>
 
@@ -1434,7 +1434,7 @@ export default function AmityOnlineMbaPage({
       </footer>
 
       {/* 17. FLOATING WHATSAPP & CALL BUTTONS */}
-      <div className="fixed right-4 bottom-20 z-40 flex items-center justify-center">
+      <div className="fixed right-4 bottom-32 z-40 flex items-center justify-center">
         {/* Animated Ripple Wave 1 */}
         <span className="absolute inline-flex h-full w-full rounded-full bg-[#20c76a] opacity-75 animate-ping pointer-events-none"></span>
         {/* Animated Ripple Wave 2 (Pulse Glow) */}
@@ -1468,7 +1468,7 @@ export default function AmityOnlineMbaPage({
       </div>
 
       <a
-        className="fixed right-4 bottom-4 z-40 w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#0b3d80] text-white flex items-center justify-center shadow-[0_12px_28px_rgba(0,0,0,0.22)] hover:scale-105 transition-transform"
+        className="fixed right-4 bottom-15 z-40 w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#0b3d80] text-white flex items-center justify-center shadow-[0_12px_28px_rgba(0,0,0,0.22)] hover:scale-105 transition-transform"
         href="tel:+919266585858"
         aria-label="Call"
       >
