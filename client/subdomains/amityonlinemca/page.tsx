@@ -420,34 +420,6 @@ export default function AmityOnlineMcaPage({
                   </button>
                 </div>
 
-                {/* 3 Metrics Row */}
-                <div className="grid grid-cols-3 gap-3 pt-3">
-                  <div>
-                    <div className="text-xl sm:text-2xl font-black text-white">
-                      250,000+
-                    </div>
-                    <div className="text-[11px] sm:text-xs text-slate-300 font-medium">
-                      Learner Community
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-xl sm:text-2xl font-black text-white">
-                      100%
-                    </div>
-                    <div className="text-[11px] sm:text-xs text-slate-300 font-medium">
-                      Placement Assistance
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-xl sm:text-2xl font-black text-white">
-                      450+
-                    </div>
-                    <div className="text-[11px] sm:text-xs text-slate-300 font-medium">
-                      Tech Hiring Partners
-                    </div>
-                  </div>
-                </div>
-
                 {/* Global Accreditations Pill Strip */}
                 <div className="pt-2">
                   <div className="bg-white rounded-full px-4 py-2 text-slate-900 flex flex-wrap items-center gap-2.5 sm:gap-3.5 text-xs font-bold shadow-md max-w-fit">
