@@ -121,3 +121,111 @@ exports.getLeads = async (req, res) => {
     });
   }
 };
+
+// CRM Sync API Endpoint with authentication and filtering
+exports.syncLeads = async (req, res) => {
+  const apiKey = req.headers["x-api-key"];
+  const CRM_API_KEY = process.env.CRM_API_KEY || "your-secret-crm-api-key";
+
+  // API Key Authentication
+  if (!apiKey || apiKey !== CRM_API_KEY) {
+    return res.status(401).json({
+      success: false,
+      message: "Unauthorized - Invalid or missing API key",
+    });
+  }
+
+  const {
+    subdomain,
+    last_sync,
+    start_date,
+    end_date,
+    limit = 100,
+    offset = 0,
+  } = req.query;
+
+  try {
+    let query = "SELECT * FROM leads WHERE 1=1";
+    let params = [];
+
+    // Subdomain filter
+    if (subdomain) {
+      query += " AND subdomain = ?";
+      params.push(subdomain.toLowerCase().trim());
+    }
+
+    // Date range filter (using last_sync timestamp or start_date/end_date)
+    if (last_sync) {
+      query += " AND created_at >= ?";
+      params.push(last_sync);
+    } else if (start_date) {
+      query += " AND created_at >= ?";
+      params.push(start_date);
+      if (end_date) {
+        query += " AND created_at <= ?";
+        params.push(end_date);
+      }
+    }
+
+    // Ordering and pagination
+    query += " ORDER BY created_at DESC LIMIT ? OFFSET ?";
+    params.push(parseInt(limit), parseInt(offset));
+
+    const [rows] = await db.execute(query, params);
+
+    // Get total count for pagination
+    let countQuery = "SELECT COUNT(*) as total FROM leads WHERE 1=1";
+    let countParams = [];
+
+    if (subdomain) {
+      countQuery += " AND subdomain = ?";
+      countParams.push(subdomain.toLowerCase().trim());
+    }
+
+    if (last_sync) {
+      countQuery += " AND created_at >= ?";
+      countParams.push(last_sync);
+    } else if (start_date) {
+      countQuery += " AND created_at >= ?";
+      countParams.push(start_date);
+      if (end_date) {
+        countQuery += " AND created_at <= ?";
+        countParams.push(end_date);
+      }
+    }
+
+    const [countResult] = await db.execute(countQuery, countParams);
+    const total = countResult[0].total;
+
+    // Get latest sync timestamp for next incremental sync
+    const [latestResult] = await db.execute(
+      "SELECT MAX(created_at) as latest_sync FROM leads",
+    );
+    const latestSync = latestResult[0].latest_sync;
+
+    return res.json({
+      success: true,
+      data: {
+        leads: rows,
+        pagination: {
+          total,
+          limit: parseInt(limit),
+          offset: parseInt(offset),
+          has_more: parseInt(offset) + parseInt(limit) < total,
+        },
+        sync_info: {
+          latest_sync: latestSync,
+          synced_count: rows.length,
+          timestamp: new Date().toISOString(),
+        },
+      },
+    });
+  } catch (error) {
+    console.error("CRM sync error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Error syncing leads",
+      error: error.message,
+    });
+  }
+};

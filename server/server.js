@@ -37,4 +37,10 @@ verifySmtpConnection();
 const PORT = process.env.PORT || 5005;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+  console.log(
+    `[CRM SYNC API] CRM sync endpoint available at: http://localhost:${PORT}/api/crm/sync`,
+  );
+  console.log(
+    `[CRM SYNC API] Use header: x-api-key: ${process.env.CRM_API_KEY || "your-secret-crm-api-key"}`,
+  );
 });
