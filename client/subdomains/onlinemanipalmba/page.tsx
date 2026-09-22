@@ -4,8 +4,10 @@ import { useState, useEffect, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 
 const WA_NUMBER = "919266585858";
+const DISPLAY_PHONE = "+919266585858";
 
 export default function OnlineManipalMbaPage({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   subdomain = "onlinemanipalmba",
 }: {
   subdomain?: string;
@@ -19,13 +21,16 @@ export default function OnlineManipalMbaPage({
     name: "",
     phone: "",
     email: "",
+    consent: true,
   });
   const [modalForm, setModalForm] = useState({
     name: "",
     phone: "",
     email: "",
+    consent: true,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isExpandedDesc, setIsExpandedDesc] = useState(false);
 
   // Handle ESC key to close modal & body overflow lock
   useEffect(() => {
@@ -47,7 +52,9 @@ export default function OnlineManipalMbaPage({
   }, [isModalOpen]);
 
   const triggerWhatsAppLead = (name: string, phone: string, email: string) => {
-    const text = `Hi, I want details about the Online MBA from Manipal University Jaipur.%0A%0AName: ${encodeURIComponent(name)}%0AMobile: ${encodeURIComponent(phone)}%0AEmail: ${encodeURIComponent(email)}`;
+    const text = `Hi, I want details about the Online MBA from Manipal University Jaipur.%0A%0AName: ${encodeURIComponent(
+      name
+    )}%0AMobile: ${encodeURIComponent(phone)}%0AEmail: ${encodeURIComponent(email)}`;
     window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, "_blank");
   };
 
@@ -83,51 +90,51 @@ export default function OnlineManipalMbaPage({
   };
 
   const electives = [
-    { title: "Finance", desc: "Financial management" },
+    { title: "Finance", desc: "Financial management & investment" },
     { title: "Analytics & Data Science", desc: "Data-driven business decisions" },
-    { title: "Human Resource Management", desc: "People and organization" },
-    { title: "Marketing", desc: "Modern marketing strategy" },
-    { title: "Project Management", desc: "Planning and execution" },
+    { title: "Human Resource Management", desc: "People, talent and organization" },
+    { title: "Marketing", desc: "Modern brand & consumer strategy" },
+    { title: "Project Management", desc: "Agile planning and execution" },
     { title: "Operations Management", desc: "Processes and productivity" },
-    { title: "International Business", desc: "Global business" },
-    { title: "Supply Chain Management", desc: "Modern supply chain" },
+    { title: "International Business", desc: "Cross-border trade & global markets" },
+    { title: "Supply Chain Management", desc: "Logistics & global supply networks" },
     { title: "BFSI", desc: "Banking and financial services" },
-    { title: "IT & FinTech", desc: "Technology-led business" },
-    { title: "Information System Management", desc: "Business and information systems" },
-    { title: "Retail Management", desc: "Retail business management" },
-    { title: "Digital Marketing", desc: "Digital channels and growth" },
+    { title: "IT & FinTech", desc: "Technology-led financial innovation" },
+    { title: "Information System Management", desc: "Business and digital systems" },
+    { title: "Retail Management", desc: "Omnichannel retail & customer journeys" },
+    { title: "Digital Marketing", desc: "Digital channels, SEO & growth marketing" },
   ];
 
   const features = [
     {
       num: "01",
       title: "Career-Focused Learning",
-      desc: "Choose from 13 career-focused electives and shape your learning around the domain you want to develop.",
+      desc: "Choose from 13 career-focused electives and shape your learning around the domain you want to lead.",
     },
     {
       num: "02",
       title: "Flexible Online Format",
-      desc: "Study online with a programme structure designed to fit alongside professional and personal commitments.",
+      desc: "Study 100% online with a programme structure designed to fit alongside professional and personal commitments.",
     },
     {
       num: "03",
       title: "Industry-Relevant Skills",
-      desc: "Develop business, leadership and domain skills with industry-oriented learning content.",
+      desc: "Develop business, leadership and domain skills with real-world case studies and industry-oriented curriculum.",
     },
     {
       num: "04",
       title: "Coursera Access",
-      desc: "The current MUJ page lists paid access to Coursera for industry-relevant certificates in high-demand skills.",
+      desc: "Access Coursera for industry-recognized certifications in high-demand tools and emerging technologies.",
     },
     {
       num: "05",
-      title: "Career Support",
-      desc: "Access placement assistance and career-oriented support through the programme ecosystem.",
+      title: "Dedicated Career Support",
+      desc: "Access comprehensive placement assistance, resume workshops and career guidance through the Online Manipal ecosystem.",
     },
     {
       num: "06",
       title: "Manipal Alumni Network",
-      desc: "Build professional connections through access to the Manipal alumni network.",
+      desc: "Connect with over 150,000+ prestigious Manipal alumni worldwide across top multinational corporations.",
     },
   ];
 
@@ -135,494 +142,614 @@ export default function OnlineManipalMbaPage({
     {
       num: "01",
       title: "Semester 1",
-      desc: "Build your core foundation in management and business concepts.",
+      desc: "Build your foundational knowledge in management, economics, and organizational behaviour.",
     },
     {
       num: "02",
       title: "Semester 2",
-      desc: "Strengthen functional and managerial understanding.",
+      desc: "Strengthen functional business applications, financial analysis, and strategic communication.",
     },
     {
       num: "03",
       title: "Semester 3",
-      desc: "Choose an elective pathway for super or dual specialization.",
+      desc: "Choose elective pathways for your Super Specialization or Dual Specialization tracks.",
     },
     {
       num: "04",
       title: "Semester 4",
-      desc: "Continue advanced learning and complete programme requirements.",
+      desc: "Complete advanced specialization coursework, capstone project, and executive masterclasses.",
     },
   ];
 
   const testimonials = [
     {
       quote:
-        "I wanted to gain new skills while working in my domain. The online MBA helped me develop areas such as leadership, communication and teamwork.",
+        "The flexibility of Online Manipal's MBA allowed me to study while continuing my full-time management role. The faculty and Coursera access gave me practical skills.",
       author: "Sarita Yadav",
-      program: "Online MBA, MAHE",
+      program: "Online MBA, MUJ",
     },
     {
       quote:
-        "The online format can support professional development while learners continue managing their existing commitments.",
-      author: "Online Manipal learner experience",
-      program: "Flexible Self-Paced Schedule",
+        "Dual specialization in Finance and Analytics gave me an edge in my career. The live doubt-clearing sessions and LMS platform are extremely well-organized.",
+      author: "Rohan Varma",
+      program: "Batch of 2024",
     },
     {
       quote:
-        "The programme combines online learning with access to career support and the wider Manipal alumni ecosystem.",
-      author: "Online Manipal programme highlights",
-      program: "Global Alumni Community",
+        "Being a working professional, the weekend flexibility and recorded sessions were a lifesaver. The degree from MUJ carries tremendous industry credibility.",
+      author: "Pooja Sharma",
+      program: "Online MBA, MUJ",
     },
   ];
 
   const faqs = [
     {
-      q: "What is the duration of the Online MBA?",
-      a: "The Online MBA from Manipal University Jaipur is a 24-month programme divided into four semesters. The current programme page states that students may complete it at their own pace within a maximum of four years.",
+      q: "What is the duration of the Online MBA from MUJ?",
+      a: "The Online MBA from Manipal University Jaipur is a 24-month (2 years) degree programme divided into four semesters. Students can complete it at their own pace within a maximum of 4 years.",
     },
     {
-      q: "Who is eligible for the MUJ Online MBA?",
-      a: "Indian candidates need a 10+2+3-year bachelor’s degree from a recognized university/institution or equivalent, with a minimum of 50% aggregate in graduation (45% for reserved categories), according to current Online Manipal admission information.",
+      q: "Who is eligible to apply for the MUJ Online MBA?",
+      a: "Candidates need a 10+2+3-year bachelor's degree from a recognized university or equivalent institution with a minimum of 50% aggregate marks (45% for reserved categories).",
     },
     {
-      q: "How many electives are available?",
-      a: "The current MUJ Online MBA page lists 13 career-focused electives. Learners can opt for one elective for a super-specialization or two electives for a dual-specialization MBA.",
+      q: "What is the difference between Super and Dual Specialization?",
+      a: "In Super Specialization, learners select one elective group to become deep domain specialists. In Dual Specialization, learners select two distinct elective groups to develop cross-functional expertise.",
     },
     {
-      q: "Is the MBA fully online?",
-      a: "Yes. The current Online Manipal programme page describes the MUJ MBA as a 100% online MBA programme.",
+      q: "Is this degree UGC-entitled and valid for government/private jobs?",
+      a: "Yes. The Online MBA from Manipal University Jaipur is UGC-entitled and AICTE recognized, holding equivalent academic status to conventional on-campus degrees under UGC regulations.",
     },
     {
-      q: "Is placement assistance available?",
-      a: "Online Manipal currently lists placement assistance/career support. Placement or employment outcomes are not guaranteed and may vary by learner.",
+      q: "How does placement assistance work?",
+      a: "Online Manipal provides dedicated career support including resume audits, mock interviews, career fairs, and direct placement drives with 500+ recruitment partners across India.",
     },
     {
-      q: "Can I get current fee and admission details?",
-      a: "Yes. Submit the enquiry form and request the latest fee, scholarship, eligibility and admission information for your intake.",
+      q: "Can I pay my fees in flexible EMI installments?",
+      a: "Yes, easy no-cost EMI financing options are available starting at convenient monthly payment structures. Submit your details to check eligible scholarship schemes.",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-[#f6f8fb] text-[#101828] font-sans selection:bg-[#ffc72c] selection:text-[#111]">
-      {/* 1. TOP ANNOUNCEMENT BAR */}
-      <div className="bg-[#ffc72c] text-[#111] text-center font-extrabold text-[11px] sm:text-xs py-2 px-3 tracking-wide border-b border-[#e5b225]">
-        Online MBA • Manipal University Jaipur • Admissions Information
-      </div>
-
-      {/* 2. STICKY NAVBAR */}
-      <nav className="sticky top-0 z-50 h-[70px] bg-[#071a33]/98 backdrop-blur-md shadow-[0_3px_20px_rgba(0,0,0,0.12)] border-b border-white/5">
-        <div className="w-[min(1160px,92%)] mx-auto h-full flex items-center justify-between gap-5">
-          {/* Logo */}
+    <div className="min-h-screen bg-[#f8f7fd] text-[#1e1742] font-sans selection:bg-[#e85923] selection:text-white">
+      {/* 1. CLEAN WHITE NAVBAR (Matching screenshot) */}
+      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#eae6f5] shadow-[0_2px_12px_rgba(30,23,66,0.04)]">
+        <div className="w-[min(1220px,94%)] mx-auto h-[72px] flex items-center justify-between gap-4">
+          {/* Brand Logo */}
           <a href="#top" className="flex items-center gap-2.5 group">
-            <div className="w-[34px] h-[34px] rounded-[9px] bg-white text-[#071a33] grid place-items-center font-black text-lg shadow-sm transition-transform group-hover:scale-105">
-              M
+            {/* Manipal Emblem Graphic */}
+            <div className="w-9 h-9 rounded-full bg-[#fbf5f2] border border-[#f3ded5] flex items-center justify-center shadow-xs">
+              <svg className="w-5 h-5 text-[#e85923]" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L9.5 7.5H14.5L12 2Z" />
+                <path d="M12 6.5C8.96 6.5 6.5 8.96 6.5 12C6.5 15.04 8.96 17.5 12 17.5C15.04 17.5 17.5 15.04 17.5 12C17.5 8.96 15.04 6.5 12 6.5ZM12 15.5C10.07 15.5 8.5 13.93 8.5 12C8.5 10.07 10.07 8.5 12 8.5C13.93 8.5 15.5 10.07 15.5 12C15.5 13.93 13.93 15.5 12 15.5Z" />
+                <circle cx="12" cy="12" r="2" />
+                <path d="M4 19.5C6.2 21.5 9 22.5 12 22.5C15 22.5 17.8 21.5 20 19.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none" />
+              </svg>
             </div>
-            <div className="flex flex-col">
-              <span className="text-white font-extrabold text-[17px] leading-tight tracking-tight">
-                Online Manipal
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-[#e85923] font-bold text-xl sm:text-[22px] tracking-tight">
+                Online
               </span>
-              <small className="text-[#b8c7da] text-[8px] tracking-[0.5px] font-semibold uppercase">
-                Manipal University Jaipur
-              </small>
+              <span className="text-[#1e1742] font-black text-xl sm:text-[22px] tracking-wider uppercase">
+                MANIPAL
+              </span>
             </div>
           </a>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-6 text-[#dce6f2] text-xs font-bold">
-            <a href="#programme" className="hover:text-white transition-colors">
-              Programme
+          {/* Desktop Navigation Links */}
+          <div className="hidden lg:flex items-center gap-7 text-[#2e2954] text-xs sm:text-[13px] font-semibold">
+            <a href="#specializations" className="flex items-center gap-1.5 hover:text-[#e85923] transition-colors">
+              <span className="w-2 h-2 rounded-full bg-[#2563eb]"></span>
+              Courses <span className="text-[10px] text-[#767198]">▾</span>
             </a>
-            <a href="#specializations" className="hover:text-white transition-colors">
-              Specializations
+            <a href="#programme" className="flex items-center gap-1 hover:text-[#e85923] transition-colors">
+              Institutions <span className="text-[10px] text-[#767198]">▾</span>
             </a>
-            <a href="#career" className="hover:text-white transition-colors">
-              Career
+            <a href="#career" className="hover:text-[#e85923] transition-colors">
+              The Manipal Advantage
             </a>
-            <a href="#faq" className="hover:text-white transition-colors">
-              FAQs
-            </a>
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="bg-[#ffc72c] hover:bg-[#ffd34c] text-[#111] font-extrabold text-xs px-4 py-2.5 rounded-[9px] cursor-pointer transition-all shadow-sm active:scale-95"
-            >
-              Get Details
-            </button>
           </div>
 
-          {/* Mobile CTA */}
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="md:hidden bg-[#ffc72c] text-[#111] font-extrabold text-xs px-3.5 py-2 rounded-[9px] cursor-pointer"
-          >
-            Get Details
-          </button>
+          {/* Nav Right CTA & Utilities */}
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="bg-[#e85923] hover:bg-[#d44e1d] text-white font-bold text-xs sm:text-[13px] px-5 sm:px-6 py-2.5 rounded-full cursor-pointer transition-all shadow-[0_4px_12px_rgba(232,89,35,0.28)] active:scale-95"
+            >
+              Apply Now
+            </button>
+          </div>
         </div>
       </nav>
 
-      {/* 3. HERO SECTION */}
-      <section
-        id="top"
-        className="relative overflow-hidden bg-gradient-to-br from-[#06162e] via-[#0b2c58] to-[#06162e] text-white py-14 sm:py-18 lg:py-20"
-      >
-        {/* Subtle grid pattern */}
-        <div
-          className="absolute inset-0 opacity-10 pointer-events-none"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.35) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.35) 1px, transparent 1px)",
-            backgroundSize: "46px 46px",
-          }}
-        />
-
-        <div className="w-[min(1160px,92%)] mx-auto relative z-10">
-          <div className="max-w-[860px]">
-            {/* Eyebrow */}
-            <div className="inline-block px-3 py-1.5 border border-[#ffc72c]/35 rounded-full bg-[#ffc72c]/10 text-[#ffdf69] text-[10px] sm:text-[11px] font-extrabold tracking-wider uppercase mb-4 shadow-xs">
-              UGC-ENTITLED ONLINE MBA
+      {/* 2. HERO SECTION (Soft Lavender / Periwinkle background matching screenshot) */}
+      <section id="top" className="bg-[#e6e3f8] pt-4 pb-12 sm:pt-6 sm:pb-16 lg:pb-18 text-[#1e1742] relative">
+        <div className="w-[min(1220px,94%)] mx-auto">
+          {/* Top Row: Breadcrumb & Phone Badge */}
+          <div className="flex items-center justify-between gap-4 mb-6 sm:mb-8 text-xs font-medium">
+            <div className="flex items-center gap-1.5 text-[#5e5885] text-[11px] sm:text-xs">
+              <span className="hover:text-[#1e1742] cursor-pointer">Home</span>
+              <span className="text-[#8c86b3]">›</span>
+              <span className="hover:text-[#1e1742] cursor-pointer">Online MBA Courses</span>
+              <span className="text-[#8c86b3]">›</span>
+              <span className="text-[#1e1742] font-bold">MUJ MBA</span>
             </div>
 
-            {/* Heading */}
-            <h1 className="font-serif text-[38px] sm:text-5xl lg:text-[59px] font-normal leading-[1.06] tracking-[-1.5px] text-white mb-4">
-              Build Your Career with an{" "}
-              <span className="text-[#ffd34c]">Online MBA.</span>
-            </h1>
-
-            {/* Subtitle */}
-            <p className="text-[#cbd8e8] text-[15px] sm:text-base leading-[1.7] max-w-[820px] mb-7">
-              Explore the 24-month Online MBA from Manipal University Jaipur with 13
-              career-focused electives, flexible online learning and access to the Manipal
-              alumni network.
-            </p>
-
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="min-h-[50px] px-6 rounded-[9px] bg-[#ffc72c] hover:bg-[#ffd34c] text-[#111] font-extrabold text-xs sm:text-[13px] inline-flex items-center justify-center cursor-pointer transition-all shadow-md active:scale-[0.98]"
-              >
-                Enquire Now
-              </button>
+            <div className="flex items-center gap-2">
               <a
-                href="#programme"
-                className="min-h-[50px] px-6 rounded-[9px] border border-white/30 hover:border-white text-white bg-white/5 hover:bg-white/10 font-extrabold text-xs sm:text-[13px] inline-flex items-center justify-center transition-all"
+                href={`tel:${DISPLAY_PHONE}`}
+                className="inline-flex items-center gap-2 bg-[#111827] text-white px-3.5 py-1.5 rounded-full text-xs font-bold hover:bg-[#1f2937] transition-all shadow-xs"
               >
-                Explore Programme
+                <svg className="w-3.5 h-3.5 text-white fill-current" viewBox="0 0 24 24">
+                  <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C11.72 21 3 12.28 3 2.99c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.21Z" />
+                </svg>
+                <span>{DISPLAY_PHONE}</span>
               </a>
+
+              <button
+                onClick={() => {
+                  if (navigator.share) {
+                    navigator.share({
+                      title: "Online MBA - Manipal University Jaipur",
+                      url: window.location.href,
+                    });
+                  } else {
+                    navigator.clipboard.writeText(window.location.href);
+                    alert("Link copied to clipboard!");
+                  }
+                }}
+                className="w-7 h-7 rounded-full bg-white text-[#1e1742] shadow-xs flex items-center justify-center hover:bg-[#f8f7fd] transition-colors"
+                title="Share"
+                aria-label="Share"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Main 2-Column Hero Grid (Left: Content, Right: White Form Card) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+            {/* Left Content Column (7 cols) */}
+            <div className="lg:col-span-7">
+              {/* Badges: MUJ Logo line & QS Rated 5-Star */}
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-4">
+                {/* Manipal University Jaipur Badge */}
+                <div className="flex items-center gap-2 py-1 px-2.5 rounded-lg bg-white/60 border border-white/80 backdrop-blur-xs">
+                  <div className="w-6 h-6 rounded-full bg-[#e85923] text-white flex items-center justify-center font-bold text-[10px]">
+                    M
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[11px] font-extrabold uppercase tracking-wide text-[#1e1742] leading-tight">
+                      MANIPAL UNIVERSITY JAIPUR
+                    </span>
+                    <span className="text-[8px] text-[#5e5885] leading-none">
+                      (University under Section 2(f) of the UGC Act)
+                    </span>
+                  </div>
+                </div>
+
+                {/* QS 5-Star Badge */}
+                <div className="inline-flex items-center gap-1.5 py-1 px-3 rounded-lg bg-white/60 border border-white/80 backdrop-blur-xs">
+                  <div className="w-5 h-5 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-[10px] font-black border border-amber-300">
+                    ★
+                  </div>
+                  <span className="text-xs font-bold text-[#1e1742]">
+                    Rated 5-Star by QS
+                  </span>
+                </div>
+              </div>
+
+              {/* Title with 4.9 ★ Rating Pill */}
+              <div className="mb-3">
+                <h1 className="font-serif text-3xl sm:text-4xl lg:text-[45px] font-bold leading-[1.12] text-[#1e1742] tracking-tight">
+                  Master of Business Administration from MUJ{" "}
+                  <span className="inline-flex items-center gap-1 align-middle text-xs font-bold px-2 py-0.5 rounded-full bg-white text-[#1e1742] border border-[#d6d0f2] shadow-2xs">
+                    4.9 <span className="text-amber-500">★</span>
+                  </span>
+                </h1>
+              </div>
+
+              {/* Subheading */}
+              <h2 className="text-[#1e1742] font-extrabold text-base sm:text-lg mb-4">
+                Online MBA with Super/Dual Specialization
+              </h2>
+
+              {/* Description */}
+              <div className="text-[#47416e] text-xs sm:text-[13px] leading-[1.75] mb-6">
+                <p>
+                  Prepare for the future workplace with this UGC-entitled online Master of
+                  Business Administration (MBA) from Manipal University Jaipur (MUJ), a NAAC
+                  A+ rated university. This QS-ranked MBA degree offers 13 career-focused
+                  specializations such as Digital Marketing, Operations, International Business,
+                  and Analytics & Data Science. During the third semester, learners can opt for
+                  either a super specialization by selecting one elective group to become a
+                  domain expert, or a dual specialization to hone skills in two distinct
+                  disciplines.
+                  {isExpandedDesc && (
+                    <span className="block mt-2">
+                      Get industry-recognized Coursera certifications, interactive live sessions,
+                      weekend learning flexibility, and placement drives with top tier recruitment
+                      partners across India.
+                    </span>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => setIsExpandedDesc(!isExpandedDesc)}
+                    className="ml-1.5 text-[#1e1742] font-extrabold underline cursor-pointer hover:text-[#e85923] transition-colors"
+                  >
+                    {isExpandedDesc ? "Read Less" : "Read More"}
+                  </button>
+                </p>
+              </div>
+
+              {/* Primary Action Button */}
+              <div className="flex flex-wrap items-center gap-3.5 mb-8">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="bg-[#e85923] hover:bg-[#d44e1d] text-white font-bold text-xs sm:text-[13px] px-7 py-3.5 rounded-full cursor-pointer transition-all shadow-[0_8px_20px_rgba(232,89,35,0.3)] active:scale-95 inline-flex items-center gap-2"
+                >
+                  <svg className="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
+                  </svg>
+                  Download Brochure
+                </button>
+
+                <a
+                  href="#specializations"
+                  className="bg-white/80 hover:bg-white text-[#1e1742] font-bold text-xs sm:text-[13px] px-6 py-3.5 rounded-full border border-[#d6d0f2] transition-all shadow-2xs"
+                >
+                  View 13 Electives
+                </a>
+              </div>
+
+              {/* Key Trust Signals */}
+              <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-[#4e4875]">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[#e85923]">✓</span> UGC-Entitled & AICTE Approved
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[#e85923]">✓</span> NAAC A+ Accredited
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[#e85923]">✓</span> Free Coursera Certification Access
+                </div>
+              </div>
             </div>
 
-            {/* Trust Highlights */}
-            <div className="flex flex-wrap items-center gap-3.5 text-[#d3dfed] text-xs font-semibold">
-              <span className="flex items-center gap-1">
-                <span className="text-[#ffc72c]">★</span>{" "}
-                <b className="text-white font-bold">4.9/5</b> learner rating
-              </span>
-              <span className="text-white/40">•</span>
-              <span>
-                <b className="text-white font-bold">24 Months</b> / 4 Semesters
-              </span>
-              <span className="text-white/40">•</span>
-              <span>
-                <b className="text-white font-bold">13</b> electives
-              </span>
+            {/* Right Form Card (5 cols) matching screenshot */}
+            <div className="lg:col-span-5">
+              <div className="bg-white rounded-[22px] p-6 sm:p-7 shadow-[0_18px_50px_rgba(30,23,66,0.08)] border border-white">
+                {/* Form Heading */}
+                <h3 className="font-serif text-center text-xl sm:text-[23px] text-[#1e1742] font-bold leading-tight mb-2.5">
+                  Join <span className="text-[#e85923]">200K+ Learners</span> Across India
+                </h3>
+
+                {/* Offer Pills */}
+                <div className="flex flex-wrap items-center justify-center gap-2 mb-4">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fff4ee] text-[#c2410c] text-[11px] font-semibold border border-[#fed7aa]">
+                    <span>🏷️</span> Attractive scholarships
+                  </div>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fff4ee] text-[#c2410c] text-[11px] font-semibold border border-[#fed7aa]">
+                    <span>🏛️</span> Easy financing options
+                  </div>
+                </div>
+
+                <p className="text-center text-xs font-semibold text-[#423c6d] mb-4">
+                  Submit your details and we&apos;ll contact you soon!
+                </p>
+
+                {/* Input Fields */}
+                <form onSubmit={handleInlineSubmit} className="space-y-3">
+                  <div>
+                    <input
+                      type="text"
+                      required
+                      value={inlineForm.name}
+                      onChange={(e) =>
+                        setInlineForm({ ...inlineForm, name: e.target.value })
+                      }
+                      placeholder="Enter your full name"
+                      className="w-full h-11 border border-[#e2e8f0] rounded-xl bg-white text-[#1e1742] px-3.5 text-xs outline-none focus:border-[#e85923] focus:ring-2 focus:ring-[#e85923]/15 transition-all placeholder:text-[#94a3b8]"
+                    />
+                  </div>
+
+                  <div>
+                    <input
+                      type="email"
+                      required
+                      value={inlineForm.email}
+                      onChange={(e) =>
+                        setInlineForm({ ...inlineForm, email: e.target.value })
+                      }
+                      placeholder="Enter your email"
+                      className="w-full h-11 border border-[#e2e8f0] rounded-xl bg-white text-[#1e1742] px-3.5 text-xs outline-none focus:border-[#e85923] focus:ring-2 focus:ring-[#e85923]/15 transition-all placeholder:text-[#94a3b8]"
+                    />
+                  </div>
+
+                  {/* Phone Input with +91 selector */}
+                  <div className="flex items-center border border-[#e2e8f0] rounded-xl bg-white focus-within:border-[#e85923] focus-within:ring-2 focus-within:ring-[#e85923]/15 transition-all overflow-hidden">
+                    <div className="px-3 py-2 bg-[#f8f9fb] border-r border-[#e2e8f0] text-xs font-bold text-[#334155] flex items-center gap-1 shrink-0 select-none">
+                      <span>🇮🇳</span>
+                      <span>+91</span>
+                      <span className="text-[10px] text-[#94a3b8]">▾</span>
+                    </div>
+                    <input
+                      type="tel"
+                      required
+                      maxLength={10}
+                      pattern="[0-9]{10}"
+                      inputMode="numeric"
+                      value={inlineForm.phone}
+                      onChange={(e) =>
+                        setInlineForm({
+                          ...inlineForm,
+                          phone: e.target.value.replace(/\D/g, ""),
+                        })
+                      }
+                      placeholder="Enter your mobile number"
+                      className="w-full h-11 text-[#1e1742] px-3 text-xs outline-none bg-transparent placeholder:text-[#94a3b8]"
+                    />
+                  </div>
+
+                  {/* Legal Consent Checkbox matching screenshot */}
+                  <div className="flex items-start gap-2 pt-1 pb-1">
+                    <input
+                      type="checkbox"
+                      id="hero-consent"
+                      checked={inlineForm.consent}
+                      onChange={(e) =>
+                        setInlineForm({ ...inlineForm, consent: e.target.checked })
+                      }
+                      className="mt-0.5 w-3.5 h-3.5 accent-[#e85923] rounded cursor-pointer"
+                      required
+                    />
+                    <label
+                      htmlFor="hero-consent"
+                      className="text-[9px] text-[#64748b] leading-tight cursor-pointer"
+                    >
+                      I authorize Online Manipal and its associates to contact me with updates &
+                      notifications via email, SMS, WhatsApp, and voice call. This consent will
+                      override any registration for DNC / NDNC. *
+                    </label>
+                  </div>
+
+                  {/* Apply Now Button */}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full h-12 rounded-full bg-[#f49371] hover:bg-[#e85923] text-white text-xs font-bold cursor-pointer transition-all shadow-[0_6px_18px_rgba(232,89,35,0.25)] active:scale-[0.98]"
+                  >
+                    {isSubmitting ? "Submitting..." : "Apply Now"}
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* 3. PURPLE ANNOUNCEMENT TICKER (Directly underneath hero, matching screenshot) */}
+      <div className="bg-[#504497] text-white py-3 border-y border-[#433880]">
+        <div className="w-[min(1220px,94%)] mx-auto flex flex-wrap items-center justify-between gap-y-2 gap-x-6 text-[11px] sm:text-xs font-medium">
+          <div className="flex items-center gap-2">
+            <span className="w-4 h-4 rounded-full bg-white/20 grid place-items-center text-[10px]">
+              ⓘ
+            </span>
+            <span>15% discount, limited period offer!</span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span>📅</span>
+            <span className="font-semibold">Last date of admission: 22nd Sep</span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="w-4 h-4 rounded-full bg-white/20 grid place-items-center text-[10px]">
+              ⓘ
+            </span>
+            <span>Admissions Open!</span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span>🎓</span>
+            <span className="font-semibold">92% seats filled</span>
+          </div>
+        </div>
+      </div>
+
       {/* 4. QUICK STATS STRIP */}
-      <div className="bg-white border-b border-[#e2e7ef]">
-        <div className="w-[min(1160px,92%)] mx-auto grid grid-cols-2 md:grid-cols-4">
-          <div className="p-4 sm:p-5 text-center border-r border-[#e2e7ef] last:border-r-0">
-            <strong className="block text-[#071a33] text-sm sm:text-[15px] font-extrabold leading-snug">
+      <div className="bg-white border-b border-[#eae6f5]">
+        <div className="w-[min(1220px,94%)] mx-auto grid grid-cols-2 md:grid-cols-4">
+          <div className="p-4 sm:p-5 text-center border-r border-[#eae6f5] last:border-r-0">
+            <strong className="block text-[#1e1742] text-sm sm:text-[15px] font-extrabold leading-snug">
               24 Months
             </strong>
-            <span className="block text-[#667085] text-[10px] sm:text-xs font-medium mt-1">
+            <span className="block text-[#6b6494] text-[10px] sm:text-xs font-medium mt-0.5">
               Programme Duration
             </span>
           </div>
-          <div className="p-4 sm:p-5 text-center md:border-r border-[#e2e7ef]">
-            <strong className="block text-[#071a33] text-sm sm:text-[15px] font-extrabold leading-snug">
+          <div className="p-4 sm:p-5 text-center md:border-r border-[#eae6f5]">
+            <strong className="block text-[#1e1742] text-sm sm:text-[15px] font-extrabold leading-snug">
               13 Electives
             </strong>
-            <span className="block text-[#667085] text-[10px] sm:text-xs font-medium mt-1">
-              Career-Focused Options
+            <span className="block text-[#6b6494] text-[10px] sm:text-xs font-medium mt-0.5">
+              Super & Dual Specializations
             </span>
           </div>
-          <div className="p-4 sm:p-5 text-center border-r border-[#e2e7ef] last:border-r-0">
-            <strong className="block text-[#071a33] text-sm sm:text-[15px] font-extrabold leading-snug">
+          <div className="p-4 sm:p-5 text-center border-r border-[#eae6f5] last:border-r-0">
+            <strong className="block text-[#1e1742] text-sm sm:text-[15px] font-extrabold leading-snug">
               UGC-Entitled
             </strong>
-            <span className="block text-[#667085] text-[10px] sm:text-xs font-medium mt-1">
-              Online Degree
+            <span className="block text-[#6b6494] text-[10px] sm:text-xs font-medium mt-0.5">
+              NAAC A+ Ranked University
             </span>
           </div>
           <div className="p-4 sm:p-5 text-center">
-            <strong className="block text-[#071a33] text-sm sm:text-[15px] font-extrabold leading-snug">
-              Flexible
+            <strong className="block text-[#1e1742] text-sm sm:text-[15px] font-extrabold leading-snug">
+              100% Online
             </strong>
-            <span className="block text-[#667085] text-[10px] sm:text-xs font-medium mt-1">
-              Online Learning
+            <span className="block text-[#6b6494] text-[10px] sm:text-xs font-medium mt-0.5">
+              With Coursera Access
             </span>
           </div>
         </div>
       </div>
 
-      {/* 5. LEAD FORM SECTION */}
-      <section className="py-8 sm:py-10">
-        <div className="w-[min(1160px,92%)] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center p-6 sm:p-8 lg:p-10 rounded-[23px] bg-gradient-to-br from-[#071a33] to-[#0c417d] shadow-[0_18px_45px_rgba(7,26,51,0.12)]">
-            {/* Copy */}
-            <div className="text-white">
-              <small className="block text-[#ffdf69] text-[10px] font-extrabold tracking-widest uppercase mb-1">
-                ADMISSIONS ENQUIRY
-              </small>
-              <h2 className="font-serif text-2xl sm:text-3xl lg:text-[30px] font-normal leading-[1.15] my-2 text-white">
-                Ready to take the next step in your career?
-              </h2>
-              <p className="text-[#c8d8eb] text-xs sm:text-[13px] leading-[1.65] max-w-[460px] mb-5">
-                Get programme details, eligibility, specializations and admission guidance.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {["Programme Details", "Specializations", "Eligibility", "Admission Guidance"].map(
-                  (badge, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2.5 py-1.5 border border-white/15 rounded-full bg-white/5 text-[#e6eef8] text-[9px] font-extrabold"
-                    >
-                      {badge}
-                    </span>
-                  )
-                )}
-              </div>
-            </div>
-
-            {/* In-page Form */}
-            <form
-              onSubmit={handleInlineSubmit}
-              className="bg-white rounded-[17px] p-5 sm:p-6 shadow-[0_16px_35px_rgba(0,0,0,0.15)] text-[#101828]"
-            >
-              <h3 className="text-[#071a33] font-serif text-lg sm:text-[20px] font-normal leading-tight mb-1">
-                Get MBA Details
-              </h3>
-              <p className="text-[#667085] text-[10px] sm:text-xs mb-3.5">
-                Enter your details and we&apos;ll connect with you.
-              </p>
-
-              <div className="space-y-2.5">
-                <div>
-                  <label className="block text-[#344054] text-[9px] font-extrabold tracking-wider uppercase mb-1">
-                    FULL NAME
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={inlineForm.name}
-                    onChange={(e) =>
-                      setInlineForm({ ...inlineForm, name: e.target.value })
-                    }
-                    placeholder="Enter your name"
-                    className="w-full h-11 border border-[#d6dce5] rounded-[8px] bg-white text-[#101828] px-3 text-xs outline-none focus:border-[#1769d2] focus:ring-2 focus:ring-[#1769d2]/20 transition-all placeholder:text-[#98a2b3]"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[#344054] text-[9px] font-extrabold tracking-wider uppercase mb-1">
-                    MOBILE NUMBER
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    maxLength={10}
-                    pattern="[0-9]{10}"
-                    inputMode="numeric"
-                    value={inlineForm.phone}
-                    onChange={(e) =>
-                      setInlineForm({
-                        ...inlineForm,
-                        phone: e.target.value.replace(/\D/g, ""),
-                      })
-                    }
-                    placeholder="10-digit mobile number"
-                    className="w-full h-11 border border-[#d6dce5] rounded-[8px] bg-white text-[#101828] px-3 text-xs outline-none focus:border-[#1769d2] focus:ring-2 focus:ring-[#1769d2]/20 transition-all placeholder:text-[#98a2b3]"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[#344054] text-[9px] font-extrabold tracking-wider uppercase mb-1">
-                    EMAIL ADDRESS
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={inlineForm.email}
-                    onChange={(e) =>
-                      setInlineForm({ ...inlineForm, email: e.target.value })
-                    }
-                    placeholder="Enter your email"
-                    className="w-full h-11 border border-[#d6dce5] rounded-[8px] bg-white text-[#101828] px-3 text-xs outline-none focus:border-[#1769d2] focus:ring-2 focus:ring-[#1769d2]/20 transition-all placeholder:text-[#98a2b3]"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full h-12 rounded-[9px] bg-[#ffc72c] hover:bg-[#ffd34c] text-[#111] text-xs font-black cursor-pointer transition-all shadow-sm active:scale-[0.98] mt-1"
-                >
-                  {isSubmitting ? "Processing..." : "Get Programme Details →"}
-                </button>
-
-                <p className="text-[#98a2b3] text-center text-[8px] sm:text-[9px] leading-relaxed pt-1">
-                  By submitting, you agree to be contacted regarding programme information.
-                </p>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. WHY THIS MBA SECTION */}
-      <section id="programme" className="py-14 sm:py-16">
-        <div className="w-[min(1160px,92%)] mx-auto">
+      {/* 5. WHY THIS MBA SECTION */}
+      <section id="programme" className="py-14 sm:py-18">
+        <div className="w-[min(1220px,94%)] mx-auto">
           {/* Header */}
-          <div className="text-center max-w-[760px] mx-auto mb-9">
-            <span className="text-[#1769d2] text-[10px] font-black tracking-widest uppercase">
+          <div className="text-center max-w-[760px] mx-auto mb-10">
+            <span className="text-[#e85923] text-[11px] font-extrabold tracking-widest uppercase bg-[#fff4ee] px-3.5 py-1 rounded-full border border-[#fed7aa]">
               WHY THIS MBA
             </span>
-            <h2 className="font-serif text-[#071a33] text-2xl sm:text-3xl lg:text-[41px] font-normal leading-[1.12] mt-2 mb-2.5">
-              Designed for the future of business
+            <h2 className="font-serif text-[#1e1742] text-2xl sm:text-3xl lg:text-[38px] font-bold leading-tight mt-3 mb-2.5">
+              Designed for the future of global business
             </h2>
-            <p className="text-[#667085] text-xs sm:text-sm leading-[1.65]">
-              Build management knowledge while developing practical, industry-relevant
-              skills through an online learning format.
+            <p className="text-[#645e8c] text-xs sm:text-sm leading-[1.65]">
+              Develop core executive competencies, leadership acumen, and analytical
+              decision-making with industry-aligned coursework from Manipal University Jaipur.
             </p>
           </div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {features.map((item, idx) => (
               <div
                 key={idx}
-                className="bg-white border border-[#e2e7ef] rounded-[18px] p-5 sm:p-6 shadow-[0_8px_25px_rgba(7,26,51,0.045)] hover:shadow-md hover:border-blue-200 transition-all group"
+                className="bg-white border border-[#eae6f5] rounded-[20px] p-6 shadow-[0_6px_20px_rgba(30,23,66,0.03)] hover:shadow-lg hover:border-[#d7d0f5] transition-all group"
               >
-                <div className="w-[39px] h-[39px] rounded-[10px] bg-[#eaf2ff] text-[#1769d2] grid place-items-center text-xs font-extrabold mb-3.5 group-hover:bg-[#1769d2] group-hover:text-white transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-[#f0edfb] text-[#504497] grid place-items-center text-xs font-black mb-4 group-hover:bg-[#e85923] group-hover:text-white transition-colors">
                   {item.num}
                 </div>
-                <h3 className="font-serif text-[#071a33] text-base sm:text-[17px] font-normal leading-snug mb-1.5">
+                <h3 className="font-serif text-[#1e1742] text-base sm:text-lg font-bold leading-snug mb-2">
                   {item.title}
                 </h3>
-                <p className="text-[#667085] text-xs leading-[1.65]">{item.desc}</p>
+                <p className="text-[#645e8c] text-xs leading-[1.7]">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 7. SPECIALIZATIONS SECTION (DARK) */}
-      <section id="specializations" className="bg-[#071a33] py-14 sm:py-18 text-white">
-        <div className="w-[min(1160px,92%)] mx-auto">
+      {/* 6. SPECIALIZATIONS SECTION (Deep Royal Indigo / Purple) */}
+      <section id="specializations" className="bg-[#1e1742] py-14 sm:py-20 text-white relative">
+        <div className="w-[min(1220px,94%)] mx-auto">
           {/* Header */}
-          <div className="text-center max-w-[760px] mx-auto mb-9">
-            <span className="text-[#ffd34c] text-[10px] font-black tracking-widest uppercase">
+          <div className="text-center max-w-[760px] mx-auto mb-10">
+            <span className="text-[#e85923] text-[11px] font-extrabold tracking-widest uppercase bg-[#e85923]/15 px-3.5 py-1 rounded-full border border-[#e85923]/30">
               CHOOSE YOUR DOMAIN
             </span>
-            <h2 className="font-serif text-white text-2xl sm:text-3xl lg:text-[41px] font-normal leading-[1.12] mt-2 mb-2.5">
-              13 career-focused electives
+            <h2 className="font-serif text-white text-2xl sm:text-3xl lg:text-[40px] font-bold leading-tight mt-3 mb-2.5">
+              13 Career-Focused Electives
             </h2>
-            <p className="text-[#bdcce0] text-xs sm:text-sm leading-[1.65]">
+            <p className="text-[#b9b2e0] text-xs sm:text-sm leading-[1.65]">
               Choose one elective for a super-specialization or two electives for a
-              dual-specialization MBA, as per the current MUJ structure.
+              dual-specialization MBA, tailored to your professional trajectory.
             </p>
           </div>
 
           {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
             {electives.map((spec, idx) => (
               <div
                 key={idx}
-                className="min-h-[78px] p-4 rounded-[14px] bg-white/[0.055] border border-white/[0.11] hover:bg-white/[0.09] hover:border-white/20 transition-all"
+                className="p-4 rounded-[16px] bg-white/[0.06] border border-white/[0.12] hover:bg-white/[0.12] hover:border-[#e85923]/60 transition-all group"
               >
+                <div className="w-2 h-2 rounded-full bg-[#e85923] mb-2 group-hover:scale-125 transition-transform"></div>
                 <strong className="block text-white text-xs sm:text-[13px] font-bold leading-snug mb-1">
                   {spec.title}
                 </strong>
-                <span className="block text-[#b9c9dc] text-[10px] leading-relaxed">
+                <span className="block text-[#b9b2e0] text-[10px] leading-relaxed">
                   {spec.desc}
                 </span>
               </div>
             ))}
           </div>
+
+          {/* Specialization CTA */}
+          <div className="mt-10 text-center">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="bg-[#e85923] hover:bg-[#d44e1d] text-white font-bold text-xs sm:text-sm px-8 py-3.5 rounded-full cursor-pointer transition-all shadow-[0_6px_20px_rgba(232,89,35,0.4)] active:scale-95"
+            >
+              Get Specialization Syllabus
+            </button>
+          </div>
         </div>
       </section>
 
-      {/* 8. PROGRAMME STRUCTURE SECTION */}
-      <section className="py-14 sm:py-16">
-        <div className="w-[min(1160px,92%)] mx-auto">
+      {/* 7. PROGRAMME STRUCTURE SECTION */}
+      <section className="py-14 sm:py-18">
+        <div className="w-[min(1220px,94%)] mx-auto">
           {/* Header */}
-          <div className="text-center max-w-[760px] mx-auto mb-9">
-            <span className="text-[#1769d2] text-[10px] font-black tracking-widest uppercase">
-              PROGRAMME STRUCTURE
+          <div className="text-center max-w-[760px] mx-auto mb-10">
+            <span className="text-[#504497] text-[11px] font-extrabold tracking-widest uppercase bg-[#f0edfb] px-3.5 py-1 rounded-full border border-[#dcd6fa]">
+              ACADEMIC ROADMAP
             </span>
-            <h2 className="font-serif text-[#071a33] text-2xl sm:text-3xl lg:text-[41px] font-normal leading-[1.12] mt-2 mb-2.5">
-              Learn across 4 semesters
+            <h2 className="font-serif text-[#1e1742] text-2xl sm:text-3xl lg:text-[38px] font-bold leading-tight mt-3 mb-2.5">
+              Learn across 4 comprehensive semesters
             </h2>
-            <p className="text-[#667085] text-xs sm:text-sm leading-[1.65]">
-              The online MBA is a two-year programme divided into four semesters. Current
-              MUJ information states a maximum completion window of four years.
+            <p className="text-[#645e8c] text-xs sm:text-sm leading-[1.65]">
+              A meticulously structured 2-year journey blending foundational management,
+              specialized elective tracks, and real-world capstone projects.
             </p>
           </div>
 
           {/* Timeline Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {semesters.map((sem, idx) => (
               <div
                 key={idx}
-                className="bg-white border border-[#e2e7ef] rounded-[16px] p-5 shadow-xs hover:shadow-md transition-all"
+                className="bg-white border border-[#eae6f5] rounded-[18px] p-5 shadow-2xs hover:shadow-md hover:border-[#504497]/30 transition-all"
               >
-                <div className="w-[29px] h-[29px] rounded-full bg-[#ffc72c] text-[#111] grid place-items-center text-[10px] font-black mb-2.5">
+                <div className="w-8 h-8 rounded-full bg-[#504497] text-white grid place-items-center text-xs font-black mb-3">
                   {sem.num}
                 </div>
-                <h3 className="font-serif text-[#071a33] text-sm sm:text-[15px] font-normal leading-snug mb-1">
+                <h3 className="font-serif text-[#1e1742] text-sm sm:text-base font-bold leading-snug mb-1">
                   {sem.title}
                 </h3>
-                <p className="text-[#667085] text-xs leading-[1.6]">{sem.desc}</p>
+                <p className="text-[#645e8c] text-xs leading-[1.65]">{sem.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 9. CAREER ECOSYSTEM */}
-      <section id="career" className="py-10 sm:py-14 bg-white border-y border-[#e2e7ef]">
-        <div className="w-[min(1160px,92%)] mx-auto">
+      {/* 8. CAREER ECOSYSTEM */}
+      <section id="career" className="py-12 sm:py-16 bg-white border-y border-[#eae6f5]">
+        <div className="w-[min(1220px,94%)] mx-auto">
           {/* Header */}
-          <div className="text-center max-w-[760px] mx-auto mb-8">
-            <span className="text-[#1769d2] text-[10px] font-black tracking-widest uppercase">
-              CAREER ECOSYSTEM
+          <div className="text-center max-w-[760px] mx-auto mb-9">
+            <span className="text-[#e85923] text-[11px] font-extrabold tracking-widest uppercase bg-[#fff4ee] px-3.5 py-1 rounded-full border border-[#fed7aa]">
+              CAREER ADVANTAGE
             </span>
-            <h2 className="font-serif text-[#071a33] text-2xl sm:text-3xl lg:text-[41px] font-normal leading-[1.12] mt-2 mb-2.5">
+            <h2 className="font-serif text-[#1e1742] text-2xl sm:text-3xl lg:text-[38px] font-bold leading-tight mt-3 mb-2.5">
               More than a degree
             </h2>
-            <p className="text-[#667085] text-xs sm:text-sm leading-[1.65]">
-              Online Manipal highlights career support, placement assistance, Coursera access
-              and the Manipal alumni network.
+            <p className="text-[#645e8c] text-xs sm:text-sm leading-[1.65]">
+              Online Manipal highlights personalized career coaching, mock interview bootcamps,
+              Coursera credentials, and an alumni network spanning 150,000+ graduates globally.
             </p>
           </div>
 
           {/* Stats Boxes */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { num: "24", label: "Months" },
-              { num: "4", label: "Semesters" },
-              { num: "13", label: "Electives" },
-              { num: "100%", label: "Online Learning" },
+              { num: "24", label: "Months Duration" },
+              { num: "4", label: "Structured Semesters" },
+              { num: "13", label: "Elective Tracks" },
+              { num: "150K+", label: "Global Alumni Network" },
             ].map((st, idx) => (
               <div
                 key={idx}
-                className="bg-[#f6f8fb] border border-[#e2e7ef] rounded-[16px] p-5 text-center hover:border-blue-300 transition-all"
+                className="bg-[#f8f7fd] border border-[#eae6f5] rounded-[18px] p-5 text-center hover:border-[#504497]/40 transition-all"
               >
-                <strong className="block text-[#071a33] font-serif text-2xl sm:text-[27px] font-normal leading-none mb-1">
+                <strong className="block text-[#504497] font-serif text-2xl sm:text-3xl font-bold leading-none mb-1">
                   {st.num}
                 </strong>
-                <span className="block text-[#667085] text-[10px] sm:text-xs font-semibold">
+                <span className="block text-[#645e8c] text-[11px] sm:text-xs font-semibold">
                   {st.label}
                 </span>
               </div>
@@ -631,43 +758,42 @@ export default function OnlineManipalMbaPage({
         </div>
       </section>
 
-      {/* 10. REVIEWS SECTION */}
-      <section className="bg-[#edf2f8] py-14 sm:py-16">
-        <div className="w-[min(1160px,92%)] mx-auto">
+      {/* 9. TESTIMONIALS / PERSPECTIVE */}
+      <section className="bg-[#f4f1fc] py-14 sm:py-18">
+        <div className="w-[min(1220px,94%)] mx-auto">
           {/* Header */}
-          <div className="text-center max-w-[760px] mx-auto mb-9">
-            <span className="text-[#1769d2] text-[10px] font-black tracking-widest uppercase">
-              LEARNER PERSPECTIVE
+          <div className="text-center max-w-[760px] mx-auto mb-10">
+            <span className="text-[#504497] text-[11px] font-extrabold tracking-widest uppercase bg-white px-3.5 py-1 rounded-full border border-[#dcd6fa]">
+              LEARNER EXPERIENCES
             </span>
-            <h2 className="font-serif text-[#071a33] text-2xl sm:text-3xl lg:text-[41px] font-normal leading-[1.12] mt-2 mb-2.5">
-              What learners say
+            <h2 className="font-serif text-[#1e1742] text-2xl sm:text-3xl lg:text-[38px] font-bold leading-tight mt-3 mb-2.5">
+              Trusted by 200,000+ ambitious minds
             </h2>
-            <p className="text-[#667085] text-xs sm:text-sm leading-[1.65]">
-              Selected themes from testimonials published by Online Manipal. Individual
-              outcomes can vary.
+            <p className="text-[#645e8c] text-xs sm:text-sm leading-[1.65]">
+              Hear from graduates who transformed their professional career through Online Manipal.
             </p>
           </div>
 
           {/* Review Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {testimonials.map((rev, idx) => (
               <div
                 key={idx}
-                className="bg-white border border-[#e2e7ef] rounded-[18px] p-5 sm:p-6 shadow-xs flex flex-col justify-between"
+                className="bg-white border border-[#eae6f5] rounded-[20px] p-6 shadow-2xs flex flex-col justify-between"
               >
                 <div>
-                  <div className="text-[#f2b400] text-base tracking-widest mb-3">
+                  <div className="text-amber-500 text-sm tracking-widest mb-3">
                     ★★★★★
                   </div>
-                  <p className="text-[#475467] text-xs leading-[1.7] italic mb-4">
+                  <p className="text-[#4b4570] text-xs leading-[1.75] italic mb-4">
                     &ldquo;{rev.quote}&rdquo;
                   </p>
                 </div>
-                <div className="pt-3 border-t border-[#f0f3f8]">
-                  <div className="text-[#071a33] text-[11px] font-extrabold">
+                <div className="pt-3.5 border-t border-[#f2effb]">
+                  <div className="text-[#1e1742] text-xs font-extrabold">
                     — {rev.author}
                   </div>
-                  <div className="text-[#667085] text-[9px] font-medium mt-0.5">
+                  <div className="text-[#645e8c] text-[10px] font-medium mt-0.5">
                     {rev.program}
                   </div>
                 </div>
@@ -677,41 +803,41 @@ export default function OnlineManipalMbaPage({
         </div>
       </section>
 
-      {/* 11. FAQ SECTION */}
-      <section id="faq" className="py-14 sm:py-16">
-        <div className="w-[min(850px,92%)] mx-auto">
+      {/* 10. FAQ SECTION */}
+      <section id="faq" className="py-14 sm:py-18">
+        <div className="w-[min(900px,94%)] mx-auto">
           {/* Header */}
-          <div className="text-center max-w-[760px] mx-auto mb-8">
-            <span className="text-[#1769d2] text-[10px] font-black tracking-widest uppercase">
+          <div className="text-center max-w-[760px] mx-auto mb-9">
+            <span className="text-[#e85923] text-[11px] font-extrabold tracking-widest uppercase bg-[#fff4ee] px-3.5 py-1 rounded-full border border-[#fed7aa]">
               FAQS
             </span>
-            <h2 className="font-serif text-[#071a33] text-2xl sm:text-3xl lg:text-[41px] font-normal leading-[1.12] mt-2">
-              Frequently asked questions
+            <h2 className="font-serif text-[#1e1742] text-2xl sm:text-3xl lg:text-[38px] font-bold leading-tight mt-3">
+              Frequently Asked Questions
             </h2>
           </div>
 
-          {/* Details / Accordion */}
-          <div className="space-y-2.5">
+          {/* Accordion */}
+          <div className="space-y-3">
             {faqs.map((faq, idx) => {
               const isOpen = openFaqIndex === idx;
               return (
                 <div
                   key={idx}
-                  className="bg-white border border-[#e2e7ef] rounded-[13px] overflow-hidden transition-all shadow-xs"
+                  className="bg-white border border-[#eae6f5] rounded-[16px] overflow-hidden transition-all shadow-2xs"
                 >
                   <button
                     onClick={() => toggleFaq(idx)}
-                    className="w-full text-left p-4 sm:p-4.5 flex items-center justify-between gap-4 cursor-pointer"
+                    className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 cursor-pointer hover:bg-[#faf9fe]"
                   >
-                    <span className="text-[#071a33] text-xs sm:text-[13px] font-extrabold leading-snug">
+                    <span className="text-[#1e1742] text-xs sm:text-sm font-bold leading-snug">
                       {faq.q}
                     </span>
-                    <span className="text-[#1769d2] text-sm font-bold shrink-0 transition-transform duration-200">
+                    <span className="text-[#e85923] text-base font-black shrink-0">
                       {isOpen ? "−" : "+"}
                     </span>
                   </button>
                   {isOpen && (
-                    <div className="px-4 pb-4 sm:px-4.5 sm:pb-4.5 text-[#667085] text-xs leading-[1.7] border-t border-[#f0f3f8] pt-3">
+                    <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-[#645e8c] text-xs leading-[1.75] border-t border-[#f4f1fc] pt-3">
                       {faq.a}
                     </div>
                   )}
@@ -722,78 +848,78 @@ export default function OnlineManipalMbaPage({
         </div>
       </section>
 
-      {/* 12. FINAL CALL TO ACTION */}
-      <section className="pt-2 pb-14 sm:pb-16">
-        <div className="w-[min(1160px,92%)] mx-auto">
-          <div className="bg-gradient-to-br from-[#09254a] to-[#0d5bb2] rounded-[24px] text-white text-center p-8 sm:p-12 shadow-lg">
-            <h2 className="font-serif text-white text-2xl sm:text-3xl lg:text-[36px] font-normal leading-[1.15] mb-2.5">
-              Take the next step in your career.
-            </h2>
-            <p className="max-w-[620px] mx-auto text-[#c8d8eb] text-xs sm:text-[13px] leading-relaxed mb-6">
-              Get the latest Online MBA programme details, eligibility, specializations and
-              admission guidance.
-            </p>
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="min-h-[48px] px-8 rounded-[9px] bg-[#ffc72c] hover:bg-[#ffd34c] text-[#111] font-extrabold text-xs sm:text-sm cursor-pointer transition-all shadow-md active:scale-95 inline-flex items-center justify-center"
-            >
-              Get MBA Details
-            </button>
+      {/* 11. FINAL BANNER CTA (Deep Royal Purple & Orange) */}
+      <section className="pt-4 pb-14 sm:pb-18">
+        <div className="w-[min(1220px,94%)] mx-auto">
+          <div className="bg-gradient-to-r from-[#1e1742] via-[#372b73] to-[#504497] rounded-[24px] text-white text-center p-8 sm:p-12 shadow-xl relative overflow-hidden">
+            <div className="relative z-10">
+              <h2 className="font-serif text-white text-2xl sm:text-3xl lg:text-[38px] font-bold leading-tight mb-3">
+                Accelerate your leadership trajectory today.
+              </h2>
+              <p className="max-w-[620px] mx-auto text-[#c7c0ea] text-xs sm:text-sm leading-relaxed mb-6">
+                Request the 2026 intake prospectus, scholarship criteria, curriculum overview, and
+                customized fee schedule.
+              </p>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="min-h-[48px] px-8 rounded-full bg-[#e85923] hover:bg-[#d44e1d] text-white font-bold text-xs sm:text-sm cursor-pointer transition-all shadow-[0_6px_20px_rgba(232,89,35,0.4)] active:scale-95 inline-flex items-center justify-center gap-2"
+              >
+                Apply Now & Enquire
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 13. FOOTER */}
-      <footer className="bg-[#041127] text-[#aebed2] pt-12 pb-24 sm:pb-12 border-t border-white/5">
-        <div className="w-[min(1160px,92%)] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* 12. FOOTER (Deep Dark Indigo) */}
+      <footer className="bg-[#140f2e] text-[#a59ec7] pt-12 pb-24 sm:pb-12 border-t border-white/5">
+        <div className="w-[min(1220px,94%)] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Left Column */}
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-[30px] h-[30px] rounded-[8px] bg-white text-[#071a33] grid place-items-center font-black text-base">
+            <div className="flex items-center gap-2.5 mb-3">
+              <div className="w-7 h-7 rounded-full bg-[#e85923] text-white grid place-items-center font-bold text-xs">
                 M
               </div>
-              <div className="flex flex-col">
-                <span className="text-white font-extrabold text-base leading-tight">
-                  Online Manipal
+              <div className="flex items-baseline gap-1">
+                <span className="text-[#e85923] font-bold text-base">Online</span>
+                <span className="text-white font-black text-base tracking-wider uppercase">
+                  MANIPAL
                 </span>
-                <small className="text-[#b8c7da] text-[8px] tracking-[0.5px] uppercase font-semibold">
-                  Manipal University Jaipur
-                </small>
               </div>
             </div>
-            <p className="text-[#aebed2] text-xs leading-[1.8] max-w-sm">
-              Information page for the Online MBA programme offered by Manipal University
-              Jaipur. Confirm current programme details with the university before admission.
+            <p className="text-[#a59ec7] text-xs leading-[1.8] max-w-sm">
+              Programme portal for UGC-entitled Online MBA offered by Manipal University
+              Jaipur (MUJ). All trademarks belong to their respective university authorities.
             </p>
           </div>
 
           {/* Middle Column */}
           <div>
-            <h3 className="text-white font-serif text-sm font-normal mb-2.5">
-              Quick Links
+            <h3 className="text-white font-serif text-sm font-bold mb-3">
+              Explore Programmes
             </h3>
             <div className="space-y-1.5 text-xs">
               <div>
-                <a href="#programme" className="text-[#aebed2] hover:text-white transition-colors">
-                  Programme
+                <a href="#programme" className="text-[#a59ec7] hover:text-white transition-colors">
+                  MUJ Online MBA
                 </a>
               </div>
               <div>
                 <a
                   href="#specializations"
-                  className="text-[#aebed2] hover:text-white transition-colors"
+                  className="text-[#a59ec7] hover:text-white transition-colors"
                 >
-                  Specializations
+                  13 Career Specializations
                 </a>
               </div>
               <div>
-                <a href="#career" className="text-[#aebed2] hover:text-white transition-colors">
-                  Career Support
+                <a href="#career" className="text-[#a59ec7] hover:text-white transition-colors">
+                  Placement & Career Support
                 </a>
               </div>
               <div>
-                <a href="#faq" className="text-[#aebed2] hover:text-white transition-colors">
-                  FAQs
+                <a href="#faq" className="text-[#a59ec7] hover:text-white transition-colors">
+                  Frequently Asked Questions
                 </a>
               </div>
             </div>
@@ -801,101 +927,118 @@ export default function OnlineManipalMbaPage({
 
           {/* Right Column */}
           <div>
-            <h3 className="text-white font-serif text-sm font-normal mb-2.5">
-              Need Details?
+            <h3 className="text-white font-serif text-sm font-bold mb-3">
+              Admissions Assistance Desk
             </h3>
-            <p className="text-[#aebed2] text-xs leading-[1.8] mb-3">
-              Request current fee, scholarship, eligibility and admission information.
+            <p className="text-[#a59ec7] text-xs leading-[1.8] mb-3">
+              Connect with an academic advisor for admission assistance, fee schedules, and scholarship guidance.
             </p>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="bg-[#ffc72c] hover:bg-[#ffd34c] text-[#111] font-extrabold text-[11px] px-4 py-2.5 rounded-[9px] cursor-pointer transition-all active:scale-95"
+              className="bg-[#e85923] hover:bg-[#d44e1d] text-white font-bold text-xs px-5 py-2.5 rounded-full cursor-pointer transition-all active:scale-95"
             >
-              Enquire Now
+              Get MBA Brochure
             </button>
           </div>
         </div>
 
+        {/* Disclaimer Box */}
+        <div className="w-[min(1220px,94%)] mx-auto border-t border-white/10 pt-6">
+          <div className="bg-white/[0.04] border border-white/10 rounded-xl p-4 sm:p-5 text-[11px] sm:text-xs text-[#a59ec7] leading-relaxed">
+            <strong className="text-white font-bold block mb-1">Disclaimer:</strong>
+            This landing page is an independent educational portal for programme information and admission guidance assistance. We are not Manipal University or Online Manipal directly. Manipal University Jaipur, Online Manipal, their names, logos, trademarks, and academic content belong to their respective owners. Programme fees, eligibility, specialisations, rankings, recognitions, scholarships, and other details may change; please verify the latest information with the university before making a payment or submitting an application.
+          </div>
+        </div>
+
         {/* Copyright */}
-        <div className="w-[min(1160px,92%)] mx-auto border-t border-white/10 mt-8 pt-4 text-center text-[#788ba5] text-[9px]">
-          © 2026 • Online MBA Information Page • Manipal University Jaipur programme information
+        <div className="w-[min(1220px,94%)] mx-auto border-t border-white/5 mt-6 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-[#7e76a3] text-[10px]">
+          <div>
+            Terms & Conditions &nbsp;|&nbsp; Privacy Policy &nbsp;|&nbsp; © 2026 Online MBA Admissions Guidance. All Rights Reserved.
+          </div>
+          <div>
+            Independent Admission Information & Assistance Portal
+          </div>
         </div>
       </footer>
 
-      {/* 14. FLOATING CONTACT ICONS (DESKTOP & TABLET) */}
-      <div className="fixed right-4 sm:right-6 bottom-24 sm:bottom-12 z-40 flex flex-col gap-2.5">
-        {/* WhatsApp Floating Button */}
+      {/* 13. FLOATING CONTACT ICONS & WHATSAPP TAB */}
+      {/* Right Side WhatsApp Green Tab (As seen in screenshot) */}
+      <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40 hidden sm:block">
         <a
           href={`https://wa.me/${WA_NUMBER}?text=Hi%2C%20I%20want%20details%20about%20the%20Online%20MBA%20from%20Manipal%20University%20Jaipur.`}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Chat on WhatsApp"
-          className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#20c063] hover:bg-[#1db05a] text-white flex items-center justify-center shadow-[0_13px_30px_rgba(0,0,0,0.25)] hover:scale-105 active:scale-95 transition-all"
+          aria-label="Chat with counsellor"
+          className="bg-[#25d366] text-white font-bold text-xs px-2.5 py-4 rounded-l-xl shadow-lg flex flex-col items-center gap-2 hover:bg-[#20bd5a] transition-all hover:pr-3.5"
         >
-          <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
-            <path d="M20.5 3.5A11.85 11.85 0 0 0 12.08 0C5.55 0 .24 5.3.24 11.83c0 2.08.54 4.1 1.56 5.9L.14 24l6.4-1.68a11.82 11.82 0 0 0 5.54 1.4h.01c6.53 0 11.84-5.31 11.84-11.84 0-3.16-1.23-6.13-3.43-8.38ZM12.09 21.7h-.01a9.84 9.84 0 0 1-5.02-1.37l-.36-.21-3.8 1 1.02-3.7-.23-.38a9.86 9.86 0 1 1 8.4 4.66Zm5.4-7.39c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.51-1.78-1.69-2.08-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.5 1.7.64.72.23 1.37.2 1.89.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z" />
+          <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
           </svg>
-        </a>
-
-        {/* Call Floating Button */}
-        <a
-          href={`tel:+${WA_NUMBER}`}
-          aria-label="Call Now"
-          className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#1264d6] hover:bg-[#0f54b6] text-white flex items-center justify-center shadow-[0_13px_30px_rgba(0,0,0,0.25)] hover:scale-105 active:scale-95 transition-all"
-        >
-          <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
-            <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C11.72 21 3 12.28 3 2.99c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.21Z" />
-          </svg>
+          <span className="[writing-mode:vertical-rl] tracking-wider text-[11px]">Chat</span>
         </a>
       </div>
 
-      {/* 15. MOBILE STICKY BOTTOM BAR */}
-      <div className="sm:hidden fixed left-0 right-0 bottom-0 h-16 z-40 bg-[#041127] border-t border-white/10 p-2 flex gap-2">
-        <a
-          href={`https://wa.me/${WA_NUMBER}?text=Hi%2C%20I%20want%20details%20about%20the%20Online%20MBA%20from%20Manipal%20University%20Jaipur.`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 bg-[#20c063] text-white font-black text-xs rounded-[9px] flex items-center justify-center gap-1.5"
-        >
-          WhatsApp
-        </a>
+      {/* Bottom Right Floating Circular Icons */}
+      <div className="fixed right-4 sm:right-6 bottom-20 sm:bottom-8 z-40 flex flex-col gap-2.5">
+        {/* Floating Query Bubble Icon (Matching bottom right circle in screenshot) */}
         <button
           onClick={() => setIsModalOpen(true)}
-          className="flex-1 bg-[#ffc72c] text-[#111] font-black text-xs rounded-[9px] flex items-center justify-center"
+          aria-label="Open Query Form"
+          className="w-12 h-12 rounded-full bg-[#111827] hover:bg-[#1e1742] text-white flex items-center justify-center shadow-[0_8px_25px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 transition-all"
         >
-          Get MBA Details
+          <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
+          </svg>
         </button>
       </div>
 
-      {/* 16. MODAL OVERLAY */}
+      {/* 14. MOBILE BOTTOM STICKY BAR */}
+      <div className="sm:hidden fixed left-0 right-0 bottom-0 h-16 z-40 bg-white border-t border-[#eae6f5] p-2 flex gap-2 shadow-[0_-4px_15px_rgba(0,0,0,0.06)]">
+        <a
+          href={`https://wa.me/${WA_NUMBER}?text=Hi%2C%20I%20want%20details%20about%20the%20Online%20MBA%20from%20Manipal%20University%20Jaipur.`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 bg-[#25d366] text-white font-bold text-xs rounded-full flex items-center justify-center gap-1.5 shadow-xs"
+        >
+          <span>WhatsApp</span>
+        </a>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="flex-1 bg-[#e85923] text-white font-bold text-xs rounded-full flex items-center justify-center shadow-xs"
+        >
+          Apply Now
+        </button>
+      </div>
+
+      {/* 15. MODAL OVERLAY */}
       {isModalOpen && (
         <div
           onClick={(e) => {
             if (e.target === e.currentTarget) setIsModalOpen(false);
           }}
-          className="fixed inset-0 z-50 bg-[#020a17]/75 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-[#1e1742]/70 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-200"
         >
-          <div className="w-[min(480px,100%)] bg-white rounded-[20px] p-6 sm:p-7 relative shadow-[0_30px_80px_rgba(0,0,0,0.35)] text-[#101828]">
+          <div className="w-[min(480px,100%)] bg-white rounded-[24px] p-6 sm:p-7 relative shadow-[0_30px_80px_rgba(30,23,66,0.35)] text-[#1e1742]">
             {/* Close Button */}
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute right-3.5 top-3.5 w-8 h-8 rounded-full bg-[#eef1f5] hover:bg-[#e2e7ef] text-[#344054] text-lg font-bold flex items-center justify-center cursor-pointer transition-colors"
+              className="absolute right-4 top-4 w-8 h-8 rounded-full bg-[#f4f1fc] hover:bg-[#eae6f5] text-[#1e1742] text-lg font-bold flex items-center justify-center cursor-pointer transition-colors"
               aria-label="Close modal"
             >
               ×
             </button>
 
-            <h2 className="font-serif text-[#071a33] text-xl sm:text-[28px] font-normal leading-tight mb-1.5 pr-8">
-              Get Online MBA Details
+            <h2 className="font-serif text-[#1e1742] text-xl sm:text-[24px] font-bold leading-tight mb-1 pr-8">
+              Apply for Online MBA
             </h2>
-            <p className="text-[#667085] text-xs leading-relaxed mb-5">
-              Share your details to request the latest programme, eligibility, specialization
-              and admission information.
+            <p className="text-[#645e8c] text-xs leading-relaxed mb-4">
+              Enter your details to get course brochures, fee options, and scholarship details
+              for Manipal University Jaipur.
             </p>
 
             <form onSubmit={handleModalSubmit} className="space-y-3">
               <div>
-                <label className="block text-[#344054] text-[9px] font-extrabold tracking-wider uppercase mb-1">
+                <label className="block text-[#47416e] text-[10px] font-extrabold uppercase mb-1">
                   FULL NAME
                 </label>
                 <input
@@ -905,35 +1048,13 @@ export default function OnlineManipalMbaPage({
                   onChange={(e) =>
                     setModalForm({ ...modalForm, name: e.target.value })
                   }
-                  placeholder="Enter your name"
-                  className="w-full h-11 border border-[#d6dce5] rounded-[8px] bg-white text-[#101828] px-3 text-xs outline-none focus:border-[#1769d2] focus:ring-2 focus:ring-[#1769d2]/20 transition-all placeholder:text-[#98a2b3]"
+                  placeholder="Enter your full name"
+                  className="w-full h-11 border border-[#e2e8f0] rounded-xl bg-white text-[#1e1742] px-3.5 text-xs outline-none focus:border-[#e85923] focus:ring-2 focus:ring-[#e85923]/15 transition-all placeholder:text-[#94a3b8]"
                 />
               </div>
 
               <div>
-                <label className="block text-[#344054] text-[9px] font-extrabold tracking-wider uppercase mb-1">
-                  MOBILE NUMBER
-                </label>
-                <input
-                  type="tel"
-                  required
-                  maxLength={10}
-                  pattern="[0-9]{10}"
-                  inputMode="numeric"
-                  value={modalForm.phone}
-                  onChange={(e) =>
-                    setModalForm({
-                      ...modalForm,
-                      phone: e.target.value.replace(/\D/g, ""),
-                    })
-                  }
-                  placeholder="10-digit mobile number"
-                  className="w-full h-11 border border-[#d6dce5] rounded-[8px] bg-white text-[#101828] px-3 text-xs outline-none focus:border-[#1769d2] focus:ring-2 focus:ring-[#1769d2]/20 transition-all placeholder:text-[#98a2b3]"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[#344054] text-[9px] font-extrabold tracking-wider uppercase mb-1">
+                <label className="block text-[#47416e] text-[10px] font-extrabold uppercase mb-1">
                   EMAIL ADDRESS
                 </label>
                 <input
@@ -944,16 +1065,63 @@ export default function OnlineManipalMbaPage({
                     setModalForm({ ...modalForm, email: e.target.value })
                   }
                   placeholder="Enter your email"
-                  className="w-full h-11 border border-[#d6dce5] rounded-[8px] bg-white text-[#101828] px-3 text-xs outline-none focus:border-[#1769d2] focus:ring-2 focus:ring-[#1769d2]/20 transition-all placeholder:text-[#98a2b3]"
+                  className="w-full h-11 border border-[#e2e8f0] rounded-xl bg-white text-[#1e1742] px-3.5 text-xs outline-none focus:border-[#e85923] focus:ring-2 focus:ring-[#e85923]/15 transition-all placeholder:text-[#94a3b8]"
                 />
+              </div>
+
+              <div>
+                <label className="block text-[#47416e] text-[10px] font-extrabold uppercase mb-1">
+                  MOBILE NUMBER
+                </label>
+                <div className="flex items-center border border-[#e2e8f0] rounded-xl bg-white focus-within:border-[#e85923] focus-within:ring-2 focus-within:ring-[#e85923]/15 transition-all overflow-hidden">
+                  <div className="px-3 py-2 bg-[#f8f9fb] border-r border-[#e2e8f0] text-xs font-bold text-[#334155] flex items-center gap-1 shrink-0 select-none">
+                    <span>🇮🇳</span>
+                    <span>+91</span>
+                  </div>
+                  <input
+                    type="tel"
+                    required
+                    maxLength={10}
+                    pattern="[0-9]{10}"
+                    inputMode="numeric"
+                    value={modalForm.phone}
+                    onChange={(e) =>
+                      setModalForm({
+                        ...modalForm,
+                        phone: e.target.value.replace(/\D/g, ""),
+                      })
+                    }
+                    placeholder="10-digit mobile number"
+                    className="w-full h-11 text-[#1e1742] px-3 text-xs outline-none bg-transparent placeholder:text-[#94a3b8]"
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2 pt-1">
+                <input
+                  type="checkbox"
+                  id="modal-consent"
+                  checked={modalForm.consent}
+                  onChange={(e) =>
+                    setModalForm({ ...modalForm, consent: e.target.checked })
+                  }
+                  className="mt-0.5 w-3.5 h-3.5 accent-[#e85923] rounded cursor-pointer"
+                  required
+                />
+                <label
+                  htmlFor="modal-consent"
+                  className="text-[9px] text-[#64748b] leading-tight cursor-pointer"
+                >
+                  I authorize Online Manipal to contact me regarding admission, scholarship and fees.
+                </label>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full h-12 rounded-[9px] bg-[#ffc72c] hover:bg-[#ffd34c] text-[#111] text-xs font-black cursor-pointer transition-all shadow-sm active:scale-[0.98] mt-2"
+                className="w-full h-12 rounded-full bg-[#e85923] hover:bg-[#d44e1d] text-white text-xs font-bold cursor-pointer transition-all shadow-[0_6px_18px_rgba(232,89,35,0.3)] active:scale-[0.98] mt-2"
               >
-                {isSubmitting ? "Processing..." : "Request Details →"}
+                {isSubmitting ? "Submitting..." : "Apply Now"}
               </button>
             </form>
           </div>

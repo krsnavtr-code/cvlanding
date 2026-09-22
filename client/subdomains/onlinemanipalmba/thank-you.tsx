@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 export default function OnlineManipalMbaThankYou({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   subdomain = "onlinemanipalmba",
 }: {
   subdomain?: string;
@@ -135,9 +136,14 @@ export default function OnlineManipalMbaThankYou({
       </main>
 
       {/* Footer */}
-      <footer className="bg-[#0e244d] text-slate-300 py-6 border-t border-white/10 text-center text-xs">
-        <div className="w-[min(1160px,92%)] mx-auto">
-          © {new Date().getFullYear()} College Vihar & Online Manipal Admission Guidance. All rights reserved.
+      <footer className="bg-[#0e244d] text-slate-300 py-6 border-t border-white/10 text-xs">
+        <div className="w-[min(1160px,92%)] mx-auto space-y-4 text-center">
+          <p className="text-[11px] text-slate-400 max-w-3xl mx-auto leading-relaxed">
+            <strong className="text-white">Disclaimer:</strong> This landing page is an independent educational portal for programme information and admission guidance assistance. We are not Manipal University or Online Manipal directly. Manipal University Jaipur, Online Manipal, their names, logos, trademarks, and academic content belong to their respective owners.
+          </p>
+          <div className="text-slate-400 text-[10px] border-t border-white/10 pt-3">
+            © {new Date().getFullYear()} Online MBA Admissions Guidance. All rights reserved.
+          </div>
         </div>
       </footer>
     </div>
