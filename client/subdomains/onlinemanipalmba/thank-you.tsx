@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 export default function OnlineManipalMbaThankYou({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -9,17 +10,19 @@ export default function OnlineManipalMbaThankYou({
   subdomain?: string;
 }) {
   return (
-    <div className="min-h-screen bg-[#f5f7fb] text-[#17243a] font-sans flex flex-col justify-between selection:bg-[#f7a51c] selection:text-[#111]">
+    <div className="min-h-screen bg-[#f5f7fb] text-[#17243a] font-sans flex flex-col justify-between selection:bg-[#e85923] selection:text-white">
       {/* Top Header */}
-      <header className="bg-[#102d63] shadow-md">
+      <header className="bg-white border-b border-[#eae6f5] shadow-xs">
         <div className="w-[min(1160px,92%)] mx-auto h-[68px] flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-black text-white">
-              Online <span className="text-[#f7a51c]">Manipal</span>
-            </span>
-            <span className="text-xs font-semibold text-blue-200 border-l border-blue-400 pl-2">
-              MUJ MBA
-            </span>
+            <Image
+              src="/images/MUJ-logo.webp"
+              alt="Manipal University Jaipur"
+              width={160}
+              height={45}
+              className="h-9 w-auto object-contain"
+              priority
+            />
           </Link>
           <Link
             href="/"

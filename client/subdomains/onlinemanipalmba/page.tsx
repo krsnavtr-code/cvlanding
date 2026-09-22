@@ -2,6 +2,7 @@
 
 import { useState, useEffect, FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const WA_NUMBER = "919266585858";
 const DISPLAY_PHONE = "+919266585858";
@@ -216,23 +217,14 @@ export default function OnlineManipalMbaPage({
         <div className="w-[min(1220px,94%)] mx-auto h-[72px] flex items-center justify-between gap-4">
           {/* Brand Logo */}
           <a href="#top" className="flex items-center gap-2.5 group">
-            {/* Manipal Emblem Graphic */}
-            <div className="w-9 h-9 rounded-full bg-[#fbf5f2] border border-[#f3ded5] flex items-center justify-center shadow-xs">
-              <svg className="w-5 h-5 text-[#e85923]" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L9.5 7.5H14.5L12 2Z" />
-                <path d="M12 6.5C8.96 6.5 6.5 8.96 6.5 12C6.5 15.04 8.96 17.5 12 17.5C15.04 17.5 17.5 15.04 17.5 12C17.5 8.96 15.04 6.5 12 6.5ZM12 15.5C10.07 15.5 8.5 13.93 8.5 12C8.5 10.07 10.07 8.5 12 8.5C13.93 8.5 15.5 10.07 15.5 12C15.5 13.93 13.93 15.5 12 15.5Z" />
-                <circle cx="12" cy="12" r="2" />
-                <path d="M4 19.5C6.2 21.5 9 22.5 12 22.5C15 22.5 17.8 21.5 20 19.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none" />
-              </svg>
-            </div>
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-[#e85923] font-bold text-xl sm:text-[22px] tracking-tight">
-                Online
-              </span>
-              <span className="text-[#1e1742] font-black text-xl sm:text-[22px] tracking-wider uppercase">
-                MANIPAL
-              </span>
-            </div>
+            <Image
+              src="/images/MUJ-logo.webp"
+              alt="Manipal University Jaipur"
+              width={180}
+              height={50}
+              className="h-9 sm:h-10 w-auto object-contain"
+              priority
+            />
           </a>
 
           {/* Desktop Navigation Links */}
@@ -315,18 +307,15 @@ export default function OnlineManipalMbaPage({
               {/* Badges: MUJ Logo line & QS Rated 5-Star */}
               <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-4">
                 {/* Manipal University Jaipur Badge */}
-                <div className="flex items-center gap-2 py-1 px-2.5 rounded-lg bg-white/60 border border-white/80 backdrop-blur-xs">
-                  <div className="w-6 h-6 rounded-full bg-[#e85923] text-white flex items-center justify-center font-bold text-[10px]">
-                    M
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-[11px] font-extrabold uppercase tracking-wide text-[#1e1742] leading-tight">
-                      MANIPAL UNIVERSITY JAIPUR
-                    </span>
-                    <span className="text-[8px] text-[#5e5885] leading-none">
-                      (University under Section 2(f) of the UGC Act)
-                    </span>
-                  </div>
+                <div className="flex items-center py-1 px-2.5 rounded-lg bg-white/80 border border-white/90 backdrop-blur-xs shadow-2xs">
+                  <Image
+                    src="/images/MUJ-logo.webp"
+                    alt="Manipal University Jaipur"
+                    width={150}
+                    height={42}
+                    className="h-7 sm:h-8 w-auto object-contain"
+                    priority
+                  />
                 </div>
 
                 {/* QS 5-Star Badge */}
@@ -877,14 +866,14 @@ export default function OnlineManipalMbaPage({
           {/* Left Column */}
           <div>
             <div className="flex items-center gap-2.5 mb-3">
-              <div className="w-7 h-7 rounded-full bg-[#e85923] text-white grid place-items-center font-bold text-xs">
-                M
-              </div>
-              <div className="flex items-baseline gap-1">
-                <span className="text-[#e85923] font-bold text-base">Online</span>
-                <span className="text-white font-black text-base tracking-wider uppercase">
-                  MANIPAL
-                </span>
+              <div className="bg-white p-1.5 rounded-lg inline-block">
+                <Image
+                  src="/images/MUJ-logo.webp"
+                  alt="Manipal University Jaipur"
+                  width={140}
+                  height={40}
+                  className="h-7 w-auto object-contain"
+                />
               </div>
             </div>
             <p className="text-[#a59ec7] text-xs leading-[1.8] max-w-sm">
