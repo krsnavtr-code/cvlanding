@@ -1023,7 +1023,7 @@ export default function OnlineManipalMcaPage({
 
               <button
                 type="button"
-                onClick={() => setIsPaymentNoteOpen(true)}
+                onClick={() => setIsModalOpen(true)}
                 className="inline-flex items-center gap-2.5 bg-white text-slate-900 text-xs sm:text-[13px] font-medium px-5 py-2.5 rounded-full shadow-2xs hover:bg-slate-50 transition-colors cursor-pointer shrink-0 border border-white/80"
               >
                 <span className="w-4 h-4 rounded-full bg-black text-white flex items-center justify-center text-[10px] font-black shrink-0">
