@@ -846,7 +846,7 @@ export default function OnlineManipalMcaPage({
       <section id="fees" className="py-14 sm:py-18 bg-[#f8f7fd]">
         <div className="w-[min(1220px,94%)] mx-auto">
           {/* Section Header */}
-          <h2 className="font-serif text-2xl sm:text-3xl lg:text-[34px] font-normal text-[#1e1742] tracking-tight mb-5">
+          <h2 className="font-serif text-2xl sm:text-3xl lg:text-[34px] font-bold text-[#111827] tracking-tight mb-6">
             Online MCA Course Fee
           </h2>
 
@@ -855,10 +855,10 @@ export default function OnlineManipalMcaPage({
             <button
               type="button"
               onClick={() => setFeeCategory("indian")}
-              className={`px-5 py-2 text-xs sm:text-sm font-semibold rounded-full transition-all cursor-pointer ${
+              className={`px-6 py-2.5 text-xs sm:text-sm font-medium rounded-full transition-all cursor-pointer ${
                 feeCategory === "indian"
-                  ? "bg-[#111827] text-white shadow-xs"
-                  : "bg-white text-slate-700 border border-slate-300 hover:bg-slate-50"
+                  ? "bg-black text-white shadow-xs"
+                  : "bg-white text-slate-800 border border-slate-300 hover:bg-slate-50"
               }`}
             >
               Indian Nationals
@@ -866,10 +866,10 @@ export default function OnlineManipalMcaPage({
             <button
               type="button"
               onClick={() => setFeeCategory("nri")}
-              className={`px-5 py-2 text-xs sm:text-sm font-semibold rounded-full transition-all cursor-pointer ${
+              className={`px-6 py-2.5 text-xs sm:text-sm font-medium rounded-full transition-all cursor-pointer ${
                 feeCategory === "nri"
-                  ? "bg-[#111827] text-white shadow-xs"
-                  : "bg-white text-slate-700 border border-slate-300 hover:bg-slate-50"
+                  ? "bg-black text-white shadow-xs"
+                  : "bg-white text-slate-800 border border-slate-300 hover:bg-slate-50"
               }`}
             >
               Non-Resident Indians
@@ -877,10 +877,10 @@ export default function OnlineManipalMcaPage({
             <button
               type="button"
               onClick={() => setFeeCategory("foreign")}
-              className={`px-5 py-2 text-xs sm:text-sm font-semibold rounded-full transition-all cursor-pointer ${
+              className={`px-6 py-2.5 text-xs sm:text-sm font-medium rounded-full transition-all cursor-pointer ${
                 feeCategory === "foreign"
-                  ? "bg-[#111827] text-white shadow-xs"
-                  : "bg-white text-slate-700 border border-slate-300 hover:bg-slate-50"
+                  ? "bg-black text-white shadow-xs"
+                  : "bg-white text-slate-800 border border-slate-300 hover:bg-slate-50"
               }`}
             >
               Foreign Nationals
@@ -888,29 +888,29 @@ export default function OnlineManipalMcaPage({
           </div>
 
           {/* Outer Soft Lavender / Periwinkle Container */}
-          <div className="bg-[#dcd6f7] rounded-[24px] sm:rounded-[28px] p-4 sm:p-7 shadow-xs">
+          <div className="bg-[#c8bdfa] rounded-[24px] sm:rounded-[28px] p-4 sm:p-7 shadow-xs">
             {/* White Fee Details Card */}
             <div
-              className={`bg-white rounded-[20px] p-5 sm:p-7 lg:p-8 shadow-xs grid grid-cols-1 ${
+              className={`bg-white rounded-[20px] p-6 sm:p-8 lg:p-9 shadow-xs grid grid-cols-1 ${
                 feeCategory === "indian"
-                  ? "sm:grid-cols-2 lg:grid-cols-4"
-                  : "sm:grid-cols-3"
-              } gap-6 lg:gap-0 lg:divide-x lg:divide-slate-100`}
+                  ? "sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-slate-200"
+                  : "md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-slate-200"
+              }`}
             >
               {/* Col 1: Full Fee Payment */}
-              <div className="lg:pr-6">
-                <span className="block text-xs sm:text-[13px] text-slate-600 font-medium mb-2.5">
+              <div className={feeCategory === "indian" ? "lg:pr-6" : "md:pr-8"}>
+                <span className="block text-xs sm:text-[13px] text-slate-700 font-normal mb-3">
                   Full Fee Payment
                 </span>
-                <div className="flex flex-wrap items-baseline gap-2 mb-2">
-                  <span className="text-slate-400 line-through text-xs sm:text-sm font-bold">
+                <div className="flex flex-wrap items-baseline gap-2 mb-2.5">
+                  <span className="line-through font-serif text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
                     {feeCategory === "indian"
                       ? "INR 1,58,000"
                       : feeCategory === "nri"
                       ? "USD 2,432"
                       : "USD 2,836"}
                   </span>
-                  <span className="text-[#ea580c] font-serif text-xl sm:text-2xl font-bold tracking-tight">
+                  <span className="text-[#ea580c] font-serif text-2xl sm:text-3xl font-bold tracking-tight">
                     {feeCategory === "indian"
                       ? "INR 1,42,200"
                       : feeCategory === "nri"
@@ -918,25 +918,25 @@ export default function OnlineManipalMcaPage({
                       : "USD 2,552"}
                   </span>
                 </div>
-                <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#4f46e5]">
-                  <span>★</span> 10% discount
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#504497]">
+                  <span className="text-[11px]">★</span> 10% discount
                 </span>
               </div>
 
               {/* Col 2: Annual Fee Payment */}
-              <div className="lg:px-6">
-                <span className="block text-xs sm:text-[13px] text-slate-600 font-medium mb-2.5">
+              <div className={feeCategory === "indian" ? "lg:px-6" : "md:px-8"}>
+                <span className="block text-xs sm:text-[13px] text-slate-700 font-normal mb-3">
                   Annual Fee Payment
                 </span>
-                <div className="flex flex-wrap items-baseline gap-2 mb-2">
-                  <span className="text-slate-400 line-through text-xs sm:text-sm font-bold">
+                <div className="flex flex-wrap items-baseline gap-2 mb-2.5">
+                  <span className="line-through font-serif text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
                     {feeCategory === "indian"
                       ? "INR 79,000"
                       : feeCategory === "nri"
                       ? "USD 1,216"
                       : "USD 1,418"}
                   </span>
-                  <span className="text-[#ea580c] font-serif text-xl sm:text-2xl font-bold tracking-tight">
+                  <span className="text-[#ea580c] font-serif text-2xl sm:text-3xl font-bold tracking-tight">
                     {feeCategory === "indian"
                       ? "INR 71,100"
                       : feeCategory === "nri"
@@ -944,25 +944,25 @@ export default function OnlineManipalMcaPage({
                       : "USD 1,276"}
                   </span>
                 </div>
-                <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#4f46e5]">
-                  <span>★</span> 10% discount
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#504497]">
+                  <span className="text-[11px]">★</span> 10% discount
                 </span>
               </div>
 
               {/* Col 3: Semester Fee Payment */}
-              <div className="lg:px-6">
-                <span className="block text-xs sm:text-[13px] text-slate-600 font-medium mb-2.5">
+              <div className={feeCategory === "indian" ? "lg:px-6" : "md:pl-8"}>
+                <span className="block text-xs sm:text-[13px] text-slate-700 font-normal mb-3">
                   Semester Fee Payment
                 </span>
-                <div className="flex flex-wrap items-baseline gap-2 mb-2">
-                  <span className="text-slate-400 line-through text-xs sm:text-sm font-bold">
+                <div className="flex flex-wrap items-baseline gap-2 mb-2.5">
+                  <span className="line-through font-serif text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
                     {feeCategory === "indian"
                       ? "INR 39,500"
                       : feeCategory === "nri"
                       ? "USD 608"
                       : "USD 709"}
                   </span>
-                  <span className="text-[#ea580c] font-serif text-xl sm:text-2xl font-bold tracking-tight">
+                  <span className="text-[#ea580c] font-serif text-2xl sm:text-3xl font-bold tracking-tight">
                     {feeCategory === "indian"
                       ? "INR 35,550"
                       : feeCategory === "nri"
@@ -970,25 +970,27 @@ export default function OnlineManipalMcaPage({
                       : "USD 638"}
                   </span>
                 </div>
-                <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#4f46e5]">
-                  <span>★</span> 10% discount
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#504497]">
+                  <span className="text-[11px]">★</span> 10% discount
                 </span>
               </div>
 
               {/* Col 4: No-cost EMI Starting (Only for Indian Nationals) */}
               {feeCategory === "indian" && (
                 <div className="lg:pl-6">
-                  <span className="block text-xs sm:text-[13px] text-slate-600 font-medium mb-2.5">
+                  <span className="block text-xs sm:text-[13px] text-slate-700 font-normal mb-3">
                     No-cost EMI Starting
                   </span>
-                  <div className="flex flex-wrap items-baseline gap-1 mb-2">
-                    <span className="text-slate-900 font-serif text-xl sm:text-2xl font-bold tracking-tight">
+                  <div className="flex flex-wrap items-baseline mb-2.5">
+                    <span className="text-slate-900 font-serif text-2xl sm:text-3xl font-bold tracking-tight">
                       INR 5,925
                     </span>
-                    <span className="text-slate-600 text-xs sm:text-sm font-semibold">/Month</span>
+                    <span className="text-slate-900 font-serif text-lg sm:text-xl font-normal ml-0.5">
+                      /Month
+                    </span>
                   </div>
-                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#4f46e5]">
-                    <span>★</span> 12/6-month tenure
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#504497]">
+                    <span className="text-[11px]">★</span> 12/6-month tenure
                   </span>
                 </div>
               )}
@@ -1003,15 +1005,15 @@ export default function OnlineManipalMcaPage({
               } gap-4 mt-5 text-[11px] sm:text-xs text-[#28214d] leading-relaxed`}
             >
               {feeCategory === "indian" && (
-                <div className="space-y-1">
-                  <p className="flex items-start gap-1.5">
-                    <span className="text-[#4f46e5]">★</span>
+                <div className="space-y-1.5 font-medium">
+                  <p className="flex items-start gap-2">
+                    <span className="text-[#504497] mt-0.5 text-xs">★</span>
                     <span>
-                      An additional <strong className="font-extrabold italic">non-refundable application fee of INR 500</strong> is to be paid at the time of admission
+                      An additional <strong className="font-bold italic">non-refundable application fee of INR 500</strong> is to be paid at the time of admission
                     </span>
                   </p>
-                  <p className="flex items-start gap-1.5">
-                    <span className="text-[#4f46e5]">★</span>
+                  <p className="flex items-start gap-2">
+                    <span className="text-[#504497] mt-0.5 text-xs">★</span>
                     <span>
                       Learners opting for a loan or financing will not be eligible for any additional discounts or offers.
                     </span>
@@ -1021,10 +1023,12 @@ export default function OnlineManipalMcaPage({
 
               <button
                 type="button"
-                onClick={() => setIsModalOpen(true)}
-                className="inline-flex items-center gap-2 bg-white text-slate-800 text-xs font-bold px-4 py-2.5 rounded-full shadow-2xs hover:bg-slate-50 transition-colors cursor-pointer shrink-0 border border-white/60"
+                onClick={() => setIsPaymentNoteOpen(true)}
+                className="inline-flex items-center gap-2.5 bg-white text-slate-900 text-xs sm:text-[13px] font-medium px-5 py-2.5 rounded-full shadow-2xs hover:bg-slate-50 transition-colors cursor-pointer shrink-0 border border-white/80"
               >
-                <span className="w-4 h-4 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] font-black">!</span>
+                <span className="w-4 h-4 rounded-full bg-black text-white flex items-center justify-center text-[10px] font-black shrink-0">
+                  !
+                </span>
                 <span>Note for online payments</span>
               </button>
             </div>
