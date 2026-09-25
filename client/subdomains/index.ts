@@ -23,6 +23,10 @@ import OnlineManipalBbaPage from "./onlinemanipalbba/page";
 import OnlineManipalBbaThankYou from "./onlinemanipalbba/thank-you";
 import { metadata as onlineManipalBbaMetadata } from "./onlinemanipalbba/metadata";
 
+import IgnouOnlineMbaPage from "./ignouonlinemba/page";
+import IgnouOnlineMbaThankYou from "./ignouonlinemba/thank-you";
+import { metadata as ignouOnlineMbaMetadata } from "./ignouonlinemba/metadata";
+
 export const SUBDOMAIN_REGISTRY: Record<string, SubdomainModule> = {
   amityonlinemba: {
     Component: AmityOnlineMbaPage,
@@ -53,6 +57,11 @@ export const SUBDOMAIN_REGISTRY: Record<string, SubdomainModule> = {
     Component: OnlineManipalBbaPage,
     ThankYouComponent: OnlineManipalBbaThankYou,
     metadata: onlineManipalBbaMetadata,
+  },
+  ignouonlinemba: {
+    Component: IgnouOnlineMbaPage,
+    ThankYouComponent: IgnouOnlineMbaThankYou,
+    metadata: ignouOnlineMbaMetadata,
   },
 };
 
