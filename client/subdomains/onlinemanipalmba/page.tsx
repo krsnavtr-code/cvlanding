@@ -3,6 +3,7 @@
 import { useState, useEffect, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import CompliantFooter from "@/app/components/CompliantFooter";
 
 const WA_NUMBER = "919266585858";
 const DISPLAY_PHONE = "+919266585858";
@@ -215,20 +216,48 @@ export default function OnlineManipalMbaPage({
 
   return (
     <div className="min-h-screen bg-[#f8f7fd] text-[#1e1742] font-sans selection:bg-[#e85923] selection:text-white">
+      {/* Top Compliance Bar */}
+      <div className="bg-[#140f2e] text-[#a59ec7] text-[11px] py-1.5 px-4 border-b border-white/5 font-semibold">
+        <div className="w-[min(1220px,94%)] mx-auto flex flex-wrap items-center justify-between gap-2 text-center sm:text-left">
+          <div className="flex items-center gap-1.5 mx-auto sm:mx-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span>
+              Authorized Admission &amp; Marketing Channel Partner: <strong className="text-white font-bold">CollegeVihar</strong> (Online Manipal)
+            </span>
+          </div>
+          <div className="hidden sm:flex items-center gap-4 text-slate-300">
+            <span>Admission Helpline: <strong className="text-white">+91 9266585858</strong></span>
+            <span>•</span>
+            <a href="/disclaimer" className="text-[#f5c84b] hover:underline font-semibold">Statutory Disclosure</a>
+          </div>
+        </div>
+      </div>
+
       {/* 1. CLEAN WHITE NAVBAR (Matching screenshot) */}
       <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#eae6f5] shadow-[0_2px_12px_rgba(30,23,66,0.04)]">
         <div className="w-[min(1220px,94%)] mx-auto h-[72px] flex items-center justify-between gap-4">
-          {/* Brand Logo */}
-          <a href="#top" className="flex items-center gap-2.5 group">
-            <Image
-              src="/images/MUJ-logo.webp"
-              alt="Manipal University Jaipur"
-              width={180}
-              height={50}
-              className="h-9 sm:h-10 w-auto object-contain"
-              priority
-            />
-          </a>
+          {/* Brand Logo & Authorized Partner Identity */}
+          <div className="flex items-center gap-3">
+            <a href="#top" className="flex items-center gap-2.5 group">
+              <Image
+                src="/images/MUJ-logo.webp"
+                alt="Manipal University Jaipur"
+                width={180}
+                height={50}
+                className="h-9 sm:h-10 w-auto object-contain"
+                priority
+              />
+            </a>
+            <div className="h-7 w-px bg-slate-200 hidden sm:block"></div>
+            <div className="hidden sm:flex flex-col">
+              <span className="text-xs font-black text-[#1e1742] leading-tight">
+                College<span className="text-[#e85923]">Vihar</span>
+              </span>
+              <span className="text-[10px] text-emerald-700 font-bold">
+                Authorized Admission Partner
+              </span>
+            </div>
+          </div>
 
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center gap-7 text-[#2e2954] text-xs sm:text-[13px] font-semibold">
@@ -859,95 +888,14 @@ export default function OnlineManipalMbaPage({
         </div>
       </section>
 
-      {/* 12. FOOTER (Deep Dark Indigo) */}
-      <footer className="bg-[#140f2e] text-[#a59ec7] pt-12 pb-24 sm:pb-12 border-t border-white/5">
-        <div className="w-[min(1220px,94%)] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Left Column */}
-          <div>
-            <div className="flex items-center gap-2.5 mb-3">
-              <div className="bg-white p-1.5 rounded-lg inline-block">
-                <Image
-                  src="/images/MUJ-logo.webp"
-                  alt="Manipal University Jaipur"
-                  width={140}
-                  height={40}
-                  className="h-7 w-auto object-contain"
-                />
-              </div>
-            </div>
-            <p className="text-[#a59ec7] text-xs leading-[1.8] max-w-sm">
-              Programme portal for UGC-entitled Online MBA offered by Manipal University
-              Jaipur (MUJ). All trademarks belong to their respective university authorities.
-            </p>
-          </div>
-
-          {/* Middle Column */}
-          <div>
-            <h3 className="text-white font-serif text-sm font-bold mb-3">
-              Explore Programmes
-            </h3>
-            <div className="space-y-1.5 text-xs">
-              <div>
-                <a href="#programme" className="text-[#a59ec7] hover:text-white transition-colors">
-                  MUJ Online MBA
-                </a>
-              </div>
-              <div>
-                <a
-                  href="#specializations"
-                  className="text-[#a59ec7] hover:text-white transition-colors"
-                >
-                  13 Career Specializations
-                </a>
-              </div>
-              <div>
-                <a href="#career" className="text-[#a59ec7] hover:text-white transition-colors">
-                  Placement & Career Support
-                </a>
-              </div>
-              <div>
-                <a href="#faq" className="text-[#a59ec7] hover:text-white transition-colors">
-                  Frequently Asked Questions
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column */}
-          <div>
-            <h3 className="text-white font-serif text-sm font-bold mb-3">
-              Admissions Assistance Desk
-            </h3>
-            <p className="text-[#a59ec7] text-xs leading-[1.8] mb-3">
-              Connect with an academic advisor for admission assistance, fee schedules, and scholarship guidance.
-            </p>
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="bg-[#e85923] hover:bg-[#d44e1d] text-white font-bold text-xs px-5 py-2.5 rounded-full cursor-pointer transition-all active:scale-95"
-            >
-              Get MBA Brochure
-            </button>
-          </div>
-        </div>
-
-        {/* Disclaimer Box */}
-        <div className="w-[min(1220px,94%)] mx-auto border-t border-white/10 pt-6">
-          <div className="bg-white/[0.04] border border-white/10 rounded-xl p-4 sm:p-5 text-[11px] sm:text-xs text-[#a59ec7] leading-relaxed">
-            <strong className="text-white font-bold block mb-1">Disclaimer:</strong>
-            This landing page is an independent educational portal for programme information and admission guidance assistance. We are not Manipal University or Online Manipal directly. Manipal University Jaipur, Online Manipal, their names, logos, trademarks, and academic content belong to their respective owners. Programme fees, eligibility, specialisations, rankings, recognitions, scholarships, and other details may change; please verify the latest information with the university before making a payment or submitting an application.
-          </div>
-        </div>
-
-        {/* Copyright */}
-        <div className="w-[min(1220px,94%)] mx-auto border-t border-white/5 mt-6 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-[#7e76a3] text-[10px]">
-          <div>
-            Terms & Conditions &nbsp;|&nbsp; Privacy Policy &nbsp;|&nbsp; © 2026 Online MBA Admissions Guidance. All Rights Reserved.
-          </div>
-          <div>
-            Independent Admission Information & Assistance Portal
-          </div>
-        </div>
-      </footer>
+      {/* 12. FOOTER */}
+      <CompliantFooter
+        universityName="Manipal University Jaipur (Online Manipal)"
+        universityShortName="Online Manipal"
+        programName="Online MBA"
+        partnershipType="manipal"
+        theme="slate"
+      />
 
       {/* 13. FLOATING CONTACT ICONS & WHATSAPP TAB */}
       {/* Right Side WhatsApp Green Tab (As seen in screenshot) */}

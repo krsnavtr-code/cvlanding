@@ -27,6 +27,23 @@ export default function Navbar({
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
+      {/* Top Compliance Strip */}
+      <div className="bg-[#0b1f44] text-white text-[11px] py-1.5 px-4 font-semibold">
+        <div className="w-[min(1240px,94%)] mx-auto flex flex-wrap items-center justify-between gap-2">
+          <div className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span>
+              CollegeVihar is an Authorized Admission &amp; Marketing Channel Partner for {universityName}
+            </span>
+          </div>
+          <div className="hidden sm:flex items-center gap-3 text-slate-300">
+            <span>Helpline: <strong className="text-white">+91 9266585858</strong></span>
+            <span>•</span>
+            <a href="/disclaimer" className="text-[#f5c84b] hover:underline">Statutory Disclosure</a>
+          </div>
+        </div>
+      </div>
+
       <div className="w-[min(1240px,94%)] mx-auto h-18 flex items-center justify-between">
         {/* Brand */}
         <div className="flex items-center gap-3">
@@ -37,9 +54,14 @@ export default function Navbar({
             College<span className="text-[#ef3e35]">Vihar</span>
           </a>
           <span className="hidden sm:inline-block h-6 w-px bg-slate-200"></span>
-          <span className="hidden sm:inline-block text-xs font-semibold uppercase tracking-wider text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md">
-            {universityName}
-          </span>
+          <div className="hidden sm:flex flex-col">
+            <span className="text-xs font-bold text-slate-800 leading-tight">
+              {universityName}
+            </span>
+            <span className="text-[10px] font-bold text-emerald-600">
+              Authorized Admission Partner
+            </span>
+          </div>
         </div>
 
         {/* Desktop Nav Links */}

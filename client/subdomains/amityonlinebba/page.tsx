@@ -2,6 +2,7 @@
 
 import { useState, useEffect, FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import CompliantFooter from "@/app/components/CompliantFooter";
 
 export default function AmityOnlineBbaPage({
   subdomain = "amityonlinebba",
@@ -117,34 +118,41 @@ export default function AmityOnlineBbaPage({
       <header className="sticky top-0 z-50 shadow-lg bg-[#1b325e]">
         {/* TOP SCHOLARSHIP COUNTDOWN NOTIFICATION BAR */}
         <div className="bg-[#0b1f44] text-white py-1.5 px-3 text-xs sm:text-sm font-semibold border-b border-white/10">
-          <div className="w-[min(1160px,94%)] mx-auto flex flex-wrap items-center justify-center lg:justify-end gap-2 sm:gap-3 text-center">
-            <span className="text-white font-medium">
-              Get up to 45% merit-based scholarship on semester fee. Offer ends
-              18th September.{" "}
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="text-[#ffd044] hover:underline font-bold ml-1 cursor-pointer inline-block"
-              >
-                Apply Now.
-              </button>
-            </span>
-            <span className="hidden sm:inline text-white/50">|</span>
-            <div className="inline-flex items-center gap-1.5 font-mono font-bold text-xs whitespace-nowrap shrink-0 flex-nowrap">
-              <span className="border border-white/60 bg-white/5 rounded-full px-2.5 py-0.5 tracking-tight">
-                {timeLeft.days} d
+          <div className="w-[min(1160px,94%)] mx-auto flex flex-wrap items-center justify-between gap-2 text-center sm:text-left">
+            <div className="flex items-center gap-1.5 mx-auto lg:mx-0">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span className="text-white/90 text-xs font-semibold">
+                Authorized Admission &amp; Marketing Partner: <strong className="text-white font-bold">CollegeVihar</strong>
               </span>
-              <span className="text-white/80 font-sans">:</span>
-              <span className="border border-white/60 bg-white/5 rounded-full px-2.5 py-0.5 tracking-tight">
-                {timeLeft.hours} h
+            </div>
+            <div className="flex flex-wrap items-center justify-center lg:justify-end gap-2 sm:gap-3 text-center mx-auto lg:mx-0">
+              <span className="text-white font-medium">
+                Get up to 45% merit-based scholarship on semester fee.{" "}
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="text-[#ffd044] hover:underline font-bold ml-1 cursor-pointer inline-block"
+                >
+                  Apply Now.
+                </button>
               </span>
-              <span className="text-white/80 font-sans">:</span>
-              <span className="border border-white/60 bg-white/5 rounded-full px-2.5 py-0.5 tracking-tight">
-                {timeLeft.minutes} m
-              </span>
-              <span className="text-white/80 font-sans">:</span>
-              <span className="border border-white/60 bg-white/5 rounded-full px-2.5 py-0.5 tracking-tight text-[#ffd044]">
-                {timeLeft.seconds} s
-              </span>
+              <span className="hidden sm:inline text-white/50">|</span>
+              <div className="inline-flex items-center gap-1.5 font-mono font-bold text-xs whitespace-nowrap shrink-0 flex-nowrap">
+                <span className="border border-white/60 bg-white/5 rounded-full px-2.5 py-0.5 tracking-tight">
+                  {timeLeft.days} d
+                </span>
+                <span className="text-white/80 font-sans">:</span>
+                <span className="border border-white/60 bg-white/5 rounded-full px-2.5 py-0.5 tracking-tight">
+                  {timeLeft.hours} h
+                </span>
+                <span className="text-white/80 font-sans">:</span>
+                <span className="border border-white/60 bg-white/5 rounded-full px-2.5 py-0.5 tracking-tight">
+                  {timeLeft.minutes} m
+                </span>
+                <span className="text-white/80 font-sans">:</span>
+                <span className="border border-white/60 bg-white/5 rounded-full px-2.5 py-0.5 tracking-tight text-[#ffd044]">
+                  {timeLeft.seconds} s
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -152,15 +160,24 @@ export default function AmityOnlineBbaPage({
         {/* MAIN NAVIGATION BAR */}
         <div className="bg-[#1b325e]">
           <div className="w-[min(1160px,92%)] mx-auto h-[60px] sm:h-[68px] flex items-center justify-between gap-4">
-            {/* Logo */}
+            {/* Logo & Authorized Partner Branding */}
             <div className="flex items-center gap-3">
               <a href="#top" className="flex items-center">
                 <img
                   src="/images/amity-logo.jpg"
                   alt="Amity University Online"
-                  className="h-10 sm:h-12 w-auto object-contain rounded-md"
+                  className="h-9 sm:h-11 w-auto object-contain rounded-md"
                 />
               </a>
+              <div className="h-7 w-px bg-white/20 hidden sm:block"></div>
+              <div className="hidden sm:flex flex-col">
+                <span className="text-xs font-black text-white leading-tight">
+                  College<span className="text-[#ffd24a]">Vihar</span>
+                </span>
+                <span className="text-[10px] text-[#ffd24a] font-bold">
+                  Authorized Admission Partner
+                </span>
+              </div>
             </div>
 
             {/* Desktop Nav Links */}
@@ -1437,23 +1454,13 @@ export default function AmityOnlineBbaPage({
       </main>
 
       {/* 15. FOOTER */}
-      <footer className="bg-[#071c46] text-[#dce7f7] pt-8 pb-24 sm:pb-12 border-t border-white/10">
-        <div className="w-[min(1160px,92%)] mx-auto space-y-6">
-          <p className="text-xs text-[#aebed4] leading-relaxed">
-            <b className="text-white">Disclaimer:</b> This landing page is for
-            programme information and admission guidance. Amity University
-            Online, its name, trademarks and academic content belong to their
-            respective owners. Programme fees, eligibility, specialisations,
-            rankings, recognitions, scholarships and other details may change;
-            please verify the latest information with the university before
-            making a payment or submitting an application.
-          </p>
-          <div className="border-t border-white/15 pt-5 text-center text-xs text-[#aebed4]">
-            Terms &amp; Conditions &nbsp; | &nbsp; Privacy Policy &nbsp; |
-            &nbsp; © 2026 All Rights Reserved
-          </div>
-        </div>
-      </footer>
+      <CompliantFooter
+        universityName="Amity University Online"
+        universityShortName="Amity Online"
+        programName="Online BBA"
+        partnershipType="amity"
+        theme="navy"
+      />
 
       {/* 16. FLOATING WHATSAPP & CALL BUTTONS */}
       <div className="fixed right-4 bottom-20 z-40 flex items-center justify-center">

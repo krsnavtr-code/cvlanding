@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import CompliantFooter from "@/app/components/CompliantFooter";
 
 export default function OnlineManipalMbaThankYou({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -14,16 +15,27 @@ export default function OnlineManipalMbaThankYou({
       {/* Top Header */}
       <header className="bg-white border-b border-[#eae6f5] shadow-xs">
         <div className="w-[min(1160px,92%)] mx-auto h-[68px] flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/images/MUJ-logo.webp"
-              alt="Manipal University Jaipur"
-              width={160}
-              height={45}
-              className="h-9 w-auto object-contain"
-              priority
-            />
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src="/images/MUJ-logo.webp"
+                alt="Manipal University Jaipur"
+                width={160}
+                height={45}
+                className="h-8 sm:h-9 w-auto object-contain"
+                priority
+              />
+            </Link>
+            <div className="h-7 w-px bg-slate-200 hidden sm:block"></div>
+            <div className="hidden sm:flex flex-col">
+              <span className="text-xs font-black text-[#1e1742] leading-tight">
+                College<span className="text-[#e85923]">Vihar</span>
+              </span>
+              <span className="text-[10px] text-emerald-700 font-bold">
+                Authorized Admission Partner
+              </span>
+            </div>
+          </div>
           <Link
             href="/"
             className="text-xs sm:text-sm font-bold text-white/80 hover:text-white flex items-center gap-1"
@@ -138,17 +150,14 @@ export default function OnlineManipalMbaThankYou({
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-[#0e244d] text-slate-300 py-6 border-t border-white/10 text-xs">
-        <div className="w-[min(1160px,92%)] mx-auto space-y-4 text-center">
-          <p className="text-[11px] text-slate-400 max-w-3xl mx-auto leading-relaxed">
-            <strong className="text-white">Disclaimer:</strong> This landing page is an independent educational portal for programme information and admission guidance assistance. We are not Manipal University or Online Manipal directly. Manipal University Jaipur, Online Manipal, their names, logos, trademarks, and academic content belong to their respective owners.
-          </p>
-          <div className="text-slate-400 text-[10px] border-t border-white/10 pt-3">
-            © {new Date().getFullYear()} Online MBA Admissions Guidance. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      {/* Compliant Footer */}
+      <CompliantFooter
+        universityName="Manipal University Jaipur (Online Manipal)"
+        universityShortName="Online Manipal"
+        programName="Online MBA"
+        partnershipType="manipal"
+        theme="navy"
+      />
     </div>
   );
 }

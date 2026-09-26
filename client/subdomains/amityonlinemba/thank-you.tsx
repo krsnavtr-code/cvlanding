@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import CompliantFooter from "@/app/components/CompliantFooter";
 
 export default function AmityOnlineMbaThankYou({
   subdomain = "amityonlinemba",
@@ -12,13 +13,24 @@ export default function AmityOnlineMbaThankYou({
       {/* Top Header */}
       <header className="bg-[#1b325e] shadow-md">
         <div className="w-[min(1160px,92%)] mx-auto h-[68px] flex items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <img
-              src="/images/amity-logo.jpg"
-              alt="Amity University Online"
-              className="h-10 w-auto object-contain rounded-md"
-            />
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link href="/" className="flex items-center">
+              <img
+                src="/images/amity-logo.jpg"
+                alt="Amity University Online"
+                className="h-9 sm:h-10 w-auto object-contain rounded-md"
+              />
+            </Link>
+            <div className="h-7 w-px bg-white/20 hidden sm:block"></div>
+            <div className="hidden sm:flex flex-col">
+              <span className="text-xs font-black text-white leading-tight">
+                College<span className="text-[#ffd24a]">Vihar</span>
+              </span>
+              <span className="text-[10px] text-[#ffd24a] font-bold">
+                Authorized Admission Partner
+              </span>
+            </div>
+          </div>
           <Link
             href="/"
             className="text-xs sm:text-sm font-bold text-white/80 hover:text-white flex items-center gap-1"
@@ -140,15 +152,14 @@ export default function AmityOnlineMbaThankYou({
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-[#071c46] text-[#dce7f7] py-6 border-t border-white/10 text-center text-xs text-[#aebed4]">
-        <div className="w-[min(1160px,92%)] mx-auto space-y-2">
-          <p>
-            © {new Date().getFullYear()} College Vihar & Amity University Online
-            Guidance Portal. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      {/* Compliant Footer */}
+      <CompliantFooter
+        universityName="Amity University Online"
+        universityShortName="Amity Online"
+        programName="Online MBA"
+        partnershipType="amity"
+        theme="navy"
+      />
     </div>
   );
 }

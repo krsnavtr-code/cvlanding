@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import CompliantFooter from "@/app/components/CompliantFooter";
 
 export default function OnlineManipalMcaThankYou({
   subdomain = "onlinemanipalmca",
@@ -12,14 +13,25 @@ export default function OnlineManipalMcaThankYou({
       {/* Top Header */}
       <header className="bg-[#102d63] shadow-md">
         <div className="w-[min(1160px,92%)] mx-auto h-[68px] flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-black text-white">
-              Online <span className="text-[#f7a51c]">Manipal</span>
-            </span>
-            <span className="text-xs font-semibold text-blue-200 border-l border-blue-400 pl-2">
-              MUJ MCA
-            </span>
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-2">
+              <span className="text-xl font-black text-white">
+                Online <span className="text-[#f7a51c]">Manipal</span>
+              </span>
+              <span className="text-xs font-semibold text-blue-200 border-l border-blue-400 pl-2">
+                MUJ MCA
+              </span>
+            </Link>
+            <div className="h-7 w-px bg-white/20 hidden sm:block"></div>
+            <div className="hidden sm:flex flex-col">
+              <span className="text-xs font-black text-white leading-tight">
+                College<span className="text-[#f7a51c]">Vihar</span>
+              </span>
+              <span className="text-[10px] text-emerald-400 font-bold">
+                Authorized Admission Partner
+              </span>
+            </div>
+          </div>
           <Link
             href="/"
             className="text-xs sm:text-sm font-bold text-white/80 hover:text-white flex items-center gap-1"
@@ -134,12 +146,14 @@ export default function OnlineManipalMcaThankYou({
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-[#0e244d] text-slate-300 py-6 border-t border-white/10 text-center text-xs">
-        <div className="w-[min(1160px,92%)] mx-auto">
-          © {new Date().getFullYear()} College Vihar & Online Manipal MCA Guidance. All rights reserved.
-        </div>
-      </footer>
+      {/* Compliant Footer */}
+      <CompliantFooter
+        universityName="Manipal University Jaipur (Online Manipal)"
+        universityShortName="Online Manipal"
+        programName="Online MCA"
+        partnershipType="manipal"
+        theme="navy"
+      />
     </div>
   );
 }

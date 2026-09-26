@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import CompliantFooter from "@/app/components/CompliantFooter";
 
 interface ProgramLandingTemplateProps {
   content: Record<string, any>;
@@ -720,16 +721,20 @@ export default function ProgramLandingTemplate({
         </section>
       </main>
 
-      <footer className="bg-[#f5f7fb] py-8 border-t border-[#e3e8f0]">
-        <div className="w-[min(1180px,92%)] mx-auto">
-          <div className="text-sm text-[#667085] mb-4">
-            <strong>Disclaimer:</strong> {footerDisclaimer}
-          </div>
-          <p className="text-center text-xs text-[#667085]">
-            &copy; 2026 College Vihar. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <CompliantFooter
+        universityName={universityName}
+        programName={programName}
+        partnershipType={
+          universityName.toLowerCase().includes("manipal")
+            ? "manipal"
+            : universityName.toLowerCase().includes("amity")
+            ? "amity"
+            : universityName.toLowerCase().includes("ignou")
+            ? "ignou"
+            : "general"
+        }
+        theme="white"
+      />
     </div>
   );
 }

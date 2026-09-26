@@ -3,6 +3,7 @@
 import { useState, useEffect, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import CompliantFooter from "@/app/components/CompliantFooter";
 
 const WA_NUMBER = "919266585858";
 const DISPLAY_PHONE = "+919266585858";
@@ -287,20 +288,48 @@ export default function OnlineManipalMcaPage({
 
   return (
     <div className="min-h-screen bg-[#f8f7fd] text-[#1e1742] font-sans selection:bg-[#e85923] selection:text-white">
+      {/* Top Compliance Bar */}
+      <div className="bg-[#140f2e] text-[#a59ec7] text-[11px] py-1.5 px-4 border-b border-white/5 font-semibold">
+        <div className="w-[min(1220px,94%)] mx-auto flex flex-wrap items-center justify-between gap-2 text-center sm:text-left">
+          <div className="flex items-center gap-1.5 mx-auto sm:mx-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span>
+              Authorized Admission &amp; Marketing Channel Partner: <strong className="text-white font-bold">CollegeVihar</strong> (Online Manipal)
+            </span>
+          </div>
+          <div className="hidden sm:flex items-center gap-4 text-slate-300">
+            <span>Admission Helpline: <strong className="text-white">+91 9266585858</strong></span>
+            <span>•</span>
+            <a href="/disclaimer" className="text-[#f5c84b] hover:underline font-semibold">Statutory Disclosure</a>
+          </div>
+        </div>
+      </div>
+
       {/* 1. CLEAN WHITE NAVBAR (Matching onlinemanipalmba) */}
       <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#eae6f5] shadow-[0_2px_12px_rgba(30,23,66,0.04)]">
         <div className="w-[min(1220px,94%)] mx-auto h-[72px] flex items-center justify-between gap-4">
-          {/* Brand Logo */}
-          <a href="#top" className="flex items-center gap-2.5 group">
-            <Image
-              src="/images/MUJ-logo.webp"
-              alt="Manipal University Jaipur"
-              width={180}
-              height={50}
-              className="h-9 sm:h-10 w-auto object-contain"
-              priority
-            />
-          </a>
+          {/* Brand Logo & Authorized Partner Branding */}
+          <div className="flex items-center gap-3">
+            <a href="#top" className="flex items-center gap-2.5 group">
+              <Image
+                src="/images/MUJ-logo.webp"
+                alt="Manipal University Jaipur"
+                width={180}
+                height={50}
+                className="h-9 sm:h-10 w-auto object-contain"
+                priority
+              />
+            </a>
+            <div className="h-7 w-px bg-slate-200 hidden sm:block"></div>
+            <div className="hidden sm:flex flex-col">
+              <span className="text-xs font-black text-[#1e1742] leading-tight">
+                College<span className="text-[#e85923]">Vihar</span>
+              </span>
+              <span className="text-[10px] text-emerald-700 font-bold">
+                Authorized Admission Partner
+              </span>
+            </div>
+          </div>
 
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center gap-7 text-[#2e2954] text-xs sm:text-[13px] font-semibold">
@@ -1201,22 +1230,13 @@ export default function OnlineManipalMcaPage({
       </section>
 
       {/* 13. FOOTER */}
-      <footer className="bg-slate-950 text-slate-400 py-10 border-t border-slate-800 text-xs">
-        <div className="w-[min(1220px,94%)] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <Image
-              src="/images/MUJ-logo.webp"
-              alt="Manipal University Jaipur"
-              width={140}
-              height={40}
-              className="h-8 w-auto object-contain brightness-0 invert opacity-80"
-            />
-          </div>
-          <p className="text-center sm:text-right text-[11px] text-slate-500">
-            © {new Date().getFullYear()} College Vihar. Authorized Information &amp; Counselling Portal for Manipal University Jaipur Online Programmes.
-          </p>
-        </div>
-      </footer>
+      <CompliantFooter
+        universityName="Manipal University Jaipur (Online Manipal)"
+        universityShortName="Online Manipal"
+        programName="Online MCA"
+        partnershipType="manipal"
+        theme="slate"
+      />
 
       {/* 14. FLOATING WHATSAPP CTA */}
       <div className="fixed bottom-5 right-5 z-40 flex flex-col gap-2.5">

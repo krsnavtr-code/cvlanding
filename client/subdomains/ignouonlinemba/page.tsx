@@ -3,6 +3,7 @@
 import { useState, useEffect, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import CompliantFooter from "@/app/components/CompliantFooter";
 
 const WA_NUMBER = "919266585858";
 const DISPLAY_PHONE = "+919266585858";
@@ -249,20 +250,46 @@ export default function IgnouOnlineMbaPage({
 
   return (
     <div className="min-h-screen bg-[#f5f8fc] text-[#12233b] font-sans antialiased selection:bg-[#f3c64b] selection:text-[#071a36]">
+      {/* Top Compliance Bar */}
+      <div className="bg-[#06182f] text-slate-300 text-[11px] py-1.5 px-4 border-b border-white/10 font-semibold">
+        <div className="max-w-[1180px] mx-auto flex flex-wrap items-center justify-between gap-2 text-center sm:text-left">
+          <div className="flex items-center gap-1.5 mx-auto sm:mx-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span>
+              CollegeVihar – Independent Higher Education Guidance Advisory for IGNOU Programmes
+            </span>
+          </div>
+          <div className="hidden sm:flex items-center gap-3 text-slate-300">
+            <span>Student Helpline: <strong className="text-white">+91 9266585858</strong></span>
+            <span>•</span>
+            <a href="/disclaimer" className="text-[#f4c64b] hover:underline">Statutory Disclosure</a>
+          </div>
+        </div>
+      </div>
+
       {/* 1. TOP HEADER & HERO CONTAINER */}
       <div className="pt-4 sm:pt-6 pb-2 bg-gradient-to-b from-[#eaf2fb] via-[#f5f8fc] to-[#f5f8fc]">
         <div className="max-w-[1180px] mx-auto px-4 sm:px-6">
           {/* Header Bar */}
           <header className="min-h-[76px] sm:min-h-[82px] bg-gradient-to-r from-[#06192f] to-[#103963] rounded-[22px] sm:rounded-[26px] px-4 sm:px-6 py-3 flex items-center justify-between shadow-[0_20px_46px_rgba(7,26,54,0.16)] border border-white/10">
-            <div className="flex items-center">
+            <div className="flex items-center gap-3">
               <Image
                 src="/images/ignou-logo.png"
                 alt="IGNOU - The People's University"
                 width={260}
                 height={58}
-                className="h-9 sm:h-[52px] w-auto object-contain brightness-0 invert"
+                className="h-8 sm:h-[46px] w-auto object-contain brightness-0 invert"
                 priority
               />
+              <div className="h-7 w-px bg-white/20 hidden sm:block"></div>
+              <div className="hidden sm:flex flex-col">
+                <span className="text-xs font-black text-white leading-tight">
+                  College<span className="text-[#f4c64b]">Vihar</span>
+                </span>
+                <span className="text-[10px] text-[#ffd56b] font-bold">
+                  Admission Guidance Portal
+                </span>
+              </div>
             </div>
             <div className="flex items-center gap-2.5 sm:gap-3">
               <a
@@ -302,7 +329,7 @@ export default function IgnouOnlineMbaPage({
                 </h1>
 
                 <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-[#dbe8f7] max-w-[650px] mb-6 sm:mb-8 font-normal">
-                  Explore the official IGNOU Online MBA programme with flexible learning, an AICTE-recognised management curriculum, and an affordable fee structure designed for fresh graduates and working personnel.
+                  Explore the recognized IGNOU Online MBA programme with flexible learning, an AICTE-recognised management curriculum, and an affordable fee structure designed for fresh graduates and working personnel.
                 </p>
 
                 {/* Hero CTAs */}
@@ -379,6 +406,7 @@ export default function IgnouOnlineMbaPage({
                   </div>
                   <div>
                     <input
+                      required
                       name="email"
                       type="email"
                       placeholder="Email Address"
@@ -741,16 +769,13 @@ export default function IgnouOnlineMbaPage({
       </section>
 
       {/* 10. FOOTER & DISCLAIMER */}
-      <footer className="pt-8 pb-28 sm:pb-16 text-center text-xs text-[#6e7d91] border-t border-[#e5ebf2] bg-white">
-        <div className="max-w-[1180px] mx-auto px-4 sm:px-6 leading-relaxed">
-          <p className="mb-3 max-w-4xl mx-auto">
-            <strong>Disclaimer:</strong> This is an independent admission-support and information page for prospective learners. IGNOU and its marks/logos are trademarks/property of their respective owners. Programme availability, admission dates, fees, eligibility and other details are subject to the latest official IGNOU notification and may change without notice. Please verify final admission information on the official IGNOU portal before submitting an application.
-          </p>
-          <div className="font-semibold text-[#102541] pt-2">
-            Admission support: CollegeVihar • +91 9266585858
-          </div>
-        </div>
-      </footer>
+      <CompliantFooter
+        universityName="IGNOU (Indira Gandhi National Open University)"
+        universityShortName="IGNOU"
+        programName="Online MBA"
+        partnershipType="ignou"
+        theme="white"
+      />
 
       {/* 11. FLOATING ACTION BUTTONS (DESKTOP & TABLET) */}
       <div className="fixed right-5 bottom-20 sm:bottom-8 flex flex-col gap-3 z-30">
@@ -841,6 +866,7 @@ export default function IgnouOnlineMbaPage({
               </div>
               <div>
                 <input
+                  required
                   name="email"
                   type="email"
                   placeholder="Email Address"

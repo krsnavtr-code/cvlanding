@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import CompliantFooter from "@/app/components/CompliantFooter";
 
 const WA_NUMBER = "919266585858";
 
@@ -135,12 +136,14 @@ export default function IgnouOnlineMbaThankYou({
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="py-6 text-center text-xs text-[#637289] border-t border-[#e5ebf2] bg-white/50">
-        <p className="max-w-xl mx-auto px-4">
-          CollegeVihar is an independent career & admission advisory service assisting students with distance and online university programmes across India.
-        </p>
-      </footer>
+      {/* Compliant Footer */}
+      <CompliantFooter
+        universityName="IGNOU (Indira Gandhi National Open University)"
+        universityShortName="IGNOU"
+        programName="Online MBA"
+        partnershipType="ignou"
+        theme="white"
+      />
     </div>
   );
 }
