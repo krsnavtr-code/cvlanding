@@ -49,9 +49,9 @@ export default function Navbar({
         <div className="flex items-center gap-3">
           <a
             href="#top"
-            className="flex items-center text-2xl font-black tracking-tight text-[#1565c0]"
+            className="flex items-center text-2xl font-black tracking-tight"
           >
-            College<span className="text-[#ef3e35]">Vihar</span>
+            <span className="text-[#0066ff]">College</span><span className="text-[#ee4231]">Vihar</span>
           </a>
           <span className="hidden sm:inline-block h-6 w-px bg-slate-200"></span>
           <div className="hidden sm:flex flex-col">

@@ -105,8 +105,8 @@ export default function RootHomePage() {
               CV
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl font-black tracking-tight text-[#0a2540] leading-none">
-                College<span className="text-[#ef3e35]">Vihar</span>
+              <span className="text-2xl font-black tracking-tight leading-none">
+                <span className="text-[#0066ff]">College</span><span className="text-[#ee4231]">Vihar</span>
               </span>
               <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-0.5">
                 Higher Education Advisory

@@ -50,8 +50,8 @@ export default function PolicyLayout({
                 CV
               </div>
               <div className="flex flex-col">
-                <span className="text-xl sm:text-2xl font-black tracking-tight text-[#0a2540] leading-none">
-                  College<span className="text-[#ef3e35]">Vihar</span>
+                <span className="text-xl sm:text-2xl font-black tracking-tight leading-none">
+                  <span className="text-[#0066ff]">College</span><span className="text-[#ee4231]">Vihar</span>
                 </span>
                 <span className="text-[10px] font-bold text-slate-500 tracking-wider uppercase">
                   Admissions Advisory
@@ -135,8 +135,8 @@ export default function PolicyLayout({
         <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 border-b border-slate-800 text-center sm:text-left">
             <div>
-              <div className="text-lg font-black text-white">
-                College<span className="text-[#ef3e35]">Vihar</span>
+              <div className="text-lg font-black">
+                <span className="text-[#0066ff]">College</span><span className="text-[#ee4231]">Vihar</span>
               </div>
               <p className="text-xs text-slate-400 mt-0.5">
                 Authorized Admission & Marketing Partner for Premier Universities

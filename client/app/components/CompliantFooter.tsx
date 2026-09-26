@@ -35,8 +35,8 @@ export default function CompliantFooter({
           {/* Column 1: Brand & Role */}
           <div className="md:col-span-2 space-y-3">
             <div className="flex items-center gap-2.5">
-              <span className="text-xl sm:text-2xl font-black tracking-tight text-white">
-                College<span className="text-[#ef3e35]">Vihar</span>
+              <span className="text-xl sm:text-2xl font-black tracking-tight">
+                <span className="text-[#0066ff]">College</span><span className="text-[#ee4231]">Vihar</span>
               </span>
               <span className="text-slate-500">|</span>
               <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">

@@ -322,8 +322,8 @@ export default function OnlineManipalMcaPage({
             </a>
             <div className="h-7 w-px bg-slate-200 hidden sm:block"></div>
             <div className="hidden sm:flex flex-col">
-              <span className="text-xs font-black text-[#1e1742] leading-tight">
-                College<span className="text-[#e85923]">Vihar</span>
+              <span className="text-xs font-black leading-tight">
+                <span className="text-[#0066ff]">College</span><span className="text-[#ee4231]">Vihar</span>
               </span>
               <span className="text-[10px] text-emerald-700 font-bold">
                 Authorized Admission Partner

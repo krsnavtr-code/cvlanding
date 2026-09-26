@@ -24,8 +24,8 @@ export default function OnlineManipalBbaThankYou({
             </Link>
             <div className="h-7 w-px bg-white/20 hidden sm:block"></div>
             <div className="hidden sm:flex flex-col">
-              <span className="text-xs font-black text-white leading-tight">
-                College<span className="text-[#f7a51c]">Vihar</span>
+              <span className="text-xs font-black leading-tight">
+                <span className="text-[#0066ff]">College</span><span className="text-[#ee4231]">Vihar</span>
               </span>
               <span className="text-[10px] text-emerald-400 font-bold">
                 Authorized Admission Partner
