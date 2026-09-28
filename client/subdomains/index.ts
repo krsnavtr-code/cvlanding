@@ -27,6 +27,10 @@ import IgnouOnlineMbaPage from "./ignouonlinemba/page";
 import IgnouOnlineMbaThankYou from "./ignouonlinemba/thank-you";
 import { metadata as ignouOnlineMbaMetadata } from "./ignouonlinemba/metadata";
 
+import IgnouOnlineMcaPage from "./ignouonlinemca/page";
+import IgnouOnlineMcaThankYou from "./ignouonlinemca/thank-you";
+import { metadata as ignouOnlineMcaMetadata } from "./ignouonlinemca/metadata";
+
 export const SUBDOMAIN_REGISTRY: Record<string, SubdomainModule> = {
   amityonlinemba: {
     Component: AmityOnlineMbaPage,
@@ -62,6 +66,11 @@ export const SUBDOMAIN_REGISTRY: Record<string, SubdomainModule> = {
     Component: IgnouOnlineMbaPage,
     ThankYouComponent: IgnouOnlineMbaThankYou,
     metadata: ignouOnlineMbaMetadata,
+  },
+  ignouonlinemca: {
+    Component: IgnouOnlineMcaPage,
+    ThankYouComponent: IgnouOnlineMcaThankYou,
+    metadata: ignouOnlineMcaMetadata,
   },
 };
 
