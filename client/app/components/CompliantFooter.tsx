@@ -24,22 +24,26 @@ export default function CompliantFooter({
       : theme === "slate"
       ? "bg-slate-950 text-slate-400 border-slate-800"
       : theme === "white"
-      ? "bg-white text-slate-600 border-slate-200"
+      ? "bg-white text-slate-700 border-slate-200"
       : "bg-[#0c1322] text-slate-300 border-white/10";
 
   return (
     <footer className={`pt-12 pb-24 sm:pb-12 border-t text-xs ${bgClass} transition-colors`}>
       <div className="w-[min(1220px,94%)] mx-auto space-y-10">
         {/* Row 1: Brand, Partnership Badge, and Quick Policy Links */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-white/10">
+        <div className={`grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b ${isDark ? "border-white/10" : "border-slate-200"}`}>
           {/* Column 1: Brand & Role */}
           <div className="md:col-span-2 space-y-3">
             <div className="flex items-center gap-2.5">
               <span className="text-xl sm:text-2xl font-black tracking-tight">
                 <span className="text-[#0066ff]">College</span><span className="text-[#ee4231]">Vihar</span>
               </span>
-              <span className="text-slate-500">|</span>
-              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+              <span className={isDark ? "text-slate-500" : "text-slate-400"}>|</span>
+              <span className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${
+                isDark
+                  ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+                  : "bg-emerald-50 text-emerald-800 border border-emerald-300"
+              }`}>
                 {partnershipType === "manipal"
                   ? "Authorized Admission Partner • Online Manipal"
                   : partnershipType === "amity"
@@ -50,25 +54,25 @@ export default function CompliantFooter({
               </span>
             </div>
 
-            <p className="text-xs text-slate-400 max-w-lg leading-relaxed">
-              <strong>CollegeVihar</strong> is India&apos;s trusted educational counseling and university admissions advisory platform. We guide learners through UGC-DEB entitled online degrees with verified fee structures, zero-cost EMI assistance, and career-aligned specialisations.
+            <p className={`text-xs ${isDark ? "text-slate-400" : "text-slate-600"} max-w-lg leading-relaxed`}>
+              <strong className={isDark ? "text-slate-200" : "text-slate-900"}>CollegeVihar</strong> is India&apos;s trusted educational counseling and university admissions advisory platform. We guide learners through UGC-DEB entitled online degrees with verified fee structures, zero-cost EMI assistance, and career-aligned specialisations.
             </p>
 
-            <div className="pt-2 text-[11px] text-slate-400 space-y-1">
+            <div className={`pt-2 text-[11px] ${isDark ? "text-slate-400" : "text-slate-600"} space-y-1`}>
               <div>
-                <strong className="text-slate-200">Registered Office:</strong> Plot No. 63, Sector 64 Rd, B Block, Sector 63, Noida, Uttar Pradesh 201301 (Near Lohia Kia Sales)
+                <strong className={isDark ? "text-slate-200" : "text-slate-800"}>Registered Office:</strong> Plot No. 63, Sector 64 Rd, B Block, Sector 63, Noida, Uttar Pradesh 201301 (Near Lohia Kia Sales)
               </div>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-300">
+              <div className={`flex flex-wrap items-center gap-x-4 gap-y-1 ${isDark ? "text-slate-300" : "text-slate-700"}`}>
                 <span>
                   Helpline:{" "}
-                  <a href="tel:+919266585858" className="text-emerald-400 font-bold hover:underline">
+                  <a href="tel:+919266585858" className={`${isDark ? "text-emerald-400" : "text-emerald-700 font-bold"} hover:underline`}>
                     +91 9266585858
                   </a>
                 </span>
                 <span>•</span>
                 <span>
                   Email:{" "}
-                  <a href="mailto:info@collegevihar.com" className="text-blue-400 hover:underline">
+                  <a href="mailto:info@collegevihar.com" className={`${isDark ? "text-blue-400" : "text-blue-700 font-medium"} hover:underline`}>
                     info@collegevihar.com
                   </a>
                 </span>
@@ -80,14 +84,14 @@ export default function CompliantFooter({
 
           {/* Column 2: Legal & Policy Pages (CLICKABLE) */}
           <div className="space-y-3">
-            <h4 className="text-white font-bold text-sm tracking-wide uppercase text-[11px]">
+            <h4 className={`${isDark ? "text-white" : "text-slate-900 font-black"} text-sm tracking-wide uppercase text-[11px]`}>
               Compliance &amp; Policy Pages
             </h4>
             <ul className="space-y-2 text-xs font-medium">
               <li>
                 <Link
                   href="/about-us"
-                  className="text-slate-300 hover:text-white hover:underline transition-colors flex items-center gap-1.5"
+                  className={`${isDark ? "text-slate-300 hover:text-white" : "text-slate-700 hover:text-[#0066ff]"} hover:underline transition-colors flex items-center gap-1.5`}
                 >
                   <span className="text-[#ef3e35]">›</span> About Us &amp; Identity
                 </Link>
@@ -95,7 +99,7 @@ export default function CompliantFooter({
               <li>
                 <Link
                   href="/privacy-policy"
-                  className="text-slate-300 hover:text-white hover:underline transition-colors flex items-center gap-1.5"
+                  className={`${isDark ? "text-slate-300 hover:text-white" : "text-slate-700 hover:text-[#0066ff]"} hover:underline transition-colors flex items-center gap-1.5`}
                 >
                   <span className="text-[#ef3e35]">›</span> Privacy Policy
                 </Link>
@@ -103,7 +107,7 @@ export default function CompliantFooter({
               <li>
                 <Link
                   href="/terms-and-conditions"
-                  className="text-slate-300 hover:text-white hover:underline transition-colors flex items-center gap-1.5"
+                  className={`${isDark ? "text-slate-300 hover:text-white" : "text-slate-700 hover:text-[#0066ff]"} hover:underline transition-colors flex items-center gap-1.5`}
                 >
                   <span className="text-[#ef3e35]">›</span> Terms &amp; Conditions
                 </Link>
@@ -111,7 +115,7 @@ export default function CompliantFooter({
               <li>
                 <Link
                   href="/disclaimer"
-                  className="text-slate-300 hover:text-white hover:underline transition-colors flex items-center gap-1.5"
+                  className={`${isDark ? "text-slate-300 hover:text-white" : "text-slate-700 hover:text-[#0066ff]"} hover:underline transition-colors flex items-center gap-1.5`}
                 >
                   <span className="text-[#ef3e35]">›</span> Statutory Disclaimer
                 </Link>
@@ -119,7 +123,7 @@ export default function CompliantFooter({
               <li>
                 <Link
                   href="/contact-us"
-                  className="text-slate-300 hover:text-white hover:underline transition-colors flex items-center gap-1.5"
+                  className={`${isDark ? "text-slate-300 hover:text-white" : "text-slate-700 hover:text-[#0066ff]"} hover:underline transition-colors flex items-center gap-1.5`}
                 >
                   <span className="text-[#ef3e35]">›</span> Contact &amp; Grievance
                 </Link>
@@ -129,14 +133,14 @@ export default function CompliantFooter({
 
           {/* Column 3: Partner Programmes */}
           <div className="space-y-3">
-            <h4 className="text-white font-bold text-sm tracking-wide uppercase text-[11px]">
+            <h4 className={`${isDark ? "text-white" : "text-slate-900 font-black"} text-sm tracking-wide uppercase text-[11px]`}>
               Explore Online Degrees
             </h4>
-            <ul className="space-y-1.5 text-xs text-slate-400">
+            <ul className={`space-y-1.5 text-xs ${isDark ? "text-slate-400" : "text-slate-600"}`}>
               <li>
                 <a
                   href="https://onlinemanipalmba.collegevihar.com"
-                  className="hover:text-white transition-colors"
+                  className={`${isDark ? "hover:text-white" : "hover:text-slate-900 font-medium"} transition-colors`}
                 >
                   Online Manipal MBA (MUJ)
                 </a>
@@ -144,7 +148,7 @@ export default function CompliantFooter({
               <li>
                 <a
                   href="https://onlinemanipalmca.collegevihar.com"
-                  className="hover:text-white transition-colors"
+                  className={`${isDark ? "hover:text-white" : "hover:text-slate-900 font-medium"} transition-colors`}
                 >
                   Online Manipal MCA (MUJ)
                 </a>
@@ -152,7 +156,7 @@ export default function CompliantFooter({
               <li>
                 <a
                   href="https://onlinemanipalbba.collegevihar.com"
-                  className="hover:text-white transition-colors"
+                  className={`${isDark ? "hover:text-white" : "hover:text-slate-900 font-medium"} transition-colors`}
                 >
                   Online Manipal BBA (MUJ)
                 </a>
@@ -160,7 +164,7 @@ export default function CompliantFooter({
               <li>
                 <a
                   href="https://amityonlinemba.collegevihar.com"
-                  className="hover:text-white transition-colors"
+                  className={`${isDark ? "hover:text-white" : "hover:text-slate-900 font-medium"} transition-colors`}
                 >
                   Amity University Online MBA
                 </a>
@@ -168,7 +172,7 @@ export default function CompliantFooter({
               <li>
                 <a
                   href="https://amityonlinemca.collegevihar.com"
-                  className="hover:text-white transition-colors"
+                  className={`${isDark ? "hover:text-white" : "hover:text-slate-900 font-medium"} transition-colors`}
                 >
                   Amity University Online MCA
                 </a>
@@ -176,7 +180,7 @@ export default function CompliantFooter({
               <li>
                 <a
                   href="https://amityonlinebba.collegevihar.com"
-                  className="hover:text-white transition-colors"
+                  className={`${isDark ? "hover:text-white" : "hover:text-slate-900 font-medium"} transition-colors`}
                 >
                   Amity University Online BBA
                 </a>
@@ -184,9 +188,17 @@ export default function CompliantFooter({
               <li>
                 <a
                   href="https://ignouonlinemba.collegevihar.com"
-                  className="hover:text-white transition-colors"
+                  className={`${isDark ? "hover:text-white" : "hover:text-slate-900 font-medium"} transition-colors`}
                 >
                   IGNOU Online MBA Advisory
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://ignouonlinemca.collegevihar.com"
+                  className={`${isDark ? "hover:text-white" : "hover:text-slate-900 font-medium"} transition-colors`}
+                >
+                  IGNOU Online MCA Advisory
                 </a>
               </li>
             </ul>
@@ -194,9 +206,13 @@ export default function CompliantFooter({
         </div>
 
         {/* Row 2: Mandatory Statutory Disclaimer Box */}
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-5 sm:p-6 text-[11px] leading-relaxed text-slate-300 space-y-2.5">
-          <div className="flex items-center gap-2 text-white font-bold text-xs uppercase tracking-wider">
-            <span className="text-amber-400">⚠️</span>
+        <div className={`border rounded-2xl p-5 sm:p-6 text-[11px] leading-relaxed space-y-2.5 ${
+          isDark
+            ? "bg-white/5 border-white/10 text-slate-300"
+            : "bg-amber-50/70 border-amber-200 text-slate-800 shadow-sm"
+        }`}>
+          <div className={`flex items-center gap-2 ${isDark ? "text-white" : "text-slate-900"} font-bold text-xs uppercase tracking-wider`}>
+            <span className="text-amber-500">⚠️</span>
             <span>Mandatory Statutory &amp; Partnership Disclaimer:</span>
           </div>
 
@@ -210,7 +226,7 @@ export default function CompliantFooter({
             </p>
           ) : partnershipType === "ignou" ? (
             <p>
-              <strong>CollegeVihar is an Independent Student Counseling &amp; Career Guidance Advisory for IGNOU programmes.</strong> IGNOU (Indira Gandhi National Open University) is a central government university that does not authorize private commercial marketing agencies or franchises. This page provides prospective students with syllabus details, eligibility advice, and navigation support to the official IGNOU portal (<code className="bg-black/30 px-1 py-0.5 rounded text-slate-200">ignou.ac.in</code>). IGNOU trademarks belong strictly to Indira Gandhi National Open University. CollegeVihar does not collect official university tuition fees or guarantee admission.
+              <strong>CollegeVihar is an Independent Student Counseling &amp; Career Guidance Advisory for IGNOU programmes.</strong> IGNOU (Indira Gandhi National Open University) is a central government university that does not authorize private commercial marketing agencies or franchises. This page provides prospective students with syllabus details, eligibility advice, and navigation support to the official IGNOU portal (<code className={`${isDark ? "bg-black/30 text-slate-200" : "bg-slate-200 text-slate-900 font-semibold"} px-1.5 py-0.5 rounded`}>ignou.ac.in</code>). IGNOU trademarks belong strictly to Indira Gandhi National Open University. CollegeVihar does not collect official university tuition fees or guarantee admission.
             </p>
           ) : (
             <p>
@@ -218,20 +234,20 @@ export default function CompliantFooter({
             </p>
           )}
 
-          <p className="text-slate-400 text-[10px]">
+          <p className={`${isDark ? "text-slate-400" : "text-slate-600"} text-[10px]`}>
             Statutory Notice: All university tuition fees must be deposited directly to the official accounts of the respective awarding university. CollegeVihar does not charge consultation fees to students and never collects unauthorized personal transfers.
           </p>
         </div>
 
         {/* Row 3: Bottom Copyright & Verification Line */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 text-[11px] text-slate-400 text-center sm:text-left">
+        <div className={`flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 text-[11px] ${isDark ? "text-slate-400" : "text-slate-600"} text-center sm:text-left`}>
           <div>
-            © {new Date().getFullYear()} <strong>CollegeVihar</strong>. All Rights Reserved. Operated for Higher Education Counseling &amp; University Channel Partnership.
+            © {new Date().getFullYear()} <strong className={isDark ? "text-slate-200" : "text-slate-900"}>CollegeVihar</strong>. All Rights Reserved. Operated for Higher Education Counseling &amp; University Channel Partnership.
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-slate-300">ISO 9001:2015 Process Aligned</span>
+            <span className={isDark ? "text-slate-300" : "text-slate-600"}>ISO 9001:2015 Process Aligned</span>
             <span>•</span>
-            <span className="text-emerald-400 font-semibold">100% Verified Admissions</span>
+            <span className={`${isDark ? "text-emerald-400" : "text-emerald-700"} font-semibold`}>100% Verified Admissions</span>
           </div>
         </div>
       </div>
