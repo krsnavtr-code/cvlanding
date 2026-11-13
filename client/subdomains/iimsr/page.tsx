@@ -17,8 +17,7 @@ export default function IimsrLandingPage({
 }: IimsrPageProps) {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [heroSubmitted, setHeroSubmitted] = useState(false);
-  const [modalSubmitted, setModalSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [currentYear, setCurrentYear] = useState<number>(2026);
 
@@ -58,28 +57,16 @@ export default function IimsrLandingPage({
     };
   }, [isModalOpen]);
 
-  const sendWhatsApp = (data: {
+  const submitLead = async (data: {
     name: string;
-    email?: string;
+    email: string;
     phone: string;
     qualification?: string;
     course?: string;
   }) => {
-    const msg = `I would like admission counselling.%0AName: ${encodeURIComponent(
-      data.name
-    )}%0AEmail: ${encodeURIComponent(
-      data.email || "Not provided"
-    )}%0AMobile: ${encodeURIComponent(
-      data.phone
-    )}%0AQualification: ${encodeURIComponent(
-      data.qualification || "Not specified"
-    )}%0AProgramme: ${encodeURIComponent(data.course || "Not specified")}`;
-
-    window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, "_blank", "noopener");
-
-    // Forward lead to backend so email is dispatched to anand24h@gmail.com and stored
+    setIsSubmitting(true);
     try {
-      fetch("/api/leads", {
+      await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -95,18 +82,19 @@ export default function IimsrLandingPage({
           source: "IIMSR Admissions Landing Page",
           adminEmail: "anand24h@gmail.com",
         }),
-      }).catch((err) => {
-        console.warn("[LEAD SUBMIT NOTICE]:", err.message);
       });
-    } catch {
-      // Ignore
+    } catch (err) {
+      console.warn("[LEAD SUBMIT NOTICE]:", err);
+    } finally {
+      setIsSubmitting(false);
+      goToThankYou();
     }
   };
 
-  const handleHeroSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleHeroSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
-    if (!form.reportValidity()) return;
+    if (!form.reportValidity() || isSubmitting) return;
 
     const formData = new FormData(form);
     const data = {
@@ -117,15 +105,13 @@ export default function IimsrLandingPage({
       course: String(formData.get("course") || "").trim(),
     };
 
-    sendWhatsApp(data);
-    setHeroSubmitted(true);
-    goToThankYou();
+    await submitLead(data);
   };
 
-  const handleModalSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleModalSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
-    if (!form.reportValidity()) return;
+    if (!form.reportValidity() || isSubmitting) return;
 
     const formData = new FormData(form);
     const data = {
@@ -136,10 +122,8 @@ export default function IimsrLandingPage({
       course: String(formData.get("pcourse") || "").trim(),
     };
 
-    sendWhatsApp(data);
-    setModalSubmitted(true);
     setIsModalOpen(false);
-    goToThankYou();
+    await submitLead(data);
   };
 
   const toggleFaq = (index: number) => {
@@ -399,18 +383,12 @@ export default function IimsrLandingPage({
                 </div>
 
                 <button
-                  className="w-full mt-3.5 inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-extrabold text-sm text-[#151515] bg-gradient-to-br from-[#ffc52c] to-[#f28a00] shadow-[0_8px_20px_rgba(244,165,30,0.27)] hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 transition-all cursor-pointer"
+                  disabled={isSubmitting}
+                  className="w-full mt-3.5 inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-extrabold text-sm text-[#151515] bg-gradient-to-br from-[#ffc52c] to-[#f28a00] shadow-[0_8px_20px_rgba(244,165,30,0.27)] hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 transition-all cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
                   type="submit"
                 >
-                  Get Free Counselling →
+                  {isSubmitting ? "Submitting..." : "Get Free Counselling →"}
                 </button>
-
-                {heroSubmitted && (
-                  <div className="bg-[#eaf8ef] text-[#176b35] rounded-[10px] p-3 text-[13px] mt-2.5 font-medium border border-[#bbf7d0]">
-                    Your WhatsApp enquiry is ready. Please press Send in
-                    WhatsApp to complete submission.
-                  </div>
-                )}
 
                 <p className="text-[11px] text-[#7b8496] mt-2.5 leading-normal">
                   Your details will be used to respond to this admission
@@ -883,20 +861,15 @@ export default function IimsrLandingPage({
               </div>
 
               <button
-                className="w-full mt-4 inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-extrabold text-sm text-[#151515] bg-gradient-to-br from-[#ffc52c] to-[#f28a00] shadow-[0_8px_20px_rgba(244,165,30,0.27)] hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 transition-all cursor-pointer"
+                disabled={isSubmitting}
+                className="w-full mt-4 inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-extrabold text-sm text-[#151515] bg-gradient-to-br from-[#ffc52c] to-[#f28a00] shadow-[0_8px_20px_rgba(244,165,30,0.27)] hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 transition-all cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
                 type="submit"
               >
-                Get Free Counselling →
+                {isSubmitting ? "Submitting..." : "Get Free Counselling →"}
               </button>
 
-              {modalSubmitted && (
-                <div className="bg-[#eaf8ef] text-[#176b35] rounded-[10px] p-3 text-[13px] mt-2.5 font-medium border border-[#bbf7d0]">
-                  Your WhatsApp enquiry is ready! Opening WhatsApp...
-                </div>
-              )}
-
               <p className="text-[11px] text-[#7b8496] mt-2.5 text-center leading-normal">
-                WhatsApp opens so you can review and send your enquiry.
+                Your details will be used to respond to this admission enquiry.
               </p>
             </form>
           </div>
