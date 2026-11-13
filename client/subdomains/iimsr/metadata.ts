@@ -14,7 +14,6 @@ export const metadata: Metadata = {
     "M.Tech",
     "BCA",
     "Admission Counselling",
-    "College Vihar IIMSR",
   ],
   themeColor: "#071b4b",
   openGraph: {

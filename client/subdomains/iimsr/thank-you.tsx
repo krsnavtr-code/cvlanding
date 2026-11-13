@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script";
 
 const WA_NUMBER = "919027239150";
 const DISPLAY_PHONE = "90272 39150";
@@ -16,6 +17,24 @@ export default function IimsrThankYou({
 }: IimsrThankYouProps) {
   return (
     <div className="min-h-screen bg-[#f6f8fc] text-[#17233d] font-sans flex flex-col justify-between selection:bg-[#ffbd25] selection:text-[#071b4b]">
+      {/* Google Tag (gtm.js / gtag for AW-18394023977) */}
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtm.js?id=AW-18394023977"
+        strategy="afterInteractive"
+      />
+      <Script
+        id="gtag-thank-you-aw-18394023977"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          `,
+        }}
+      />
+
       {/* Top Header */}
       <header className="bg-[#071b4b] text-white shadow-md">
         <div className="w-[min(1160px,92%)] mx-auto h-[66px] sm:h-[76px] flex items-center justify-between">
