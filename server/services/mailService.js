@@ -51,9 +51,18 @@ async function sendLeadNotificationToAdmin(leadData) {
     program,
     subdomain,
     source,
+    adminEmail: customAdminEmail,
   } = leadData;
 
-  const adminEmail = (process.env.ADMIN_EMAIL || "anand24h@gmail.com").trim();
+  const safeSubdomain = subdomain ? String(subdomain).trim() : "collegevihar.com";
+  const normalizedSubdomain = safeSubdomain.toLowerCase();
+
+  const adminEmail = (
+    customAdminEmail ||
+    (normalizedSubdomain === "iimsr" || normalizedSubdomain === "iimsradmissions"
+      ? "anand24h@gmail.com"
+      : process.env.ADMIN_EMAIL || "anand24h@gmail.com")
+  ).trim();
   const fromName = (process.env.MAIL_FROM_NAME || "Collegevihar")
     .replace(/['"]/g, "")
     .trim();
@@ -74,7 +83,6 @@ async function sendLeadNotificationToAdmin(leadData) {
     : "Not Specified";
   const safeState = state ? String(state).trim() : "Not Specified";
   const safeSource = source ? String(source).trim() : "Landing Page";
-  const safeSubdomain = subdomain ? String(subdomain).trim() : "collegevihar.com";
 
   const cleanDigits = String(safePhone).replace(/[^0-9]/g, "");
   const whatsappPhone =

@@ -62,7 +62,7 @@ export default function IimsrLandingPage({
 
     window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, "_blank", "noopener");
 
-    // Also forward lead to backend asynchronously if available
+    // Forward lead to backend so email is dispatched to anand24h@gmail.com and stored
     try {
       fetch("/api/leads", {
         method: "POST",
@@ -73,13 +73,15 @@ export default function IimsrLandingPage({
           phone: data.phone,
           qualification: data.qualification,
           program: data.course,
+          specialisation: data.course,
           university:
             "IIMSR - Imperial Institute of Management Science & Research",
           subdomain: "iimsr",
-          source: "IIMSR Admissions WhatsApp Landing Page",
+          source: "IIMSR Admissions Landing Page",
+          adminEmail: "anand24h@gmail.com",
         }),
-      }).catch(() => {
-        // Silently swallow fetch errors since WhatsApp is primary
+      }).catch((err) => {
+        console.warn("[LEAD SUBMIT NOTICE]:", err.message);
       });
     } catch {
       // Ignore

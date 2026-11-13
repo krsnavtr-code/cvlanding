@@ -1,4 +1,4 @@
-﻿const db = require("../config/db");
+const db = require("../config/db");
 const { sendLeadNotificationToAdmin } = require("../services/mailService");
 const { pushToGenlead } = require("../services/genleadService");
 
@@ -14,6 +14,7 @@ exports.captureLead = async (req, res) => {
     program,
     subdomain,
     source,
+    adminEmail,
   } = req.body;
 
   if (!name || !email || !phone) {
@@ -77,6 +78,7 @@ exports.captureLead = async (req, res) => {
       program: program ? program.trim() : null,
       subdomain: cleanSubdomain,
       source: source ? source.trim() : "landing-page",
+      adminEmail: adminEmail ? adminEmail.trim() : (cleanSubdomain === "iimsr" || cleanSubdomain === "iimsradmissions" ? "anand24h@gmail.com" : null),
     }).catch((mailErr) => {
       console.error("[MAIL ASYNC ERROR]:", mailErr.message);
     });
