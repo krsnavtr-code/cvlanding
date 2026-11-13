@@ -19,7 +19,10 @@ export default function IimsrThankYou({
       {/* Top Header */}
       <header className="bg-[#071b4b] text-white shadow-md">
         <div className="w-[min(1160px,92%)] mx-auto h-[66px] sm:h-[76px] flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
+          <Link
+            href={subdomain && subdomain !== "collegevihar" ? `/${subdomain}` : "/"}
+            className="flex items-center gap-3"
+          >
             <div className="w-[50px] h-[50px] sm:w-[58px] sm:h-[58px] relative flex-shrink-0">
               <Image
                 src="/images/iimsr-logo.png"
@@ -40,7 +43,7 @@ export default function IimsrThankYou({
             </span>
           </Link>
           <Link
-            href="/"
+            href={subdomain && subdomain !== "collegevihar" ? `/${subdomain}` : "/"}
             className="text-xs sm:text-sm font-bold text-white/90 hover:text-white flex items-center gap-1.5 transition-colors"
           >
             ← Back to Home

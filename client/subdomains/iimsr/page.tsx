@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const WA_NUMBER = "919027239150";
@@ -14,11 +15,25 @@ export default function IimsrLandingPage({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   subdomain = "iimsr",
 }: IimsrPageProps) {
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [heroSubmitted, setHeroSubmitted] = useState(false);
   const [modalSubmitted, setModalSubmitted] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [currentYear, setCurrentYear] = useState<number>(2026);
+
+  const goToThankYou = () => {
+    if (typeof window !== "undefined") {
+      const pathname = window.location.pathname;
+      if (pathname.startsWith(`/${subdomain}`)) {
+        router.push(`/${subdomain}/thank-you`);
+      } else {
+        router.push("/thank-you");
+      }
+    } else {
+      router.push("/thank-you");
+    }
+  };
 
   useEffect(() => {
     setCurrentYear(new Date().getFullYear());
@@ -104,6 +119,7 @@ export default function IimsrLandingPage({
 
     sendWhatsApp(data);
     setHeroSubmitted(true);
+    goToThankYou();
   };
 
   const handleModalSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -122,10 +138,8 @@ export default function IimsrLandingPage({
 
     sendWhatsApp(data);
     setModalSubmitted(true);
-    setTimeout(() => {
-      setIsModalOpen(false);
-      setModalSubmitted(false);
-    }, 1500);
+    setIsModalOpen(false);
+    goToThankYou();
   };
 
   const toggleFaq = (index: number) => {
@@ -388,7 +402,7 @@ export default function IimsrLandingPage({
                   className="w-full mt-3.5 inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-extrabold text-sm text-[#151515] bg-gradient-to-br from-[#ffc52c] to-[#f28a00] shadow-[0_8px_20px_rgba(244,165,30,0.27)] hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 transition-all cursor-pointer"
                   type="submit"
                 >
-                  Submit Enquiry on WhatsApp →
+                  Get Free Counselling →
                 </button>
 
                 {heroSubmitted && (
