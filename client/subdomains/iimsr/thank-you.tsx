@@ -20,7 +20,7 @@ export default function IimsrThankYou({
       <header className="bg-[#071b4b] text-white shadow-md">
         <div className="w-[min(1160px,92%)] mx-auto h-[66px] sm:h-[76px] flex items-center justify-between">
           <Link
-            href={subdomain && subdomain !== "collegevihar" ? `/${subdomain}` : "/"}
+            href={subdomain && subdomain !== "collegevihar" ? `/` : "/"}
             className="flex items-center gap-3"
           >
             <div className="w-[50px] h-[50px] sm:w-[58px] sm:h-[58px] relative flex-shrink-0">
