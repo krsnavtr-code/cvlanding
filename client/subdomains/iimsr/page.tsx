@@ -158,7 +158,7 @@ export default function IimsrLandingPage({
           >
             <div className="w-[54px] h-[54px] sm:w-[62px] sm:h-[62px] relative flex-shrink-0">
               <Image
-                src="/images/iimsr-logo.jpg"
+                src="/images/iimsr-logo.png"
                 alt="IIMSR official emblem"
                 width={62}
                 height={62}
@@ -752,20 +752,12 @@ export default function IimsrLandingPage({
             >
               ×
             </button>
-
-            <span className="inline-block bg-[#fff1d7] text-[#8b4a00] border border-[#ffd78c] px-3 py-1 rounded-full font-extrabold text-[11px] tracking-[0.4px] mb-2">
-              FREE COUNSELLING
-            </span>
             <h3
               id="popTitle"
-              className="font-serif text-[23px] sm:text-[25px] font-bold text-[#071b4b] mt-1 mb-1.5 pr-8 leading-tight"
+              className="font-bold text-[20px] sm:text-[20px] font-bold text-[#071b4b] mt-1 mb-1.5 pr-8 leading-tight"
             >
               Need help choosing a programme?
             </h3>
-            <p className="text-[#647087] text-[13px] mb-4">
-              Leave your details and start a WhatsApp conversation with our
-              enquiry team.
-            </p>
 
             <form id="popupForm" onSubmit={handleModalSubmit}>
               <div className="grid grid-cols-1 gap-3">

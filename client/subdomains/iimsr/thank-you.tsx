@@ -22,7 +22,7 @@ export default function IimsrThankYou({
           <Link href="/" className="flex items-center gap-3">
             <div className="w-[50px] h-[50px] sm:w-[58px] sm:h-[58px] relative flex-shrink-0">
               <Image
-                src="/images/iimsr-logo.jpg"
+                src="/images/iimsr-logo.png"
                 alt="IIMSR official emblem"
                 width={58}
                 height={58}
