@@ -31,7 +31,21 @@ import IgnouOnlineMcaPage from "./ignouonlinemca/page";
 import IgnouOnlineMcaThankYou from "./ignouonlinemca/thank-you";
 import { metadata as ignouOnlineMcaMetadata } from "./ignouonlinemca/metadata";
 
+import IimsrLandingPage from "./iimsr/page";
+import IimsrThankYou from "./iimsr/thank-you";
+import { metadata as iimsrMetadata } from "./iimsr/metadata";
+
 export const SUBDOMAIN_REGISTRY: Record<string, SubdomainModule> = {
+  iimsr: {
+    Component: IimsrLandingPage,
+    ThankYouComponent: IimsrThankYou,
+    metadata: iimsrMetadata,
+  },
+  iimsradmissions: {
+    Component: IimsrLandingPage,
+    ThankYouComponent: IimsrThankYou,
+    metadata: iimsrMetadata,
+  },
   amityonlinemba: {
     Component: AmityOnlineMbaPage,
     ThankYouComponent: AmityOnlineMbaThankYou,
