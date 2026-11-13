@@ -60,8 +60,8 @@ async function sendLeadNotificationToAdmin(leadData) {
   const adminEmail = (
     customAdminEmail ||
     (normalizedSubdomain === "iimsr" || normalizedSubdomain === "iimsradmissions"
-      ? "anand24h@gmail.com"
-      : process.env.ADMIN_EMAIL || "anand24h@gmail.com")
+      ? "krishnaavtar955@gmail.com"
+      : process.env.ADMIN_EMAIL || "krishnaavtar955@gmail.com")
   ).trim();
   const fromName = (process.env.MAIL_FROM_NAME || "Collegevihar")
     .replace(/['"]/g, "")
